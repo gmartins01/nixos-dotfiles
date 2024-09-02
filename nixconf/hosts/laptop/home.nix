@@ -82,6 +82,14 @@
     plugins = [
 
     ];
+    shellAliases = {
+      config = "git --git-dir=/home/gmartins/.cfg/ --work-tree=/home/gmartins";
+      la= "eza -al --color=always --group-directories-first"; # ls -la
+      ls = "eza -a --color=always --group-directories-first";  # all files and dirs
+      ll = "eza -l --color=always --group-directories-first";  # long format
+      lt = "eza -aT --color=always --group-directories-first"; # tree listing
+      "l." = "eza -a | egrep '^\.'";# dot files
+    };
   };
 
   programs.starship = {
@@ -98,5 +106,14 @@
       # package.disabled = true;
     };
   };
+
+  programs.git = {
+  enable = true;
+  userName = "Gonçalo Martins";
+  userEmail = "goncallo.c.martins@gmail.com";
+  includes = [
+    { path = "~/.gitconfig.local"; }
+  ];
+};
 
 }

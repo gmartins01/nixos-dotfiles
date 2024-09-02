@@ -115,8 +115,8 @@
      wget
      killall
      vesktop
-     git
      keepassxc
+     eza
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
