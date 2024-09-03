@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports =
+    [
+      ./../../modules/home-manager/default.nix
+    ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "gmartins";
@@ -74,46 +79,5 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set fish_greeting # Disable greeting
-    '';
-    plugins = [
-
-    ];
-    shellAliases = {
-      config = "git --git-dir=/home/gmartins/.cfg/ --work-tree=/home/gmartins";
-      la= "eza -al --color=always --group-directories-first"; # ls -la
-      ls = "eza -a --color=always --group-directories-first";  # all files and dirs
-      ll = "eza -l --color=always --group-directories-first";  # long format
-      lt = "eza -aT --color=always --group-directories-first"; # tree listing
-      "l." = "eza -a | egrep '^\.'";# dot files
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-    # Configuration written to ~/.config/starship.toml
-    settings = {
-      # add_newline = false;
-
-      # character = {
-      #   success_symbol = "[➜](bold green)";
-      #   error_symbol = "[➜](bold red)";
-      # };
-
-      # package.disabled = true;
-    };
-  };
-
-  programs.git = {
-  enable = true;
-  userName = "Gonçalo Martins";
-  userEmail = "goncallo.c.martins@gmail.com";
-  includes = [
-    { path = "~/.gitconfig.local"; }
-  ];
-};
 
 }

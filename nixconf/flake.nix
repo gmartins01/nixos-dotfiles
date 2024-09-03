@@ -23,10 +23,11 @@
           modules = [
             ./hosts/laptop/configuration.nix
             inputs.home-manager.nixosModules.default
+            ./modules/nixos
           ];
         };
       };
-
+      
       devShells.${system} = devShells;
 
     };
