@@ -7,9 +7,12 @@
   environment.systemPackages = with pkgs; [
     vesktop
     keepassxc
-    vscode 
+    vscode
+    xwaylandvideobridge
+    corectrl
   ];
   
   programs.firefox.enable = true;
 
+  services.flatpak.enable = true;
 }

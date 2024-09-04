@@ -2,9 +2,8 @@
 
 {
   imports = [
-    ./shellPkgs
-    ./desktopApps
-    ./system
+    ./bluetooth.nix
+    ./audio.nix
   ];
 
 }
