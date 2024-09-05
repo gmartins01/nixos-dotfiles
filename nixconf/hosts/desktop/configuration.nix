@@ -9,6 +9,7 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
+  boot.supportedFilesystems = [ "ntfs" ];
   
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "nodev";
@@ -59,6 +60,26 @@
     layout = "pt";
     variant = "";
   };
+
+  fonts = {
+    enableDefaultFonts = true;
+
+    fonts = with pkgs; [
+      noto-fonts
+      ubuntu_font_family
+      unifont
+    ];
+
+    fontconfig = {
+      antialias = true;
+      defaultFonts = {
+        serif = [ "Ubuntu" ];
+        sansSerif = [ "Ubuntu" ];
+        monospace = [ "Ubuntu Source" ];
+      };
+    };
+  };  
+
 
   # Configure console keymap
   console.keyMap = "pt-latin1";

@@ -23,6 +23,11 @@
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
+  fileSystems."/run/media/gmartins/Files" =
+    { device = "/dev/disk/by-uuid/24AF66E86D22A2B0";
+      fsType = "ntfs";
+      options = ["nofail"];
+    };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/a5cf0929-1923-4274-9028-af2e58175da5"; }
