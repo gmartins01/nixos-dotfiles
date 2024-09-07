@@ -10,6 +10,7 @@
     killall
     eza
     unzip
+    unrar
   ];
   
 

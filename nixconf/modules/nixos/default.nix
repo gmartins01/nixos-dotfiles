@@ -5,6 +5,7 @@
     ./shellPkgs
     ./desktopApps
     ./system
+    ./services
   ];
 
 }
