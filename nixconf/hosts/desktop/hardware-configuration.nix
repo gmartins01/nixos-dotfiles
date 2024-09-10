@@ -26,7 +26,7 @@
   fileSystems."/run/media/gmartins/Files" =
     { device = "/dev/disk/by-uuid/24AF66E86D22A2B0";
       fsType = "ntfs";
-      options = ["nofail"];
+      options = ["nofail" "uid=1000" "gid=1000"];
     };
 
   swapDevices =

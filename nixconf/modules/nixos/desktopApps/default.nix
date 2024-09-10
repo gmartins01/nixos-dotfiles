@@ -11,12 +11,9 @@
     vscode
     xwaylandvideobridge
     corectrl
-    ffmpeg
-    unzip
-    zip
+    vlc
   ];
   
   programs.firefox.enable = true;
 
-  services.flatpak.enable = true;
 }

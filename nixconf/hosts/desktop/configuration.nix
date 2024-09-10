@@ -19,7 +19,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
 
   networking.hostName = "nixos";
-  networking.firewall.allowedTCPPorts = [ 8384 22000 ];
+  networking.firewall.allowedTCPPorts = [ 8384 ];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

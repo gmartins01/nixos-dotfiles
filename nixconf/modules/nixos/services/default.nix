@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./syncthing.nix
   ];
 
   services.flatpak.enable = true;

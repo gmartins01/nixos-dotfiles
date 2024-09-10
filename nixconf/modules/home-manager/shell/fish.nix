@@ -21,7 +21,7 @@
                 lt = "eza -aT --color=always --group-directories-first"; # tree listing
                 "l." = "eza -a | egrep '^\.'"; # dot files
 
-                rebuild="sudo nixos-rebuild switch --flake ~/nixconf#";
+                rebuild="sudo nixos-rebuild switch --flake ~/nixconf#laptop";
             };
         };
     };
