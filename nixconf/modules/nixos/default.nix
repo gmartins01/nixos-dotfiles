@@ -6,6 +6,7 @@
     ./desktopApps
     ./system
     ./services
+    ./windowManager
   ];
 
 }

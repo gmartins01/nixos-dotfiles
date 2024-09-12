@@ -108,7 +108,7 @@
 
             {
               digitalClock = {
-                calendar.firstDayOfWeek = "monday";
+                cale  ndar.firstDayOfWeek = "monday";
                 time.format = "24h";
               };
             }

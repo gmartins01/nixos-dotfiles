@@ -10,7 +10,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
   boot.supportedFilesystems = [ "ntfs" ];
-  
+
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "nodev";
   boot.loader.grub.useOSProber = true;
@@ -19,7 +19,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
 
   networking.hostName = "nixos";
-  networking.firewall.allowedTCPPorts = [ 8384 ];
+  networking.firewall.allowedTCPPorts = [ 8384 9999 ];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -62,9 +62,9 @@
   };
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
 
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts
       ubuntu_font_family
       unifont
@@ -79,7 +79,7 @@
         monospace = [ "Ubuntu Source" ];
       };
     };
-  };  
+  };
 
 
   # Configure console keymap
@@ -88,7 +88,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -99,22 +99,22 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     users = {
       "gmartins" = import ./home.nix;
     };
   };
-  
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
- 
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
