@@ -2,6 +2,7 @@
 
 {
   imports = [
+    
   ];
 
   environment.systemPackages = with pkgs; [
@@ -9,6 +10,7 @@
     discord
     keepassxc
     vscode
+    jetbrains.idea-ultimate
     xwaylandvideobridge
     corectrl
     vlc

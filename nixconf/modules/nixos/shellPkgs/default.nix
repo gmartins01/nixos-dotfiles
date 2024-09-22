@@ -15,8 +15,10 @@
     unrar
     nfs-utils
     nixpkgs-fmt
-    pkgs.python3
-    pkgs.python312Packages.pip
+    (python3.withPackages (ps: with ps; [
+      pip
+      requests
+    ]))
   ];
   
 

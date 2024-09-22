@@ -21,7 +21,9 @@
       shellAliases = {
         
         rebuild="sudo nixos-rebuild switch --flake ~/nixconf#desktop";
-        
+        upgrade="sudo nixos-rebuild switch --upgrade --flake ~/nixconf#desktop";
+        editconfig="code ~/nixconf";
+
         config = "git --git-dir=/home/gmartins/.cfg/ --work-tree=/home/gmartins";
         
         la = "eza -al --color=always --group-directories-first"; # ls -la

@@ -66,19 +66,22 @@
 
     packages = with pkgs; [
       noto-fonts
-      ubuntu_font_family
+      noto-fonts-cjk
+      noto-fonts-emoji
       unifont
-      jetbrains-mono
+      material-icons
+      fira-code
+      roboto
     ];
 
-    fontconfig = {
-      antialias = true;
-      defaultFonts = {
-        serif = [ "Ubuntu" ];
-        sansSerif = [ "Ubuntu" ];
-        monospace = [ "Ubuntu Source" ];
-      };
-    };
+    # fontconfig = {
+    #   antialias = true;
+    #   defaultFonts = {
+    #     serif = [ "Ubuntu" ];
+    #     sansSerif = [ "Ubuntu" ];
+    #     monospace = [ "Ubuntu Source" ];
+    #   };
+    # };
   };
 
 
