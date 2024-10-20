@@ -9,10 +9,11 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "amdgpu"];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
+  boot.supportedFilesystems = [ "ntfs" ];
+  
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/1cb6c441-d32a-497f-a6f8-4a92d3e00f11";
       fsType = "ext4";

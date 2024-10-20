@@ -13,6 +13,7 @@
     xwaylandvideobridge
     corectrl
     vlc
+    mediawriter
   ];
   
   programs.firefox.enable = true;

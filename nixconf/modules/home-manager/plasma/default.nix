@@ -12,9 +12,9 @@
 
       workspace = {
         lookAndFeel = "org.kde.breezedark.desktop";
-        colorScheme = "BreezeDark";
+        colorScheme = "Layan";
         cursor = {
-          theme = "Breeze_Light";
+          theme = "Breeze";
           size = 24;
         };
         iconTheme = "Papirus-Dark";
@@ -25,12 +25,15 @@
         "services/plasma-manager-commands.desktop"."launch-konsole" = "Meta+Return";
         "kwin"."Window Close" = ["Meta+C" "Alt+F4,Alt+F4,Close Window"];
         "plasmashell"."show-on-mouse-pos" = "Meta+V";
-        "services/org.kde.krunner.desktop"."RunClipboard" = ["Alt+Shift+F2" "Meta+R"];
+        "services/org.kde.krunner.desktop"."RunClipboard" = ["Alt+Shift+F2" ];
+        "services/org.kde.krunner.desktop"."_launch" = ["Alt+Space" "Meta+R"];
+
       };
 
       krunner = {
         position = "center";        
         historyBehavior = "enableSuggestions";
+        
       };
 
       spectacle = {
