@@ -14,6 +14,7 @@
     corectrl
     vlc
     mediawriter
+    kdePackages.kalk
   ];
   
   programs.firefox.enable = true;

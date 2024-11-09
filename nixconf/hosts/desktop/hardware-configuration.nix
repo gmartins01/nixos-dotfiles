@@ -24,10 +24,15 @@
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
-  fileSystems."/run/media/gmartins/Files" =
+  fileSystems."/run/media/gmartins/Backup" =
     { device = "/dev/disk/by-uuid/24AF66E86D22A2B0";
-      fsType = "ntfs";
-      options = ["nofail" "uid=1000" "gid=1000"];
+      fsType = "ntfs-3g";
+      options = ["rw" "uid=1000" "gid=1000"];
+    };
+    fileSystems."/run/media/gmartins/Files" =
+    { device = "/dev/disk/by-uuid/1EDA5A58DA5A2BF1";
+      fsType = "ntfs-3g";
+      options = ["rw" "uid=1000" "gid=1000"];
     };
 
   swapDevices =

@@ -14,7 +14,7 @@
         lookAndFeel = "org.kde.breezedark.desktop";
         colorScheme = "Layan";
         cursor = {
-          theme = "Breeze";
+          theme = "Breeze_Light";
           size = 24;
         };
         iconTheme = "Papirus-Dark";
