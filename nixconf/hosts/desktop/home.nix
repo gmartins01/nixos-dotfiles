@@ -13,7 +13,7 @@
 
   fish.enable = false;
 
-
+  qt.enable = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -27,12 +27,8 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-     (nerdfonts.override { 
-        fonts = [ 
-          "JetBrainsMono"
-          "CascadiaCode" 
-        ]; 
-      })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.caskaydia-cove
   ];
 
   fonts.fontconfig.enable = true;

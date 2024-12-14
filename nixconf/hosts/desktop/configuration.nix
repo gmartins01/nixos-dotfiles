@@ -54,6 +54,17 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  
+  services.displayManager.sddm.wayland.enable = true;
+
+  services.displayManager.sddm.autoNumlock = true;
+
+  services.displayManager.sddm.settings = {
+    Theme = {
+    CursorTheme = "Breeze_Light";
+    CursorSize = 24;
+    };
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {

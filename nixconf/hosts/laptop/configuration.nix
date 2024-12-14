@@ -103,7 +103,7 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  # Open ports in the firewall.
+  # Open ports in the firewall./home/gmartins/Programinhas/Vue basics/vue-crash-2024/src/App.vue
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.

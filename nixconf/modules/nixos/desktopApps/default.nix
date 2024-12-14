@@ -15,6 +15,11 @@
     vlc
     mediawriter
     kdePackages.kalk
+    megasync
+    handbrake
+    
+    xsettingsd
+    xorg.xrdb
   ];
   
   programs.firefox.enable = true;
