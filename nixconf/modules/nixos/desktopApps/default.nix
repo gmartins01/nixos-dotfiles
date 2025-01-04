@@ -17,11 +17,12 @@
     kdePackages.kalk
     megasync
     handbrake
-    
+    easyeffects
+
     xsettingsd
     xorg.xrdb
   ];
-  
+
   programs.firefox.enable = true;
 
 }
