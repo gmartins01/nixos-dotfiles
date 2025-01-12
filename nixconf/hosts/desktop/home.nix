@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -26,10 +26,10 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
+  /*home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
-  ];
+  ];*/
 
   fonts.fontconfig.enable = true;
 

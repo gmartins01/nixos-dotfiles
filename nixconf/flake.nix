@@ -15,6 +15,52 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    # hyprwm
+    hyprland.url = "github:hyprwm/hyprland";
+
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+
+    /*hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };*/
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+
   };
 
   outputs = { self, nixpkgs, home-manager, plasma-manager, ... }@inputs:
@@ -45,9 +91,10 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
-              
+
               home-manager.users."${username}" = import ./hosts/desktop/home.nix;
             }
+            { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
           ];
         };
       };

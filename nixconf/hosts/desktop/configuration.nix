@@ -54,15 +54,15 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  
+
   services.displayManager.sddm.wayland.enable = true;
 
   services.displayManager.sddm.autoNumlock = true;
 
   services.displayManager.sddm.settings = {
     Theme = {
-    CursorTheme = "Breeze_Light";
-    CursorSize = 24;
+      CursorTheme = "Breeze_Light";
+      CursorSize = 24;
     };
   };
 
@@ -83,6 +83,8 @@
       material-icons
       fira-code
       roboto
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.caskaydia-cove
     ];
 
     # fontconfig = {
@@ -128,6 +130,17 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nix.gc = {
+    automatic = true;
+    randomizedDelaySec = "14m";
+    options = "--delete-older-than 10d";
+  };
+
+  nix.settings = {
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
