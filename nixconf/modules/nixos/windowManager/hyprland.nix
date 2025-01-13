@@ -10,7 +10,7 @@
     hyprpaper
     wl-clipboard
     wl-clip-persist
-    cliphist
+    clipse
 
     qt6Packages.qt6ct
     qt6.qtwayland
@@ -19,6 +19,7 @@
 
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
+  environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
 
   /* pkgs.hyprpaper = {
     enable = true;
