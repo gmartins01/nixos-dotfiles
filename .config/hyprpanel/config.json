@@ -6,7 +6,9 @@
         "workspaces",
         "windowtitle"
       ],
-      "middle": [],
+      "middle": [
+        "media"
+      ],
       "right": [
         "systray",
         "volume",

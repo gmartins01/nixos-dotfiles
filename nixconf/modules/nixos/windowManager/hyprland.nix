@@ -15,18 +15,11 @@
     qt6Packages.qt6ct
     qt6.qtwayland
     qt5.qtwayland
+
+    libsForQt5.kservice # to fix opening files with default applications
   ];
 
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
   environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
-
-  /* pkgs.hyprpaper = {
-    enable = true;
-    package = inputs.hyprpaper.packages.${pkgs.system}.default;
-
-  };*/
-
-  #systemd.user.pkgs.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
-
 }

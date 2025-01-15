@@ -19,6 +19,7 @@
     handbrake
     easyeffects
     vscode
+    stremio
 
     xsettingsd
     xorg.xrdb

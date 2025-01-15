@@ -17,6 +17,9 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
+  #boot.extraModprobeConfig = ''
+  #  options snd_hda_intel power_save=0
+  #'';
 
   networking.hostName = "nixos";
   networking.firewall.allowedTCPPorts = [ 8384 9999 ];
