@@ -54,9 +54,7 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
 
   services.displayManager.sddm.wayland.enable = true;
 
@@ -64,8 +62,8 @@
 
   services.displayManager.sddm.settings = {
     Theme = {
-      CursorTheme = "Breeze_Light";
-      CursorSize = 24;
+      CursorTheme = "Bibata-Modern-Ice";
+      CursorSize = 26;
     };
   };
 
@@ -116,10 +114,10 @@
     isNormalUser = true;
     description = "Gonçalo Martins";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
+    #packages = with pkgs; [
+      #kdePackages.kate
       #  thunderbird
-    ];
+    #];
   };
 
   home-manager = {

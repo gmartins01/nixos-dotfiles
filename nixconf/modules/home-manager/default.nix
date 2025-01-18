@@ -6,12 +6,12 @@
     ./shell/fish.nix
     ./shell/starship.nix
     ./shell/zsh.nix
-    ./plasma
+    #./plasma
   ];
 
   fish.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
   starship.enable = lib.mkDefault true;
-  plasma.enable = lib.mkDefault true;
+  #plasma.enable = lib.mkDefault true;
 
 }

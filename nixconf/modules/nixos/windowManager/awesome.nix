@@ -32,6 +32,7 @@ in
     numlockx
     xorg.xinput
     xorg.xset
+    polkit
     polkit_gnome
     playerctl
     rofi

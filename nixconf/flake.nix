@@ -10,12 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     # hyprwm
     hyprland.url = "github:hyprwm/hyprland";
 
@@ -61,9 +55,11 @@
 
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
+    stylix.url = "github:danth/stylix";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, plasma-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager,catppuccin, ... }@inputs:
     let
       username = "gmartins";
       system = "x86_64-linux";
@@ -84,16 +80,11 @@
         desktop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
+            catppuccin.nixosModules.catppuccin
             ./hosts/desktop/configuration.nix
             ./modules/nixos
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
-
-              home-manager.users."${username}" = import ./hosts/desktop/home.nix;
-            }
+            inputs.stylix.nixosModules.stylix
             { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
           ];
         };

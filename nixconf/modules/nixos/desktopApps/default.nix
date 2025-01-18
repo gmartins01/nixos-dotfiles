@@ -1,9 +1,9 @@
 { pkgs, lib, ... }:
 
 {
-  /*imports = [
+  imports = [
     ./vscode.nix
-  ];*/
+  ];
 
   environment.systemPackages = with pkgs; [
     vesktop
@@ -18,7 +18,7 @@
     megasync
     handbrake
     easyeffects
-    vscode
+    #vscode
     stremio
 
     xsettingsd

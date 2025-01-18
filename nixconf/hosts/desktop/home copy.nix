@@ -1,6 +1,6 @@
 { config, pkgs, inputs, lib, ... }:
 let
-  variant = "macchiato";
+  variant = "mocha";
   accent = "lavender";
   kvantumThemePackage = pkgs.catppuccin-kvantum.override {
     inherit variant accent;
@@ -19,7 +19,6 @@ in
 
   qt = {
     enable = true;
-    #qt5ct
     platformTheme.name = "qt5ct";
     style.name = "kvantum";
   };
@@ -85,7 +84,11 @@ in
     
   ];
 
-
+  dconf.settings = {
+    "com/github/stunkymonkey/nautilus-open-any-terminal" = {
+      terminal = "alacritty";
+    };
+  };
   #fonts.fontconfig.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
