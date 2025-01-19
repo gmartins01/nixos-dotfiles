@@ -5,6 +5,7 @@
     ./bluetooth.nix
     ./audio.nix
     ./razer.nix
+    ./utils.nix
   ];
 
 }

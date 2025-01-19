@@ -17,6 +17,7 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
+  boot.loader.grub.theme = pkgs.catppuccin-grub;
   #boot.extraModprobeConfig = ''
   #  options snd_hda_intel power_save=0
   #'';
@@ -54,16 +55,29 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  services.displayManager.sddm.enable = true;
+  # Login Manager
 
-  services.displayManager.sddm.wayland.enable = true;
+  environment.systemPackages = [(
+    pkgs.catppuccin-sddm.override {
+      flavor = "mocha";
+      font  = "Noto Sans";
+      fontSize = "9";
+      #background = "${./wallpaper.png}";
+      loginBackground = true;
+    }
+  )];
 
-  services.displayManager.sddm.autoNumlock = true;
 
-  services.displayManager.sddm.settings = {
-    Theme = {
-      CursorTheme = "Bibata-Modern-Ice";
-      CursorSize = 26;
+  services.displayManager.sddm = {
+    enable = true;
+    theme = "catppuccin-mocha";
+    package = pkgs.kdePackages.sddm;
+    wayland.enable = true;
+    autoNumlock = true;
+    settings = {
+      Theme = {
+        CursorTheme = "Bibata-Modern-Ice";  
+      };
     };
   };
 

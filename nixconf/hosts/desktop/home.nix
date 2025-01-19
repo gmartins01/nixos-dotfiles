@@ -1,6 +1,6 @@
 { config, pkgs, inputs, lib, ... }:
 let
-  variant = "macchiato";
+  variant = "frappe";
   accent = "lavender";
   kvantumThemePackage = pkgs.catppuccin-kvantum.override {
     inherit variant accent;
@@ -20,7 +20,7 @@ in
   qt = {
     enable = true;
     #qt5ct
-    platformTheme.name = "qt5ct";
+    platformTheme.name = "qt6ct";
     style.name = "kvantum";
   };
 
@@ -68,6 +68,8 @@ in
     '';
 
     "Kvantum/catppuccin-${variant}-${accent}".source = "${kvantumThemePackage}/share/Kvantum/catppuccin-${variant}-${accent}";
+
+    "menus/applications.menu".text = builtins.readFile ./applications.menu;
   };
   
   home.pointerCursor = {
@@ -82,7 +84,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    
   ];
 
 
@@ -120,7 +121,7 @@ in
   #  /etc/profiles/per-user/gmartins/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    #QT_QPA_PLATFORMTHEME="qt5ct";
+    #QT_QPA_PLATFORMTHEME="qt6ct";
     #QT_STYLE_OVERRIDE="kvantum";
   };
 
