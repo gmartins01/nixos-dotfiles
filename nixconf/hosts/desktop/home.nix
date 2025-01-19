@@ -55,6 +55,13 @@ in
       '';
     };
     
+    gtk3.bookmarks = [
+      "file:///home/gmartins/Downloads"
+      "file:///home/gmartins/Documents"
+      "file:///home/gmartins/Music"
+      "file:///home/gmartins/Pictures"
+      "file:///home/gmartins/Videos"
+    ];
   };
   
   xdg.configFile = {
@@ -79,6 +86,8 @@ in
     gtk.enable = true;
   };
   
+  
+
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
