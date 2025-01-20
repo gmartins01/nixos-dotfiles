@@ -29,6 +29,9 @@
     nwg-look # theme apps
     
     rofi-wayland
+
+    kdePackages.plasma-integration
+    kdePackages.breeze
   ];
 
   environment.sessionVariables = {
@@ -38,13 +41,54 @@
   qt = {
     enable = true;
     platformTheme = "kde";
-    style = "kvantum";
+    #style = "kvantum";
   };
 
   
 
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;
-
   
+  stylix.enable = false;
+  stylix.targets.grub.enable = false;
+  
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+
+  stylix.image = ./wallpaper.jpg;
+
+  stylix.cursor.package = pkgs.bibata-cursors;
+  stylix.cursor.name = "Bibata-Modern-Ice";
+  stylix.cursor.size = 26;
+
+  stylix.fonts = {
+    monospace = {
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      name = "JetBrainsMono Nerd Font Mono";
+    };
+    sansSerif = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Sans";
+    };
+    serif = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Serif";
+    };
+  };
+
+  stylix.fonts.sizes = {
+    applications = 10;
+    terminal = 12;
+    desktop = 10;
+    popups = 10;
+  };
+ 
+  stylix.opacity = {
+    applications = 1.0;
+    terminal = 1.0;
+    desktop = 1.0;
+    popups = 1.0;
+  };
+  
+  stylix.polarity = "dark";
+
 }

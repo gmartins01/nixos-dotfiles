@@ -24,8 +24,6 @@
     xsettingsd
     xorg.xrdb
 
-    libsForQt5.gwenview # image viewer
-
     nautilus
 
     # Dolphin file manager
@@ -37,13 +35,34 @@
     kdePackages.kservice # to fix opening files with default applications
     libexif
 
+    # File archiver
+    kdePackages.ark
+
+    # Document viewer (PDFs)
+    kdePackages.okular
+
+    # Image viewer
+    kdePackages.gwenview 
   ];
 
   programs.firefox.enable = true;
 
+  programs.dconf = {
+    enable = true;
 
-  programs.dconf.enable = true;
-  
+    profiles.user.databases = [
+      {
+        # remove close buttons
+        # To reset: dconf reset /org/gnome/desktop/wm/preferences/button-layout
+        settings = with lib.gvariant; {
+          "org/gnome/desktop/wm/preferences" = {
+             button-layout = "''";
+          };
+        };
+      }
+    ];
+  };
+
   # Thunar file manager
   programs.thunar.enable = true;
   programs.xfconf.enable = true;

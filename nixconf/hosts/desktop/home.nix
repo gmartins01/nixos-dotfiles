@@ -1,6 +1,6 @@
 { config, pkgs, inputs, lib, ... }:
 let
-  variant = "frappe";
+  variant = "mocha";#"macchiato";
   accent = "lavender";
   kvantumThemePackage = pkgs.catppuccin-kvantum.override {
     inherit variant accent;
@@ -17,13 +17,17 @@ in
 
   fish.enable = false;
 
-  qt = {
+ qt = {
     enable = true;
     #qt5ct
-    platformTheme.name = "qt6ct";
+    platformTheme.name = "kde";
     style.name = "kvantum";
   };
 
+  stylix.iconTheme.enable = true;
+  stylix.iconTheme.dark = "Papirus-Dark";
+  stylix.iconTheme.light = "Papirus";
+  stylix.iconTheme.package = pkgs.papirus-icon-theme;
 
   gtk = {
     enable = true;
@@ -85,14 +89,13 @@ in
     size = 26;
     gtk.enable = true;
   };
-  
-  
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    
   ];
 
 
@@ -101,6 +104,7 @@ in
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -130,8 +134,9 @@ in
   #  /etc/profiles/per-user/gmartins/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    #QT_QPA_PLATFORMTHEME="qt6ct";
+    QT_QPA_PLATFORMTHEME="kde";
     #QT_STYLE_OVERRIDE="kvantum";
+    #QT_STYLE_OVERRIDE="Breeze";
   };
 
   # Let Home Manager install and manage itself.
