@@ -42,7 +42,10 @@
     kdePackages.okular
 
     # Image viewer
-    kdePackages.gwenview 
+    kdePackages.gwenview
+
+    # Video thumbnails
+    ffmpegthumbnailer
   ];
 
   programs.firefox.enable = true;

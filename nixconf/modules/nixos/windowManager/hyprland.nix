@@ -32,6 +32,8 @@
 
     kdePackages.plasma-integration
     kdePackages.breeze
+
+    #eww
   ];
 
   environment.sessionVariables = {
@@ -41,7 +43,7 @@
   qt = {
     enable = true;
     platformTheme = "kde";
-    #style = "kvantum";
+    style = "kvantum";
   };
 
   
@@ -91,4 +93,6 @@
   
   stylix.polarity = "dark";
 
+  xdg.mime.enable = true;
+  xdg.menus.enable = true;
 }

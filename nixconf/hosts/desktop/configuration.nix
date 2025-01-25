@@ -119,7 +119,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -146,11 +145,17 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Automatic updates
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.dates = "weekly";
+
+  # Automatic cleanup of old generations
   nix.gc = {
     automatic = true;
     randomizedDelaySec = "14m";
     options = "--delete-older-than 10d";
   };
+  nix.settings.auto-optimise-store = true;
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];

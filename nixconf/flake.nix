@@ -56,10 +56,11 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     stylix.url = "github:danth/stylix";
-    catppuccin.url = "github:catppuccin/nix";
+
+    ags.url = "github:Aylur/ags";
   };
 
-  outputs = { self, nixpkgs, home-manager,catppuccin, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       username = "gmartins";
       system = "x86_64-linux";
@@ -80,11 +81,11 @@
         desktop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            catppuccin.nixosModules.catppuccin
             ./hosts/desktop/configuration.nix
             ./modules/nixos
-            home-manager.nixosModules.home-manager
+            inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
+
             { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
           ];
         };

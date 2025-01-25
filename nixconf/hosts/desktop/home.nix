@@ -1,6 +1,6 @@
 { config, pkgs, inputs, lib, ... }:
 let
-  variant = "mocha";#"macchiato";
+  variant = "macchiato";
   accent = "lavender";
   kvantumThemePackage = pkgs.catppuccin-kvantum.override {
     inherit variant accent;
@@ -21,7 +21,7 @@ in
     enable = true;
     #qt5ct
     platformTheme.name = "kde";
-    style.name = "kvantum";
+    style.name = "Kvantum";
   };
 
   stylix.iconTheme.enable = true;
@@ -47,7 +47,7 @@ in
       package = pkgs.papirus-icon-theme;
     };
 
-    gtk3.extraConfig = {
+    /*gtk3.extraConfig = {
       Settings = ''
         gtk-application-prefer-dark-theme=1
       '';
@@ -57,7 +57,7 @@ in
       Settings = ''
         gtk-application-prefer-dark-theme=1
       '';
-    };
+    };*/
     
     gtk3.bookmarks = [
       "file:///home/gmartins/Downloads"
@@ -100,6 +100,10 @@ in
 
 
   #fonts.fontconfig.enable = true;
+  xdg.mime.enable = true;
+  xdg.mimeApps.defaultApplications = {
+    "inode/directory" = [ "nautilus.desktop" ];
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
