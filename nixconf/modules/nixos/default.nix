@@ -7,6 +7,7 @@
     ./system
     ./services
     ./windowManager
+    ./styles
   ];
 
 }

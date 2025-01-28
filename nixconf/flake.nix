@@ -58,6 +58,8 @@
     stylix.url = "github:danth/stylix";
 
     ags.url = "github:Aylur/ags";
+
+    clipboard-sync.url = "github:dnut/clipboard-sync";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -85,6 +87,7 @@
             ./modules/nixos
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
+            inputs.clipboard-sync.nixosModules.default
 
             { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
           ];

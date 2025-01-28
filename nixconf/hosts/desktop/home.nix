@@ -21,9 +21,10 @@ in
     enable = true;
     #qt5ct
     platformTheme.name = "kde";
-    style.name = "Kvantum";
+    #style.name = "Kvantum";
   };
 
+  
   stylix.iconTheme.enable = true;
   stylix.iconTheme.dark = "Papirus-Dark";
   stylix.iconTheme.light = "Papirus";
@@ -31,7 +32,7 @@ in
 
   gtk = {
     enable = true;
-    font.name = "TeX Gyre Adventor 10";
+    /*font.name = "TeX Gyre Adventor 10";
     theme = {
       name = "catppuccin-${variant}-${accent}-standard";
       package = pkgs.catppuccin-gtk
@@ -45,19 +46,15 @@ in
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-    };
+    };*/
 
-    /*gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
     };
 
     gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };*/
+      gtk-application-prefer-dark-theme = 1;
+    };
     
     gtk3.bookmarks = [
       "file:///home/gmartins/Downloads"
@@ -69,10 +66,10 @@ in
   };
   
   xdg.configFile = {
-    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+    /*"gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
     "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
     "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-     
+     */
     "Kvantum/kvantum.kvconfig".text = ''
       [General]
       theme=catppuccin-${variant}-${accent}
@@ -81,14 +78,15 @@ in
     "Kvantum/catppuccin-${variant}-${accent}".source = "${kvantumThemePackage}/share/Kvantum/catppuccin-${variant}-${accent}";
 
     "menus/applications.menu".text = builtins.readFile ./applications.menu;
+
   };
   
-  home.pointerCursor = {
+  /*home.pointerCursor = {
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
     size = 26;
     gtk.enable = true;
-  };
+  };*/
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
@@ -101,8 +99,13 @@ in
 
   #fonts.fontconfig.enable = true;
   xdg.mime.enable = true;
-  xdg.mimeApps.defaultApplications = {
-    "inode/directory" = [ "nautilus.desktop" ];
+  xdg = {
+    mimeApps.enable = true;
+    mimeApps.defaultApplications = {
+      "inode/directory" = [ "org.kde.dolphin.desktop" ];
+      "text/plain" = ["code.desktop"];
+      "application/xml" = ["nvim.desktop"];
+    };
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -141,6 +144,7 @@ in
     QT_QPA_PLATFORMTHEME="kde";
     #QT_STYLE_OVERRIDE="kvantum";
     #QT_STYLE_OVERRIDE="Breeze";
+    TERM="alacritty";
   };
 
   # Let Home Manager install and manage itself.

@@ -3,18 +3,21 @@
 {
   imports = [
     ./vscode.nix
+    ./nautilus.nix
   ];
 
   environment.systemPackages = with pkgs; [
+    alacritty
+    
     vesktop
     discord
     keepassxc
     jetbrains.idea-ultimate
-    xwaylandvideobridge
+    #xwaylandvideobridge
     corectrl
     vlc
     mediawriter
-    kdePackages.kalk
+    gnome-calculator
     megasync
     handbrake
     easyeffects
@@ -23,8 +26,6 @@
 
     xsettingsd
     xorg.xrdb
-
-    nautilus
 
     # Dolphin file manager
     kdePackages.dolphin
@@ -35,17 +36,19 @@
     kdePackages.kservice # to fix opening files with default applications
     libexif
 
-    # File archiver
-    kdePackages.ark
+    kdePackages.ark # File archiver
 
-    # Document viewer (PDFs)
-    kdePackages.okular
+    kdePackages.okular # Document viewer (PDFs)
 
-    # Image viewer
-    kdePackages.gwenview
+    kdePackages.gwenview # Image viewer
 
-    # Video thumbnails
-    ffmpegthumbnailer
+    ffmpegthumbnailer # Video thumbnails
+
+    komikku # Comics reader
+
+    qbittorrent
+
+    obsidian # Notes
   ];
 
   programs.firefox.enable = true;
@@ -74,9 +77,4 @@
     thunar-volman
   ];
 
-  # Open alacrity terminal in nautilus
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    terminal = "alacritty";
-  };
 }

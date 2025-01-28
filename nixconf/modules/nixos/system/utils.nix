@@ -40,4 +40,7 @@
   #};
 
   #security.pam.services.root99.enableKwallet = true;
+
+  # To fix copy from xwayland apps
+  services.clipboard-sync.enable = true;
 }

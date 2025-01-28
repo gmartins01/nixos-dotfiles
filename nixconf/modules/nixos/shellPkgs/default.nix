@@ -19,6 +19,8 @@
       pip
       requests
     ]))
+
+    gcc
   ];
 
 
