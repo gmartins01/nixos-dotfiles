@@ -28,13 +28,13 @@
     xorg.xrdb
 
     # Dolphin file manager
-    kdePackages.dolphin
-    kdePackages.kdegraphics-thumbnailers
-    kdePackages.qtimageformats
-    kdePackages.ffmpegthumbs
-    kdePackages.qtsvg
-    kdePackages.kservice # to fix opening files with default applications
-    libexif
+    #kdePackages.dolphin
+    #kdePackages.kdegraphics-thumbnailers
+    #kdePackages.qtimageformats
+    #kdePackages.ffmpegthumbs
+    #kdePackages.qtsvg
+    #kdePackages.kservice # to fix opening files with default applications
+    #libexif
 
     kdePackages.ark # File archiver
 
@@ -64,17 +64,20 @@
           "org/gnome/desktop/wm/preferences" = {
              button-layout = "''";
           };
+          "org/nemo/preferences" = {
+            bulk-rename-tool = "teste";
+          };
         };
       }
     ];
   };
 
   # Thunar file manager
-  programs.thunar.enable = true;
-  programs.xfconf.enable = true;
-  programs.thunar.plugins = with pkgs.xfce; [
-    thunar-archive-plugin
-    thunar-volman
-  ];
+  #programs.thunar.enable = true;
+  #programs.xfconf.enable = true;
+  #programs.thunar.plugins = with pkgs.xfce; [
+  #  thunar-archive-plugin
+  #  thunar-volman
+  #];
 
 }

@@ -32,6 +32,15 @@
     kdePackages.plasma-integration
     kdePackages.breeze
 
+    bulky # Bulk rename
+
+    nemo-with-extensions
+    #nemo-python
+    #cinnamon-common
+    #cinnamon-desktop
+    
+    glib
+    dconf-editor
     #eww
   ];
 
@@ -51,4 +60,15 @@
 
   xdg.mime.enable = true;
   xdg.menus.enable = true;
+
+  xdg = {
+    terminal-exec = {
+      enable = true;
+      settings = {
+        default = [ "alacritty.desktop" ];
+      };
+    };
+  };
+
+  services.xserver.excludePackages = [ pkgs.xterm ];
 }

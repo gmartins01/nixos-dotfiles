@@ -102,9 +102,10 @@ in
   xdg = {
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
-      "inode/directory" = [ "org.kde.dolphin.desktop" ];
+      "inode/directory" = [ "nautilus.desktop" ];
       "text/plain" = ["code.desktop"];
       "application/xml" = ["nvim.desktop"];
+      "image/jpeg" = ["org.kde.gwenview.desktop"];
     };
   };
 
