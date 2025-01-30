@@ -60,9 +60,11 @@
     ags.url = "github:Aylur/ags";
 
     clipboard-sync.url = "github:dnut/clipboard-sync";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak"; 
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, ... }@inputs:
     let
       username = "gmartins";
       system = "x86_64-linux";
@@ -88,6 +90,7 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
             inputs.clipboard-sync.nixosModules.default
+            nix-flatpak.nixosModules.nix-flatpak
 
             { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
           ];

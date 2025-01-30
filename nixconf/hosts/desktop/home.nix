@@ -29,6 +29,7 @@ in
   stylix.iconTheme.dark = "Papirus-Dark";
   stylix.iconTheme.light = "Papirus";
   stylix.iconTheme.package = pkgs.papirus-icon-theme;
+  stylix.targets.gtk.flatpakSupport.enable = false;
 
   gtk = {
     enable = true;
@@ -96,7 +97,6 @@ in
     
   ];
 
-
   #fonts.fontconfig.enable = true;
   xdg.mime.enable = true;
   xdg = {
@@ -104,10 +104,22 @@ in
     mimeApps.defaultApplications = {
       "inode/directory" = [ "nautilus.desktop" ];
       "text/plain" = ["code.desktop"];
-      "application/xml" = ["nvim.desktop"];
+      "application/xml" = ["code.desktop"];
       "image/jpeg" = ["org.kde.gwenview.desktop"];
     };
   };
+
+  home.file.".local/share/flatpak/overrides/global".text = let
+    dirs = [
+      "/nix/store:ro"
+      "xdg-config/gtk-3.0:ro"
+      "xdg-config/gtk-4.0:ro"
+      "${config.xdg.dataHome}/icons:ro"
+    ];
+  in ''
+    [Context]
+    filesystems=${builtins.concatStringsSep ";" dirs}
+  '';
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

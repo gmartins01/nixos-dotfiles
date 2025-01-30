@@ -44,11 +44,12 @@
 
     ffmpegthumbnailer # Video thumbnails
 
-    komikku # Comics reader
+    gnome-software # Software store (flatpaks)
 
     qbittorrent
 
     obsidian # Notes
+
   ];
 
   programs.firefox.enable = true;
@@ -71,13 +72,5 @@
       }
     ];
   };
-
-  # Thunar file manager
-  #programs.thunar.enable = true;
-  #programs.xfconf.enable = true;
-  #programs.thunar.plugins = with pkgs.xfce; [
-  #  thunar-archive-plugin
-  #  thunar-volman
-  #];
 
 }

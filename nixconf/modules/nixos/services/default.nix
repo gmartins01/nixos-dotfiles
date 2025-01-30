@@ -3,7 +3,9 @@
 {
   imports = [
     ./syncthing.nix
+    ./flatpak.nix
   ];
 
-  services.flatpak.enable = true;
+  services.xserver.excludePackages = [ pkgs.xterm ];
+
 }
