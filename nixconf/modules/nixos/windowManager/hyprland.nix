@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, catppuccin, ... }: {
+{ inputs, config, pkgs, lib, ... }: {
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -54,7 +54,6 @@
     style = "breeze";
   };
   
-
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;
 

@@ -102,7 +102,8 @@ in
   xdg = {
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
-      "inode/directory" = [ "nautilus.desktop" ];
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+      "x-scheme-handler/file" = [ "org.gnome.Nautilus.desktop" ];
       "text/plain" = ["code.desktop"];
       "application/xml" = ["code.desktop"];
       "image/jpeg" = ["org.kde.gwenview.desktop"];

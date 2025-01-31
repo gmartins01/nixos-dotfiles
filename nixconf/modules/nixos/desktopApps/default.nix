@@ -65,9 +65,7 @@
           "org/gnome/desktop/wm/preferences" = {
              button-layout = "''";
           };
-          "org/nemo/preferences" = {
-            bulk-rename-tool = "teste";
-          };
+          "com/github/stunkymonkey/nautilus-open-any-terminal".terminal = "alacritty";
         };
       }
     ];
