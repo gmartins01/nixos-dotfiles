@@ -8,6 +8,13 @@
   environment.systemPackages = with pkgs; [
     hyprpanel
     hyprpaper
+
+    # Screenshot
+    slurp
+    grim
+    libnotify
+
+    #clipboard
     wl-clipboard
     clipse
     
@@ -30,8 +37,6 @@
     kdePackages.breeze
 
     bulky # Bulk rename
-
-    #nemo-with-extensions
     
     glib
   ];

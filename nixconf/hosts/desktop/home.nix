@@ -106,6 +106,7 @@ in
       "text/plain" = ["code.desktop"];
       "application/xml" = ["code.desktop"];
       "image/jpeg" = ["org.kde.gwenview.desktop"];
+      "image/png" = ["org.kde.gwenview.desktop"];
     };
   };
 
