@@ -1,0 +1,103 @@
+* {
+  transition: 0.2s;
+}
+
+window {
+  font-family: "FiraCode Nerd Font Mono";
+  font-size: 13px;
+}
+
+window {
+  margin: 0px;
+  border: 2px solid #1e1e2e;
+  background-color: #1e1e2e;
+  border-radius: 16px;
+}
+
+#input {
+  padding: 4px;
+  margin: 20px;
+  padding-left: 5px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  background: #1e1e2e;
+  outline: none;
+  border-radius: 16px;
+}
+
+#input image {
+  color: #fff;
+}
+
+#input:focus {
+  border: none;
+  outline: none;
+}
+
+#inner-box {
+  margin: 20px;
+  margin-top: 0px;
+  border: none;
+  color: #1e1e2e;
+  border-radius: 12px;
+}
+
+#inner-box * {
+  transition: none;
+}
+
+#outer-box {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  border-radius: 12px;
+}
+
+#scroll {
+  margin-top: 5px;
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 5px;
+}
+
+#text:selected {
+  color: #1e1e2e;
+  font-weight: bold;
+  background: #b4befe;
+}
+
+#img {
+  margin-right: 20px;
+  background: #1e1e2e;
+}
+
+#img:selected {
+  background: #b4befe;
+  border-radius: 12px;
+}
+
+#text {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background: #1e1e2e;
+  color: #fff;
+}
+
+#entry {
+  margin: 0px;
+  border: none;
+  border-radius: 16px;
+  background-color: #1e1e2e;
+  min-height: 32px;
+  font-weight: bold;
+}
+
+#entry:selected {
+  outline: none;
+  margin: 0px;
+  border: none;
+  border-radius: 16px;
+  background: #b4befe;
+}

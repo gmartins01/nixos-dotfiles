@@ -15,12 +15,8 @@
     kdePackages.qt6ct
     kdePackages.qtwayland
     qt5.qtwayland
-    #libsForQt5.qtstyleplugin-kvantum
-    #libsForQt5.lightly
-    #libsForQt5.qtstyleplugins 
     
-    wofi
-    #libsForQt5.dolphin
+    wofi # app launcher
 
     #libsForQt5.kwallet-pam
     #libsForQt5.kwallet
@@ -29,19 +25,15 @@
     
     rofi-wayland
 
+    # To theme kde apps
     kdePackages.plasma-integration
     kdePackages.breeze
 
     bulky # Bulk rename
 
-    nemo-with-extensions
-    #nemo-python
-    #cinnamon-common
-    #cinnamon-desktop
+    #nemo-with-extensions
     
     glib
-    dconf-editor
-    #eww
   ];
 
   environment.sessionVariables = {
