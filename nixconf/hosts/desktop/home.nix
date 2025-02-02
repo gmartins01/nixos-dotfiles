@@ -159,6 +159,7 @@ in
     #QT_STYLE_OVERRIDE="kvantum";
     #QT_STYLE_OVERRIDE="Breeze";
     TERM="alacritty";
+    TERMINAL="alacritty";
   };
 
   # Let Home Manager install and manage itself.

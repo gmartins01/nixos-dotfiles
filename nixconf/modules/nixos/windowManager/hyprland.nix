@@ -23,15 +23,15 @@
     kdePackages.qtwayland
     qt5.qtwayland
     
-    wofi # app launcher
+    fuzzel # app launcher
+    
+    bemoji # emoji selector
 
     #libsForQt5.kwallet-pam
     #libsForQt5.kwallet
 
     nwg-look # theme apps
     
-    rofi-wayland
-
     # To theme kde apps
     kdePackages.plasma-integration
     kdePackages.breeze
@@ -43,6 +43,7 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    BEMOJI_PICKER_CMD="fuzzel";
   };
 
   qt = {

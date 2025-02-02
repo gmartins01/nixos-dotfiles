@@ -34,7 +34,7 @@ in
     polkit
     polkit_gnome
     playerctl
-    #rofi
+    rofi
     imagemagick
     inotify-tools
     colord
