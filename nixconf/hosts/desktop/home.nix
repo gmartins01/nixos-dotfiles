@@ -100,7 +100,7 @@ in
   #fonts.fontconfig.enable = true;
   xdg.mime.enable = true;
   xdg = {
-    mimeApps.enable = true;
+    mimeApps.enable = false;
     mimeApps.defaultApplications = {
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
       "text/plain" = ["code.desktop"];

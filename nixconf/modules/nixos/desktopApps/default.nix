@@ -18,11 +18,11 @@
     vlc
     mediawriter
     gnome-calculator
-    megasync
     handbrake
     easyeffects
     #vscode
     stremio
+    obs-studio
 
     xsettingsd
     xorg.xrdb
@@ -50,6 +50,8 @@
 
     obsidian # Notes
 
+    docker
+    docker-compose
   ];
 
   programs.firefox.enable = true;
