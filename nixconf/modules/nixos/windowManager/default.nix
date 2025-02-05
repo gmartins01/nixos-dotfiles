@@ -6,8 +6,6 @@
     ./awesome.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    networkmanagerapplet
-  ];
+  
 
 }

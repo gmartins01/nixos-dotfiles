@@ -23,8 +23,8 @@
     kdePackages.qtwayland
     qt5.qtwayland
     
-    fuzzel # app launcher
-    
+    fuzzel # app launcher 
+
     bemoji # emoji selector
 
     #libsForQt5.kwallet-pam

@@ -39,9 +39,9 @@
   "theme.bar.buttons.dashboard.enableBorder": false,
   "theme.bar.buttons.workspaces.enableBorder": false,
   "bar.workspaces.show_icons": false,
-  "bar.workspaces.show_numbered": false,
+  "bar.workspaces.show_numbered": true,
   "bar.workspaces.workspaceMask": false,
-  "bar.workspaces.showWsIcons": true,
+  "bar.workspaces.showWsIcons": false,
   "bar.workspaces.showApplicationIcons": false,
   "bar.workspaces.numbered_active_indicator": "highlight",
   "theme.bar.buttons.windowtitle.enableBorder": false,
@@ -87,5 +87,6 @@
   "theme.bar.buttons.network.enableBorder": false,
   "bar.workspaces.applicationIconOncePerWorkspace": true,
   "theme.notification.scaling": 100,
-  "theme.bar.menus.menu.notifications.scaling": 95
+  "theme.bar.menus.menu.notifications.scaling": 95,
+  "bar.workspaces.ignored": "-98"
 }

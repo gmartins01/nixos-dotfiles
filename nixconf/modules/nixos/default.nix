@@ -2,12 +2,11 @@
 
 {
   imports = [
-    ./shellPkgs
-    ./desktopApps
     ./system
     ./services
     ./windowManager
     ./styles
+    ./pkgs
   ];
 
 }
