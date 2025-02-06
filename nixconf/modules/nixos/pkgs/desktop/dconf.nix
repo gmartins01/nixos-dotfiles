@@ -13,7 +13,7 @@
           "org/gnome/desktop/wm/preferences" = {
              button-layout = "''";
           };
-          "com/github/stunkymonkey/nautilus-open-any-terminal".terminal = "alacritty";
+          "com/github/stunkymonkey/nautilus-open-any-terminal".terminal = "kitty";
         };
       }
     ];

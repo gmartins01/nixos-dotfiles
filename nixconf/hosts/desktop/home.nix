@@ -158,8 +158,8 @@ in
     QT_QPA_PLATFORMTHEME="kde";
     #QT_STYLE_OVERRIDE="kvantum";
     #QT_STYLE_OVERRIDE="Breeze";
-    TERM="alacritty";
-    TERMINAL="alacritty";
+    TERM="kitty";
+    TERMINAL="kitty";
   };
 
   # Let Home Manager install and manage itself.

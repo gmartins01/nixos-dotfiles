@@ -9,6 +9,7 @@
 
   environment.systemPackages = with pkgs; [
     alacritty
+    kitty
     
     vesktop
     discord

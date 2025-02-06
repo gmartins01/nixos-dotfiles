@@ -23,7 +23,7 @@
     kdePackages.qtwayland
     qt5.qtwayland
     
-    fuzzel # app launcher 
+    fuzzel # app launcher
 
     bemoji # emoji selector
 
@@ -62,7 +62,7 @@
     terminal-exec = {
       enable = true;
       settings = {
-        default = [ "alacritty.desktop" ];
+        default = [ "kitty.desktop" ];
       };
     };
   };
