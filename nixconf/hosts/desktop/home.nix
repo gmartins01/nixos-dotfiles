@@ -17,10 +17,9 @@ in
 
   fish.enable = false;
 
- qt = {
+  qt = {
     enable = true;
-    #qt5ct
-    platformTheme.name = "kde";
+    #platformTheme = "kde";
     #style.name = "Kvantum";
   };
 
@@ -85,7 +84,7 @@ in
   /*home.pointerCursor = {
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
-    size = 26;
+    size = 24;
     gtk.enable = true;
   };*/
 
@@ -155,7 +154,7 @@ in
   #  /etc/profiles/per-user/gmartins/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    QT_QPA_PLATFORMTHEME="kde";
+    #QT_QPA_PLATFORMTHEME="kde";
     #QT_STYLE_OVERRIDE="kvantum";
     #QT_STYLE_OVERRIDE="Breeze";
     TERM="kitty";

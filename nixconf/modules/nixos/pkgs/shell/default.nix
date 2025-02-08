@@ -5,13 +5,13 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    neovim
     wget
     killall
     eza
     ffmpeg
     unzip
     zip
+    p7zip
     unrar
     nfs-utils
     nixpkgs-fmt

@@ -7,7 +7,9 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    neovim
     networkmanagerapplet
+    pavucontrol
   ];
   
 }

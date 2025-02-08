@@ -46,10 +46,12 @@
     BEMOJI_PICKER_CMD="fuzzel";
   };
 
+services.fwupd.enable = true;
+
   qt = {
     enable = true;
-    platformTheme = "kde";
-    style = "breeze";
+    #platformTheme = "kde";
+    #style = "breeze";
   };
   
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];

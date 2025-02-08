@@ -14,7 +14,7 @@
     vesktop
     discord
     keepassxc
-    jetbrains.idea-ultimate
+    #jetbrains.idea-ultimate
     #xwaylandvideobridge
     corectrl
     vlc
@@ -29,7 +29,8 @@
     xsettingsd
     xorg.xrdb
 
-    kdePackages.ark # File archiver
+    #kdePackages.ark # File archiver
+    file-roller
 
     kdePackages.okular # Document viewer (PDFs)
 

@@ -18,6 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.theme = pkgs.catppuccin-grub;
+  
   #boot.extraModprobeConfig = ''
   #  options snd_hda_intel power_save=0
   #'';
