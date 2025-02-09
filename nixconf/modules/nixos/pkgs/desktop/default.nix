@@ -47,6 +47,7 @@
     docker
     docker-compose
     
+    prismlauncher
   ];
 
   programs.firefox.enable = true;

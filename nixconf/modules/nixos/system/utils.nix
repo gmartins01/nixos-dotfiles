@@ -2,6 +2,10 @@
 
 {
 
+  environment.systemPackages = with pkgs; [
+    seahorse # Manage Keyring keys
+  ];
+
   # Keyring and polkit
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
@@ -26,20 +30,6 @@
 
   # Thumbnail support for images
   services.tumbler.enable = true;
-
-  #security.pam.services.sddm.enableKwallet = true;
-  #security.pam.services.sddm = {
-  #  enableKwallet = true;
-  #  text = ''
-  #    auth include login
-  #  '';
-  #};
-  #security.pam.services.kwallet = {
-  #  name = "kwallet";
-  #  enableKwallet = true;
-  #};
-
-  #security.pam.services.root99.enableKwallet = true;
 
   # To fix copy from xwayland apps
   services.clipboard-sync.enable = true;

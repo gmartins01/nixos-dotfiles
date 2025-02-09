@@ -19,9 +19,9 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.theme = pkgs.catppuccin-grub;
   
-  #boot.extraModprobeConfig = ''
-  #  options snd_hda_intel power_save=0
-  #'';
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel power_save=0
+  '';
 
   networking.hostName = "nixos";
   networking.firewall.allowedTCPPorts = [ 8384 9999 ];
