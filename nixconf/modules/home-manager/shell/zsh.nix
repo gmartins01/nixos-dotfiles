@@ -34,7 +34,8 @@
         "l." = "eza -a | egrep '^\.'"; # dot files
 
         jctl="journalctl -p 3 -xb";
-
+        
+        "hm-status" = "journalctl --unit home-manager-gmartins.service -n 100 -r"; # To see home-manager logs
       };
 
       initExtra = ''

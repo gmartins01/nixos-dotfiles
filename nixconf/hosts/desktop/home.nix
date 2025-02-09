@@ -17,18 +17,17 @@ in
 
   fish.enable = false;
 
-  qt = {
-    enable = true;
-    #platformTheme = "kde";
-    #style.name = "Kvantum";
-  };
-
-  
+  stylix.targets.qt.enable = false;
   stylix.iconTheme.enable = true;
   stylix.iconTheme.dark = "Papirus-Dark";
   stylix.iconTheme.light = "Papirus";
   stylix.iconTheme.package = pkgs.papirus-icon-theme;
   stylix.targets.gtk.flatpakSupport.enable = false;
+
+  qt = {
+    enable = true;
+    platformTheme = "kde";
+  };
 
   gtk = {
     enable = true;
@@ -88,7 +87,7 @@ in
     gtk.enable = true;
   };*/
 
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -121,42 +120,8 @@ in
     filesystems=${builtins.concatStringsSep ";" dirs}
   '';
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/gmartins/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
-    #QT_QPA_PLATFORMTHEME="kde";
-    #QT_STYLE_OVERRIDE="kvantum";
-    #QT_STYLE_OVERRIDE="Breeze";
+    QT_QPA_PLATFORMTHEME="kde";
     TERM="kitty";
     TERMINAL="kitty";
   };
@@ -164,5 +129,5 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-
+  home.stateVersion = "24.05";
 }

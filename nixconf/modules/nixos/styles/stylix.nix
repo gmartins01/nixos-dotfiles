@@ -3,8 +3,8 @@
 {
   stylix.enable = true;
   stylix.targets.grub.enable = false;
-  stylix.targets.qt.enable = true;
-  stylix.targets.qt.platform = "qtct";
+  stylix.targets.qt.enable = false;
+  #stylix.targets.qt.platform = "kde";
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
 
