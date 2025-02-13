@@ -4,6 +4,7 @@
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -64,7 +65,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak"; 
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, chaotic, ... }@inputs:
     let
       username = "gmartins";
       system = "x86_64-linux";
@@ -91,6 +92,7 @@
             inputs.stylix.nixosModules.stylix
             inputs.clipboard-sync.nixosModules.default
             nix-flatpak.nixosModules.nix-flatpak
+            chaotic.nixosModules.default
 
             { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
           ];

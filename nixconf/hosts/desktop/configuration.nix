@@ -19,6 +19,9 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.theme = pkgs.catppuccin-grub;
   
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  #services.scx.enable = true; # Enable Sched-ext scheduler
+
   boot.extraModprobeConfig = ''
     options snd_hda_intel power_save=0
   '';
