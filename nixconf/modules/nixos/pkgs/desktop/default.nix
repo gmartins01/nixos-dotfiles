@@ -40,14 +40,14 @@
 
     gnome-software # Software store (flatpaks)
 
+    gnome-disk-utility # Disk utility
+
     qbittorrent
 
     obsidian # Notes
 
     docker
     docker-compose
-    
-    prismlauncher
   ];
 
   programs.firefox.enable = true;

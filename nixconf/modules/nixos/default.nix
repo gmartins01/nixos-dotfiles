@@ -7,6 +7,7 @@
     ./windowManager
     ./styles
     ./pkgs
+    ./features/gaming
   ];
 
 }

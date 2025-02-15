@@ -18,7 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.theme = pkgs.catppuccin-grub;
-  
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ]; # Corectrl
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
   #services.scx.enable = true; # Enable Sched-ext scheduler
 

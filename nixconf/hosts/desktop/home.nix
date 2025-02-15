@@ -75,9 +75,6 @@ in
     '';
 
     "Kvantum/catppuccin-${variant}-${accent}".source = "${kvantumThemePackage}/share/Kvantum/catppuccin-${variant}-${accent}";
-
-    "menus/applications.menu".text = builtins.readFile ./applications.menu;
-
   };
   
   /*home.pointerCursor = {

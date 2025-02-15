@@ -24,6 +24,16 @@
       };
     };
   };
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        action.id == "org.corectrl.helper.init" ||
+        action.id == "org.corectrl.helperkiller.init"
+      ) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
 
   # Mount, trash, and other functionalities
   services.gvfs.enable = true;
