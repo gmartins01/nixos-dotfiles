@@ -8,6 +8,12 @@
     ./keybinds.nix
     ./rules.nix
   ];
+
+  services.hypridle = {
+    enable = true;
+    package = inputs.hypridle.packages.${pkgs.system}.hypridle;
+   
+  };
   
   wayland.windowManager.hyprland = {
     enable = true;

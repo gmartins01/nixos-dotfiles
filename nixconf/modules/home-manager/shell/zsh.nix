@@ -24,6 +24,7 @@
         upgrade="sudo nixos-rebuild switch --upgrade --flake ~/nixconf#desktop";
         update="nix flake update --flake ~/nixconf";
         editconfig="code ~/nixconf";
+        "hm-switch"="home-manager switch --flake ~/nixconf#gmartins@desktop";
 
         config = "git --git-dir=/home/gmartins/.cfg/ --work-tree=/home/gmartins";
         

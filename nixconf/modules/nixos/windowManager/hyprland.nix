@@ -5,7 +5,6 @@
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
-
   environment.systemPackages = with pkgs; [
     hyprpanel
     hyprpaper
@@ -28,11 +27,6 @@
 
     bemoji # emoji selector
 
-    #libsForQt5.kwallet-pam
-    #libsForQt5.kwallet
-
-    nwg-look # theme apps
-    
     # To theme kde apps
     kdePackages.plasma-integration
     kdePackages.breeze

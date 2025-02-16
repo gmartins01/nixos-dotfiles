@@ -2,9 +2,8 @@
 
 {
   stylix.enable = true;
-  stylix.targets.grub.enable = false;
   stylix.targets.qt.enable = false;
-  #stylix.targets.qt.platform = "kde";
+
 
   stylix.base16Scheme = {
       base00 = "24273a"; # base
@@ -30,6 +29,12 @@
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Ice";
   stylix.cursor.size = 24;
+  
+  stylix.iconTheme.enable = true;
+  stylix.iconTheme.dark = "Papirus-Dark";
+  stylix.iconTheme.light = "Papirus";
+  stylix.iconTheme.package = pkgs.papirus-icon-theme;
+  stylix.targets.gtk.flatpakSupport.enable = false;
 
   stylix.fonts = {
     monospace = {

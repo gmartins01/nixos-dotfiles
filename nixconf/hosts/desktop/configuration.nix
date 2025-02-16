@@ -4,7 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
+      #inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -137,12 +137,12 @@
     #];
   };
 
-  home-manager = {
+  /*home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
       "gmartins" = import ./home.nix;
     };
-  };
+  };*/
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

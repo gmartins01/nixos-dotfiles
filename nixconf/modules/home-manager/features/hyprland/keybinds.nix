@@ -7,7 +7,6 @@
     executable = true;
   };
 
-  
   wayland.windowManager.hyprland = {
     settings = {
       "$mainMod" = "SUPER";
@@ -37,7 +36,7 @@
         "$mainMod, M, fullscreen, 1"
         "$shiftMod, M, fullscreen"
         "$mainMod, R, exec, $menu"
-        "$mainMod, P, pseudo"
+        "$shiftMod, P, pseudo"
         "$mainMod, J, togglesplit"
 
         # Focus movement
@@ -69,6 +68,8 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
+
+        "$mainMod, P, pin"
 
         # Special workspace
         "$mainMod, S, togglespecialworkspace, magic"

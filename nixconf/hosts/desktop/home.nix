@@ -17,12 +17,6 @@ in
 
   fish.enable = false;
 
-  stylix.targets.qt.enable = false;
-  stylix.iconTheme.enable = true;
-  stylix.iconTheme.dark = "Papirus-Dark";
-  stylix.iconTheme.light = "Papirus";
-  stylix.iconTheme.package = pkgs.papirus-icon-theme;
-  stylix.targets.gtk.flatpakSupport.enable = false;
 
   qt = {
     enable = true;

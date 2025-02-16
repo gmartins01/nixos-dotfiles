@@ -8,6 +8,7 @@
     ./shell/zsh.nix
     ./features/ags
     ./features/hyprland
+    ./features/stylix
     #./plasma
   ];
 

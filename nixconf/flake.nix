@@ -18,9 +18,7 @@
       url = "github:hyprwm/hypridle";
       inputs = {
         hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
         nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
       };
     };
 
@@ -85,7 +83,7 @@
           modules = [
             ./hosts/desktop/configuration.nix
             ./modules/nixos
-            inputs.home-manager.nixosModules.home-manager
+            #inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
             inputs.clipboard-sync.nixosModules.default
             nix-flatpak.nixosModules.nix-flatpak
@@ -94,6 +92,16 @@
             { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
           ];
         };
+      };
+
+      homeConfigurations."${username}@desktop" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/desktop/home.nix
+          inputs.ags.homeManagerModules.default
+          inputs.stylix.homeManagerModules.stylix
+        ];
       };
 
       devShells.${system} = devShells;
