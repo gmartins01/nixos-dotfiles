@@ -7,6 +7,7 @@
     ./shell/starship.nix
     ./shell/zsh.nix
     ./features/ags
+    ./features/hyprland
     #./plasma
   ];
 

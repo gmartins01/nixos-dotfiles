@@ -24,11 +24,6 @@
       };
     };
 
-    /*hyprland-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    };*/
-
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -65,7 +60,9 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak"; 
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, chaotic, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, 
+              nix-flatpak, chaotic, ... 
+            }@inputs:
     let
       username = "gmartins";
       system = "x86_64-linux";

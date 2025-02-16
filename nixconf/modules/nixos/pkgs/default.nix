@@ -10,6 +10,8 @@
     neovim
     networkmanagerapplet
     pavucontrol
+
+    home-manager
   ];
   
 }
