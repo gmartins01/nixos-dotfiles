@@ -2,8 +2,8 @@
 
 {
   stylix.enable = true;
-  stylix.targets.qt.enable = false;
-
+  #stylix.targets.grub.enable = false;
+  #stylix.targets.qt.enable = false;
 
   stylix.base16Scheme = {
       base00 = "24273a"; # base
@@ -30,6 +30,7 @@
   stylix.cursor.name = "Bibata-Modern-Ice";
   stylix.cursor.size = 24;
   
+  stylix.targets.qt.enable = false;
   stylix.iconTheme.enable = true;
   stylix.iconTheme.dark = "Papirus-Dark";
   stylix.iconTheme.light = "Papirus";

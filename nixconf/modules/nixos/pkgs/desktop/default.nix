@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs,inputs, ... }:
 
 {
   imports = [
@@ -48,6 +48,7 @@
 
     docker
     docker-compose
+
   ];
 
   programs.firefox.enable = true;

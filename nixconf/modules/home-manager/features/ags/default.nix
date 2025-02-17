@@ -3,6 +3,7 @@
   inputs,
   ...
 }: {
+
   programs.ags = {
     enable = true;
 

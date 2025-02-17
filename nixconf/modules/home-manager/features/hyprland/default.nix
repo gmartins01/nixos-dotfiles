@@ -17,6 +17,10 @@
   
   wayland.windowManager.hyprland = {
     enable = true;
+    package = null;
+    portalPackage = null;
+    
+    systemd.variables = ["--all"];
 
     xwayland.enable = true;
     /*plugins = [
@@ -37,8 +41,8 @@
       ];
 
       env = [
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
+        "XCURSOR_SIZE, 24"
+        "HYPRCURSOR_SIZE, 24"
         "CLUTTER_BACKEND,wayland"
         "GDK_BACKEND,wayland,x11"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
@@ -51,7 +55,7 @@
       ];
 
 
-      /*"plugin:csgo-vulkan-fix" = {
+     /* "plugin:csgo-vulkan-fix" = {
         res_w = 1920;
         res_h = 1080;
 

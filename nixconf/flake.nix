@@ -55,7 +55,7 @@
 
     clipboard-sync.url = "github:dnut/clipboard-sync";
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak"; 
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
   outputs = { self, nixpkgs, home-manager, 
@@ -84,7 +84,7 @@
             ./hosts/desktop/configuration.nix
             ./modules/nixos
             #inputs.home-manager.nixosModules.home-manager
-            inputs.stylix.nixosModules.stylix
+            #inputs.stylix.nixosModules.stylix
             inputs.clipboard-sync.nixosModules.default
             nix-flatpak.nixosModules.nix-flatpak
             chaotic.nixosModules.default
