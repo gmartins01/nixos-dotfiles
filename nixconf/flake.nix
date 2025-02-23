@@ -2,9 +2,10 @@
   description = "NixOS config flake";
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    master.url = "github:nixos/nixpkgs/master";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -83,8 +84,6 @@
           modules = [
             ./hosts/desktop/configuration.nix
             ./modules/nixos
-            #inputs.home-manager.nixosModules.home-manager
-            #inputs.stylix.nixosModules.stylix
             inputs.clipboard-sync.nixosModules.default
             nix-flatpak.nixosModules.nix-flatpak
             chaotic.nixosModules.default

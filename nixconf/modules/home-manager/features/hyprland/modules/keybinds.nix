@@ -1,9 +1,9 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, inputs, ... }:
 
 {
 
   home.file.".config/hypr/scripts/screenshot.sh" = {
-    source = ./scripts/screenshot.sh;
+    source = ./../scripts/screenshot.sh;
     executable = true;
   };
 
@@ -80,10 +80,10 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # Multimedia keys
-        ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 5"
-        ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 5"
-        ", XF86AudioMute, exec, ${pkgs.pamixer}/bin/pamixer --toggle-mute"
-        ", XF86AudioMicMute, exec, ${pkgs.pamixer}/bin/pamixer --default-source -t"
+        ", XF86AudioRaiseVolume, exec, ${inputs.master.legacyPackages.${pkgs.system}.pamixer}/bin/pamixer -i 5"
+        ", XF86AudioLowerVolume, exec, ${inputs.master.legacyPackages.${pkgs.system}.pamixer}/bin/pamixer -d 5"
+        ", XF86AudioMute, exec, ${inputs.master.legacyPackages.${pkgs.system}.pamixer}/bin/pamixer --toggle-mute"
+        ", XF86AudioMicMute, exec, ${inputs.master.legacyPackages.${pkgs.system}.pamixer}/bin/pamixer --default-source -t"
         ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 10%+"
         ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 10%-"
 

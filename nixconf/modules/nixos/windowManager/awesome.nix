@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   awesome-git = pkgs.awesome.overrideAttrs (oa: {
     version = "git-a35fced";
@@ -38,9 +38,9 @@ in
     imagemagick
     inotify-tools
     colord
-    pamixer
+    inputs.master.legacyPackages.${pkgs.system}.pamixer
     xclip
-    maim
+    #maim
     jq
   ];
 

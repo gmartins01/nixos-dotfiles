@@ -2,19 +2,16 @@
 
 {
   imports = [
-    ./monitors.nix
-    ./general.nix
-    ./input.nix
-    ./keybinds.nix
-    ./rules.nix
+    ./modules/monitors.nix
+    ./modules/general.nix
+    ./modules/input.nix
+    ./modules/keybinds.nix
+    ./modules/rules.nix
+    ./hypridle.nix
+    ./hyprlock.nix
+    ./plugins
   ];
 
-  services.hypridle = {
-    enable = true;
-    package = inputs.hypridle.packages.${pkgs.system}.hypridle;
-   
-  };
-  
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
@@ -23,9 +20,6 @@
     systemd.variables = ["--all"];
 
     xwayland.enable = true;
-    /*plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix
-    ];*/
 
     settings = {
       exec-once = [
@@ -53,22 +47,14 @@
         "XDG_SESSION_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
       ];
-
-
-     /* "plugin:csgo-vulkan-fix" = {
-        res_w = 1920;
-        res_h = 1080;
-
-        # NOT a regex! This is a string and has to exactly match initial_class
-        class = "cs2";
-
-        # Whether to fix the mouse position. A select few apps might be wonky with this.
-        fix_mouse = true;
-      };*/
-
-
     };
 
+  };
+
+  hyprland.plugins = {
+    enable = false; 
+    
+    csgoVulkanFix.enable = true;
   };
 
 }

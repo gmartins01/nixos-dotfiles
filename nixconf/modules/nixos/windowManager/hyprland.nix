@@ -34,6 +34,9 @@
     bulky # Bulk rename
     
     glib
+
+    brightnessctl
+    ddcutil
   ];
 
   environment.sessionVariables = {

@@ -4,7 +4,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      #inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -20,19 +19,19 @@
   boot.loader.grub.theme = pkgs.catppuccin-grub;
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ]; # Corectrl
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
-  #services.scx.enable = true; # Enable Sched-ext scheduler
 
   boot.extraModprobeConfig = ''
     options snd_hda_intel power_save=0
   '';
 
+  services.udev.extraRules = ''
+    KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
+  '';
+
+  hardware.i2c.enable = true;
+
   networking.hostName = "nixos";
   networking.firewall.allowedTCPPorts = [ 8384 9999 ];
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -60,7 +59,6 @@
   services.xserver.enable = true;
 
   # Login Manager
-
   environment.systemPackages = [(
     pkgs.catppuccin-sddm.override {
       flavor = "mocha";
@@ -70,7 +68,6 @@
       loginBackground = true;
     }
   )];
-
 
   services.displayManager.sddm = {
     enable = true;
@@ -105,17 +102,7 @@
       nerd-fonts.jetbrains-mono
       nerd-fonts.caskaydia-cove
     ];
-
-    # fontconfig = {
-    #   antialias = true;
-    #   defaultFonts = {
-    #     serif = [ "Ubuntu" ];
-    #     sansSerif = [ "Ubuntu" ];
-    #     monospace = [ "Ubuntu Source" ];
-    #   };
-    # };
   };
-
 
   # Configure console keymap
   console.keyMap = "pt-latin1";
@@ -123,26 +110,16 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gmartins = {
     isNormalUser = true;
     description = "Gonçalo Martins";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "i2c" ];
     #packages = with pkgs; [
       #kdePackages.kate
       #  thunderbird
     #];
   };
-
-  /*home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "gmartins" = import ./home.nix;
-    };
-  };*/
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -166,31 +143,6 @@
     trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05";
 
 }
