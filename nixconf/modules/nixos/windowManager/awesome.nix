@@ -38,7 +38,7 @@ in
     imagemagick
     inotify-tools
     colord
-    inputs.master.legacyPackages.${pkgs.system}.pamixer
+    pamixer
     xclip
     #maim
     jq

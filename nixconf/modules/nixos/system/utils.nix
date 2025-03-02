@@ -43,4 +43,9 @@
 
   # To fix copy from xwayland apps
   services.clipboard-sync.enable = true;
+
+  security = {
+    # allow wayland lockers to unlock the screen
+    pam.services.hyprlock.text = "auth include login";
+  };
 }

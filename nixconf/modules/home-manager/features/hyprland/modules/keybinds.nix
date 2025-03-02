@@ -80,12 +80,16 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # Multimedia keys
-        ", XF86AudioRaiseVolume, exec, ${inputs.master.legacyPackages.${pkgs.system}.pamixer}/bin/pamixer -i 5"
-        ", XF86AudioLowerVolume, exec, ${inputs.master.legacyPackages.${pkgs.system}.pamixer}/bin/pamixer -d 5"
-        ", XF86AudioMute, exec, ${inputs.master.legacyPackages.${pkgs.system}.pamixer}/bin/pamixer --toggle-mute"
-        ", XF86AudioMicMute, exec, ${inputs.master.legacyPackages.${pkgs.system}.pamixer}/bin/pamixer --default-source -t"
+        ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 5"
+        ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 5"
+        ", XF86AudioMute, exec, ${pkgs.pamixer}/bin/pamixer --toggle-mute"
+        ", XF86AudioMicMute, exec, ${pkgs.pamixer}/bin/pamixer --default-source -t"
         ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 10%+"
         ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 10%-"
+
+        "SHIFT, XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer --default-source -i 5"
+        "SHIFT, XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer --default-source -d 5"
+        "SHIFT, XF86AudioMute, exec, ${pkgs.pamixer}/bin/pamixer --default-source -t"
 
         # Player controls
         ", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"

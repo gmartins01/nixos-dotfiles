@@ -36,7 +36,8 @@
   stylix.iconTheme.light = "Papirus";
   stylix.iconTheme.package = pkgs.papirus-icon-theme;
   stylix.targets.gtk.flatpakSupport.enable = false;
-
+  stylix.targets.hyprlock.enable = false;
+  
   stylix.fonts = {
     monospace = {
       package = pkgs.nerd-fonts.jetbrains-mono;

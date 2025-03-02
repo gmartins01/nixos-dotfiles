@@ -30,6 +30,11 @@
           name = "razer-razer-viper-ultimate-dongle";
           sensitivity = "-0.7";
         }
+
+        {
+          name = "razer-razer-viper-ultimate-dongle-2";
+          sensitivity = "-0.7";
+        }
       ];
       
     };

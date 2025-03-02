@@ -5,7 +5,7 @@
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    master.url = "github:nixos/nixpkgs/master";
+    #master.url = "github:nixos/nixpkgs/master";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -57,6 +57,8 @@
     clipboard-sync.url = "github:dnut/clipboard-sync";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = { self, nixpkgs, home-manager, 
