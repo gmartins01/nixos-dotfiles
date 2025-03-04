@@ -14,7 +14,14 @@
         no_fade_in = true;
       };
 
-      input-field = [
+      background = {
+        monitor = "eDP-3";
+        path = "/home/gmartins/Pictures/wallpaper.png";
+        blur_passes = 10;
+        contrast = 1;
+      };
+
+      /*input-field = [
         {
           monitor = "eDP-3";
 
@@ -41,7 +48,7 @@
           shadow_size = 7;
           shadow_passes = 2;
         }
-      ];
+      ];*/
 
       label = [
         {

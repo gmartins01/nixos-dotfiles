@@ -34,7 +34,12 @@
   networking.firewall.allowedTCPPorts = [ 8384 9999 ];
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager = {
+      enable = true;
+      wifi.powersave = false;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";

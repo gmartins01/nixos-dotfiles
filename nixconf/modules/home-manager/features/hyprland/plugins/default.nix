@@ -13,6 +13,12 @@ in {
       default = {};
       description = "CS:GO Vulkan Fix plugin configuration";
     };
+
+    dynamicCursors = mkOption {
+      type = types.submodule (import ./hypr-dynamic-cursors.nix { inherit lib pkgs inputs; });
+      default = {};
+      description = "Hypr Dynamic Cursors  plugin configuration";
+    };
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -20,6 +26,13 @@ in {
       wayland.windowManager.hyprland = {
         plugins = [ cfg.csgoVulkanFix.package ];
         settings = cfg.csgoVulkanFix.settings;
+      };
+    })
+
+    (mkIf cfg.dynamicCursors.enable {
+      wayland.windowManager.hyprland = {
+        plugins = [ cfg.dynamicCursors.package ];
+        settings = cfg.dynamicCursors.settings;
       };
     })
   ]);
