@@ -9,6 +9,7 @@
     ./features/ags
     ./features/hyprland
     ./features/stylix
+    ./pkgs
     #./plasma
   ];
 

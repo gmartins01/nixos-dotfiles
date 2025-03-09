@@ -52,7 +52,7 @@
     onlyoffice-desktopeditors
 
     #(callPackage ./zen.nix {})
-    inputs.zen-browser.packages."${system}".default
+    
   ];
 
   programs.firefox.enable = true;

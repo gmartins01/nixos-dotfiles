@@ -110,6 +110,10 @@
         # Monitor cycling
         "$mainMod, Tab, focusmonitor, +1"
         "$shiftMod, Tab, focusmonitor, -1"
+
+
+        # Global keybinds
+        "SUPER, F10, pass, class:^(com\.obsproject\.Studio)$"     
       ];
     };
   };

@@ -52,10 +52,10 @@
   };
 
   hyprland.plugins = {
-    enable = false; 
+    enable = true; 
     
     csgoVulkanFix.enable = false;
-    dynamicCursors.enable = true;
+    dynamicCursors.enable = false;
   };
 
 }
