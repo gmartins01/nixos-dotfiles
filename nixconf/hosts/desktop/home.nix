@@ -40,6 +40,11 @@ in
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };*/
+    /*
+     iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };*/
 
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
@@ -61,8 +66,8 @@ in
   xdg.configFile = {
     /*"gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
     "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-     */
+    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";*/
+
     "Kvantum/kvantum.kvconfig".text = ''
       [General]
       theme=catppuccin-${variant}-${accent}
@@ -121,3 +126,5 @@ in
 
   home.stateVersion = "24.05";
 }
+
+

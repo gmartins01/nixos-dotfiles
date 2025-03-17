@@ -9,30 +9,32 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ "amdgpu"];
-  boot.kernelModules = [ "kvm-intel" "i2c-dev" ]; #"ddcci_backlight"];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
   
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1cb6c441-d32a-497f-a6f8-4a92d3e00f11";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/87ac9cbc-f145-4dd5-89c5-f9070618eed5";
+      fsType = "btrfs";
+      options = [ "subvol=@" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F07B-DEE2";
+    { device = "/dev/disk/by-uuid/7F9E-2B06";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
+
   fileSystems."/run/media/gmartins/Backup" =
     { device = "/dev/disk/by-uuid/24AF66E86D22A2B0";
       fsType = "ntfs-3g";
-      options = ["rw" "uid=1000" "gid=1000"];
+      options = ["rw" "uid=1000" "gid=1000" "nofail"];
     };
   fileSystems."/run/media/gmartins/Files" =
     { device = "/dev/disk/by-uuid/1EDA5A58DA5A2BF1";
       fsType = "ntfs-3g";
-      options = ["rw" "uid=1000" "gid=1000"];
+      options = ["rw" "uid=1000" "gid=1000" "nofail"];
     };
   fileSystems."/mnt/Games" =
     { device = "/dev/disk/by-uuid/65D2524E26C8D66D";
@@ -41,7 +43,7 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/a5cf0929-1923-4274-9028-af2e58175da5"; }
+    [ { device = "/dev/disk/by-uuid/1ec49d50-356c-403d-aa71-cc970a1df2a5"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

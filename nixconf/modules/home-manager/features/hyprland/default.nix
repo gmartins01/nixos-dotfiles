@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, config, ... }:
 
 {
   imports = [
@@ -32,6 +32,8 @@
         "clipse -listen"
         "polychromatic-tray-applet"
         "corectrl &"
+        "gsettings set org.gnome.desktop.interface cursor-theme '${config.stylix.cursor.name}'"
+        "gsettings set org.gnome.desktop.interface cursor-size ${toString config.stylix.cursor.size}"
       ];
 
       env = [

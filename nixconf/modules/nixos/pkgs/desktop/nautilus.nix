@@ -32,5 +32,4 @@ in {
     gst-libav
   ]);
 
-  #services.dbus.packages = [ pkgs.gnome-settings-daemon ]; # Show Images and files properties on Nautilus (right click -> properties)
 }

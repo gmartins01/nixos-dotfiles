@@ -18,7 +18,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.theme = pkgs.catppuccin-grub;
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ]; # Corectrl
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  #boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   boot.extraModprobeConfig = ''
     options snd_hda_intel power_save=0
