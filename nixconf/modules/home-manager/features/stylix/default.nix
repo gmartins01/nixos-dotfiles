@@ -24,9 +24,9 @@
 
   stylix.image = ./wallpaper.png;
 
-  stylix.cursor.package = pkgs.bibata-cursors;
-  stylix.cursor.name = "Bibata-Modern-Ice";
-  stylix.cursor.size = 24;
+  stylix.cursor.package = pkgs.kdePackages.breeze;
+  stylix.cursor.name = "Breeze_Light";
+  stylix.cursor.size = 30;
   
   stylix.targets.gtk.enable = true;
   stylix.targets.qt.enable = false;
@@ -36,6 +36,7 @@
   stylix.iconTheme.package = pkgs.papirus-icon-theme;
   stylix.targets.gtk.flatpakSupport.enable = false;
   stylix.targets.hyprlock.enable = false;
+  stylix.targets.hyprpaper.enable = true;
   
   stylix.fonts = {
     monospace = {
