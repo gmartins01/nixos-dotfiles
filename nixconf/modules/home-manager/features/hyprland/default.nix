@@ -37,10 +37,10 @@
       ];
 
       env = [
-        "XCURSOR_SIZE, 30"
+        "XCURSOR_SIZE, ${toString config.stylix.cursor.size}"
         "XCURSOR_THEME, ${config.stylix.cursor.name}"
         "HYPRCURSOR_THEME, ${config.stylix.cursor.name}"
-        "HYPRCURSOR_SIZE, 30"
+        "HYPRCURSOR_SIZE, ${toString config.stylix.cursor.size}"
         "CLUTTER_BACKEND,wayland"
         "GDK_BACKEND,wayland,x11"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"

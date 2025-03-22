@@ -26,7 +26,7 @@
 
   stylix.cursor.package = pkgs.kdePackages.breeze;
   stylix.cursor.name = "Breeze_Light";
-  stylix.cursor.size = 30;
+  stylix.cursor.size = 26;
   
   stylix.targets.gtk.enable = true;
   stylix.targets.qt.enable = false;

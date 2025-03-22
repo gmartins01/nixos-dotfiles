@@ -7,57 +7,41 @@
     package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     
     settings = {
-      general = {
-        disable_loading_bar = true;
-        immediate_render = true;
-        hide_cursor = false;
-        no_fade_in = true;
-      };
 
       background = {
-        monitor = "eDP-3";
-        path = "/home/gmartins/Pictures/wallpaper.png";
-        blur_passes = 10;
-        contrast = 1;
+        monitor = "";
+        path = "screenshot";
+        color = lib.mkForce "rgba(25, 20, 20, 1.0)";
+        blur_passes = 2;
       };
 
-      /*input-field = [
-        {
-          monitor = "eDP-3";
+      input-field = {
+        monitor = "";
+        size = "20%, 5%";
+        outline_thickness = 3;
+        inner_color = lib.mkForce "rgba(0, 0, 0, 0.0)";
 
-          size = "300, 50";
-          valign = "bottom";
-          position = "0%, 10%";
+        outer_color = lib.mkForce "rgba(${config.stylix.base16Scheme.base07}ff)";
+        check_color= lib.mkForce "rgba(${config.stylix.base16Scheme.base0A}ff)";
+        fail_color= lib.mkForce "rgba(${config.stylix.base16Scheme.base08}ff)";
 
-          outline_thickness = 1;
+        rounding = 12;
+        fade_on_empty = false;
+        font_color = lib.mkForce "rgba(${config.stylix.base16Scheme.base05}ff)";
 
-          font_color = lib.mkForce "rgb(b6c4ff)";
-          outer_color = lib.mkForce "rgba(180, 180, 180, 0.5)";
-          inner_color = lib.mkForce "rgba(200, 200, 200, 0.1)";
-          check_color = lib.mkForce "rgba(247, 193, 19, 0.5)";
-          fail_color = lib.mkForce "rgba(255, 106, 134, 0.5)";
+        position = "0, -20";
+        halign = "center";
+        valign = "center";
+      };
 
-          fade_on_empty = false;
-          placeholder_text = "Enter Password";
-
-          dots_spacing = 0.2;
-          dots_center = true;
-          dots_fade_time = 100;
-
-          shadow_color = lib.mkForce "rgba(0, 0, 0, 0.1)";
-          shadow_size = 7;
-          shadow_passes = 2;
-        }
-      ];*/
-
-      label = [
+       label = [
         {
           monitor = "";
           text = "$TIME";
-          font_size = 150;
-          color = lib.mkForce "rgb(b6c4ff)";
+          font_size = 50;
+          color = lib.mkForce "rgba(${config.stylix.base16Scheme.base07}ff)";
 
-          position = "0%, 30%";
+          position = "0%, 10%";
 
           valign = "center";
           halign = "center";
@@ -70,10 +54,10 @@
         {
           monitor = "";
           text = "cmd[update:3600000] date +'%a %b %d'";
-          font_size = 20;
-          color = lib.mkForce "rgb(b6c4ff)";
+          font_size = 30;
+          color = lib.mkForce "rgba(${config.stylix.base16Scheme.base07}ff)";
 
-          position = "0%, 40%";
+          position = "0%, 15%";
 
           valign = "center";
           halign = "center";
@@ -84,6 +68,7 @@
           shadow_boost = 0.3;
         }
       ];
+
     };
 
   };
