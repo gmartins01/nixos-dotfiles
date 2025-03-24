@@ -21,6 +21,8 @@
     ]))
 
     gcc
+
+    fastfetch
   ];
 
 

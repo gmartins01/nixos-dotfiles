@@ -38,16 +38,6 @@
       };
     };
 
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs = {
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
-    };
-
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     stylix.url = "github:danth/stylix";

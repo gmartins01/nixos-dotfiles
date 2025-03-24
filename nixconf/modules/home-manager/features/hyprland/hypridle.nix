@@ -11,7 +11,7 @@
       general = {
         "lock_cmd" = "pidof hyprlock || hyprlock";
         "before_sleep_cmd" = "loginctl lock-session";
-        "after_sleep_cmd" = "hyprctl dispatch dpms on";
+        "after_sleep_cmd" = "hyprctl dispatch dpms on && ddcutil -l 'G27QC' setvcp 10 55 && ddcutil -l 'LG ULTRAGEAR' setvcp 10 50";
       };
 
       listener = [
@@ -27,7 +27,7 @@
         {
           timeout = 330;
           on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          on-resume = "hyprctl dispatch dpms on && ddcutil -l 'G27QC' setvcp 10 55 && ddcutil -l 'LG ULTRAGEAR' setvcp 10 50";
         }
       ];
     };

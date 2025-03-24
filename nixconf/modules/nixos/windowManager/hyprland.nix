@@ -7,7 +7,7 @@
 
   environment.systemPackages = with pkgs; [
     hyprpanel
-    hyprpaper
+    #hyprpaper
 
     # Screenshot
     slurp

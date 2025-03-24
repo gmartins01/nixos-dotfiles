@@ -8,12 +8,20 @@
     mangohud # For fps monitoring
 
     prismlauncher # Minecraft Launcher
+
+    libva-utils # For checking if hardware acceleration is working
   ];
 
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      mesa
+      libva
+      #amf
+      #amdvlk
+    ];
   };
 
   services.xserver.videoDrivers = [ "amdgpu" ];

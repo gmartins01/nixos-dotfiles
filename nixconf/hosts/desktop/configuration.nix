@@ -87,6 +87,14 @@
     };
   };
 
+  /*services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+  ];*/
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "pt";
@@ -103,7 +111,7 @@
       unifont
       material-icons
       fira-code
-      roboto
+      #roboton
       nerd-fonts.jetbrains-mono
       nerd-fonts.caskaydia-cove
     ];
