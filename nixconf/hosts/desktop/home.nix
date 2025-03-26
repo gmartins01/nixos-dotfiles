@@ -18,10 +18,10 @@ in
   fish.enable = false;
 
 
-  qt = {
+  /*qt = {
     enable = true;
     platformTheme.name = "kde";
-  };
+  };*/
 
   gtk = {
     enable = true;
@@ -116,7 +116,7 @@ in
   '';
 
   home.sessionVariables = {
-    QT_QPA_PLATFORMTHEME="kde";
+    #QT_QPA_PLATFORMTHEME="kde";
     TERM="kitty";
     TERMINAL="kitty";
   };

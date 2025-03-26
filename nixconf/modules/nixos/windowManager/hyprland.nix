@@ -44,10 +44,10 @@
     BEMOJI_PICKER_CMD="fuzzel";
   };
 
-  qt = {
+  /*qt = {
     enable = true;
     platformTheme = "kde";
-  };
+  };*/
 
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;

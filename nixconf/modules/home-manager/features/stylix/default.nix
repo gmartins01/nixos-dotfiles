@@ -26,10 +26,11 @@
 
   stylix.cursor.package = pkgs.kdePackages.breeze;
   stylix.cursor.name = "Breeze_Light";
-  stylix.cursor.size = 26;
+  stylix.cursor.size = 24;
   
   stylix.targets.gtk.enable = true;
-  stylix.targets.qt.enable = false;
+  stylix.targets.qt.enable = true;
+  stylix.targets.qt.platform = "qtct";
   stylix.iconTheme.enable = true;
   stylix.iconTheme.dark = "Papirus-Dark";
   stylix.iconTheme.light = "Papirus";

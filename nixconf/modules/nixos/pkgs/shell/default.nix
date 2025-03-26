@@ -23,6 +23,8 @@
     gcc
 
     fastfetch
+
+    ripgrep
   ];
 
 
