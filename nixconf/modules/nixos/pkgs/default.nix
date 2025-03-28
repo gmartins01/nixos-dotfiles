@@ -7,11 +7,14 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    neovim
     networkmanagerapplet
     pavucontrol
 
     home-manager
+
+    neovim
+    lua54Packages.luarocks-nix
+    lua
   ];
   
 }

@@ -31,6 +31,7 @@
   stylix.targets.gtk.enable = true;
   stylix.targets.qt.enable = true;
   stylix.targets.qt.platform = "qtct";
+  stylix.targets.kde.enable = true;
   stylix.iconTheme.enable = true;
   stylix.iconTheme.dark = "Papirus-Dark";
   stylix.iconTheme.light = "Papirus";

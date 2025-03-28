@@ -1,3 +1,6 @@
 .cfg
 ./nixconf/modules/nixos/styles/wallpaper.jpg
 nixconf/modules/nixos/styles/wallpaper.jpg
+./.config/nvim/lazy-lock.json
+.config/nvim/lazy-lock.json
+
