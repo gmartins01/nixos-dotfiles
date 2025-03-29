@@ -21,7 +21,8 @@
     ]))
 
     gcc
-
+    gnumake
+    
     fastfetch
 
     ripgrep

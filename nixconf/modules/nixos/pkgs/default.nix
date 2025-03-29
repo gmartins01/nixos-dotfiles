@@ -16,5 +16,7 @@
     lua54Packages.luarocks-nix
     lua
   ];
+
+  programs.nix-ld.enable = true;
   
 }

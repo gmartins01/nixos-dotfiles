@@ -23,7 +23,8 @@
         rebuild="sudo nixos-rebuild switch --flake ~/nixconf#desktop";
         upgrade="sudo nixos-rebuild switch --upgrade --flake ~/nixconf#desktop";
         update="nix flake update --flake ~/nixconf";
-        editconfig="code ~/nixconf";
+        #editconfig="code ~/nixconf";
+        editconfig="cd ~/nixconf && nvim .";
         "hm-switch"="home-manager switch --flake ~/nixconf#gmartins@desktop";
         "full-rebuild"="rebuild && hm-switch";
 
@@ -43,8 +44,10 @@
       initExtra = ''
         bindkey "^[[1;5D" backward-word
         bindkey "^[[1;5C" forward-word
-        bindkey "^[[3~" delete-char 
-      '';
+        bindkey "^[[3~" delete-char
+        
+        export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
+      '';# This command let's me execute arbitrary binaries downloaded through channels such as mason.
     };
   };
 
