@@ -34,9 +34,7 @@ return {
 				opts = {
 					automatic_installation = true,
 					handlers = {},
-					ensure_installed = {
-						"delve",
-					},
+					ensure_installed = {},
 				},
 			},
 		},
@@ -217,6 +215,7 @@ return {
 				"gopls",
 				"delve", -- debugger
 				"eslint-lsp",
+				"pyright",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

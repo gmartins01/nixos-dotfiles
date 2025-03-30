@@ -57,8 +57,7 @@ return {
 				return "%2l:%-2v"
 			end
 
-			-- ... and there is more!
-			--  Check out: https://github.com/echasnovski/mini.nvim
+			require("mini.pairs").setup()
 		end,
 	},
 
@@ -76,19 +75,6 @@ return {
 	},
 
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-
-	{
-
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			{
-				"leoluz/nvim-dap-go",
-				config = function()
-					require("dap-go").setup()
-				end,
-			},
-		},
-	},
 
 	{ -- Useful plugin to show you pending keybinds.
 		"folke/which-key.nvim",
