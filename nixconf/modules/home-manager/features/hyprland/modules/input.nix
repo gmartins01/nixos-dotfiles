@@ -23,17 +23,17 @@
       device = [
         {
           name = "razer-razer-viper-ultimate-dongle-3";
-          sensitivity = "-0.8";
+          sensitivity = "-0.9";
         }
 
         {
           name = "razer-razer-viper-ultimate-dongle";
-          sensitivity = "-0.8";
+          sensitivity = "-0.9";
         }
 
         {
           name = "razer-razer-viper-ultimate-dongle-2";
-          sensitivity = "-0.8";
+          sensitivity = "-0.9";
         }
       ];
       

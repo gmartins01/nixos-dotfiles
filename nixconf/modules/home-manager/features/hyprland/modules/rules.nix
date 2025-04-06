@@ -4,7 +4,7 @@
 
   wayland.windowManager.hyprland = {
     settings = {
-      windowrulev2 = [
+      windowrule = [
         # "Smart gaps" / "No gaps when only"
         "bordersize 0, floating:0, onworkspace:f[1]"
         "rounding 0, floating:0, onworkspace:f[1]"

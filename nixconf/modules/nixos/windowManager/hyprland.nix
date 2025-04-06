@@ -30,6 +30,10 @@
     # To theme kde apps
     kdePackages.plasma-integration
     kdePackages.breeze
+  
+    # To fix some gtk apps
+    adwaita-icon-theme
+    gnome-themes-extra
 
     bulky # Bulk rename
     

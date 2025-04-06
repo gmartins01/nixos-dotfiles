@@ -26,6 +26,7 @@ return {
 
 			vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
 			vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Start/Continue Debugging" })
+			vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "Terminate Debugger Session" })
 		end,
 	},
 	{
