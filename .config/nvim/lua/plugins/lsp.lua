@@ -215,6 +215,7 @@ return {
 				"gopls",
 				"eslint-lsp",
 				"pyright",
+				"alejandra",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
