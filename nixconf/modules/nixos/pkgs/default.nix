@@ -1,6 +1,9 @@
-{ config, inputs, pkgs, ... }:
-
 {
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./shell
     ./desktop
@@ -16,6 +19,9 @@
     lua54Packages.luarocks-nix
     lua
   ];
+
+
+  programs.java.enable = true;
 
   programs.nix-ld = {
     enable = true;

@@ -1,6 +1,9 @@
-{ config, inputs, pkgs, ... }:
-
 {
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
   ];
 
@@ -12,22 +15,44 @@
     libva-utils # For checking if hardware acceleration is working
   ];
 
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
       mesa
       libva
-      #amf
-      #amdvlk
+      # amf
+      # amdvlk
     ];
   };
 
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = ["amdgpu"];
 
   programs.gamemode.enable = true;
 
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    package = pkgs.steam.override {
+      extraLibraries = pkgs: [pkgs.xorg.libxcb];
+      extraPkgs = pkgs:
+        with pkgs; [
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+          gamemode
+        ];
+    };
+    extraCompatPackages = [pkgs.proton-ge-bin];
+  };
+
   programs.steam.gamescopeSession.enable = true;
 }

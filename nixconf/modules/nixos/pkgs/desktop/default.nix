@@ -1,16 +1,21 @@
-{ lib, pkgs, inputs, config,... }:
-
 {
+  lib,
+  pkgs,
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     ./vscode.nix
     ./nautilus.nix
     ./dconf.nix
+    ./docker.nix
   ];
 
   environment.systemPackages = with pkgs; [
     alacritty
     kitty
-    
+
     vesktop
     discord
     keepassxc
@@ -46,13 +51,9 @@
 
     obsidian # Notes
 
-    docker
-    docker-compose
-
     onlyoffice-desktopeditors
 
     #(callPackage ./zen.nix {})
-    
   ];
 
   programs.firefox.enable = true;
