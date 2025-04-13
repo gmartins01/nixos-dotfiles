@@ -21,21 +21,5 @@ return {
 
 	{ "mbbill/undotree" },
 
-	-- Git Integration
-	{ "tpope/vim-fugitive" },
-
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
-	},
-
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+		"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 }
