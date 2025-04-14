@@ -7,8 +7,6 @@ return {
 
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
-	{ "rose-pine/neovim", name = "rose-pine" },
-
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",

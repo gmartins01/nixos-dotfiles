@@ -127,7 +127,7 @@ in {
   home.sessionVariables = {
     #QT_QPA_PLATFORMTHEME="kde";
     TERM = "kitty";
-    TERMINAL = "kitty";
+    TERMINAL = "screen-256color";
   };
 
   # Let Home Manager install and manage itself.
