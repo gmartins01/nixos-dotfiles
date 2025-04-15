@@ -53,3 +53,7 @@ vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" }
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], { desc = "Exit terminal mode and enter window mode" })
 vim.keymap.set("t", "<C-l>", "<C-l><Cmd>clear<CR>", { desc = "Clear terminal screen" })
+
+-- Enter visual mode from insert mode
+vim.keymap.set("i", "<C-a>", "<C-\\><C-n>v", { silent = true, desc = "Enter Visual mode from Insert mode" })
+

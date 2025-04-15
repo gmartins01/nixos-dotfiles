@@ -8,6 +8,29 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.relativenumber = true
+
+-- Create an autocmd group for toggling relative number
+vim.api.nvim_create_augroup("RelativeNumberToggle", { clear = true })
+
+-- Disable relative numbering when entering Insert mode
+vim.api.nvim_create_autocmd("InsertEnter", {
+  group = "RelativeNumberToggle",
+  pattern = "*",
+  callback = function()
+    vim.opt.relativenumber = false
+  end,
+})
+
+-- Re-enable relative numbering when leaving Insert mode
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = "RelativeNumberToggle",
+  pattern = "*",
+  callback = function()
+    vim.opt.relativenumber = true
+  end,
+})
+
 -- Enable mouse mode
 vim.opt.mouse = "a"
 
