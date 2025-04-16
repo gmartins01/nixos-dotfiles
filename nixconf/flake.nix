@@ -7,6 +7,8 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     #master.url = "github:nixos/nixpkgs/master";
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,7 +59,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, 
-              nix-flatpak, chaotic, ... 
+              nix-flatpak, chaotic, nixos-wsl, ... 
             }@inputs:
     let
       username = "gmartins";
@@ -86,6 +88,16 @@
             chaotic.nixosModules.default
 
             { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
+          ];
+        };
+
+        wsl = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          system = "x86_64-linux";
+          modules = [
+            nixos-wsl.nixosModules.default
+            ./hosts/wsl/configuration.nix
+            
           ];
         };
       };
