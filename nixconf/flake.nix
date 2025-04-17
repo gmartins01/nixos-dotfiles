@@ -112,6 +112,14 @@
         ];
       };
 
+      homeConfigurations."${username}@wsl" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/wsl/home.nix
+        ];
+      };
+
       devShells.${system} = devShells;
 
     };

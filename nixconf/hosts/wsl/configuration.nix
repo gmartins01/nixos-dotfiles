@@ -13,6 +13,8 @@
   environment.systemPackages = with pkgs; [
     git
     
+    tmux
+
     neovim
     lua54Packages.luarocks-nix
     lua
@@ -22,7 +24,7 @@
     gnumake
 
     killall
-    eza
+
     ffmpeg
     unzip
     zip
@@ -32,7 +34,11 @@
       pip
     ]))
     nodejs_22
+
+    inputs.home-manager.packages.${pkgs.system}.default
   ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.java.enable = true;
 
@@ -42,6 +48,14 @@
       stdenv.cc.cc
     ];
   };
+
+  nix.gc = {
+    automatic = true;
+    randomizedDelaySec = "14m";
+    dates = "weekly";
+    options = "--delete-older-than 10d";
+  };
+  nix.settings.auto-optimise-store = true;
 
   system.stateVersion = "24.11";
 }

@@ -4,6 +4,11 @@
 
   options = {
     zsh.enable = lib.mkEnableOption "Enable zsh shell";
+    zsh.host = lib.mkOption {
+      type = lib.types.str;
+      default = "desktop";
+      description = "Host name";
+    };
   };
 
   config = lib.mkIf config.zsh.enable {
@@ -20,21 +25,21 @@
 
       shellAliases = {
         
-        rebuild="sudo nixos-rebuild switch --flake ~/nixconf#desktop";
-        upgrade="sudo nixos-rebuild switch --upgrade --flake ~/nixconf#desktop";
+        rebuild="sudo nixos-rebuild switch --flake ~/nixconf#${config.zsh.host}";
+        upgrade="sudo nixos-rebuild switch --upgrade --flake ~/nixconf#${config.zsh.host}";
         update="nix flake update --flake ~/nixconf";
         #editconfig="code ~/nixconf";
         editconfig="cd ~/nixconf && nvim .";
-        "hm-switch"="home-manager switch --flake ~/nixconf#gmartins@desktop";
+        "hm-switch"="home-manager switch --flake ~/nixconf#gmartins@${config.zsh.host}";
         "full-rebuild"="rebuild && hm-switch";
 
         config = "git --git-dir=/home/gmartins/.cfg/ --work-tree=/home/gmartins";
         
-        la = "eza -al --color=always --group-directories-first"; # ls -la
-        ls = "eza -a --color=always --group-directories-first";  # all files and dirs
-        ll = "eza -l --color=always --group-directories-first";  # long format
-        lt = "eza -aT --color=always --group-directories-first"; # tree listing
-        "l." = "eza -a | egrep '^\.'"; # dot files
+        la = "${pkgs.eza}/bin/eza -al --color=always --group-directories-first"; # ls -la
+        ls = "${pkgs.eza}/bin/eza -a --color=always --group-directories-first";  # all files and dirs
+        ll = "${pkgs.eza}/bin/eza -l --color=always --group-directories-first";  # long format
+        lt = "${pkgs.eza}/bin/eza -aT --color=always --group-directories-first"; # tree listing
+        "l." = "${pkgs.eza}/bin/eza -a | egrep '^\.'"; # dot files
 
         jctl="journalctl -p 3 -xb";
         
