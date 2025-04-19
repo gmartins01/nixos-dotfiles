@@ -6,7 +6,7 @@
     ./shell/fish.nix
     ./shell/starship.nix
     ./shell/zsh.nix
-    ./features/ags
+    #   ./features/ags
     ./features/hyprland
     ./features/stylix
     ./pkgs

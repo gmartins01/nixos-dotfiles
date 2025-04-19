@@ -30,10 +30,10 @@
         update="nix flake update --flake ~/nixconf";
         #editconfig="code ~/nixconf";
         editconfig="cd ~/nixconf && nvim .";
-        "hm-switch"="home-manager switch --flake ~/nixconf#gmartins@${config.zsh.host}";
+        "hm-switch"="home-manager switch --flake ~/nixconf#${config.home.username}@${config.zsh.host}";
         "full-rebuild"="rebuild && hm-switch";
 
-        config = "git --git-dir=/home/gmartins/.cfg/ --work-tree=/home/gmartins";
+        config = "git --git-dir=/home/${config.home.username}/.cfg/ --work-tree=/home/${config.home.username}";
         
         la = "${pkgs.eza}/bin/eza -al --color=always --group-directories-first"; # ls -la
         ls = "${pkgs.eza}/bin/eza -a --color=always --group-directories-first";  # all files and dirs
@@ -43,7 +43,7 @@
 
         jctl="journalctl -p 3 -xb";
         
-        "hm-status" = "journalctl --unit home-manager-gmartins.service -n 100 -r"; # To see home-manager logs
+        "hm-status" = "journalctl --unit home-manager-${config.home.username}.service -n 100 -r"; # To see home-manager logs
       };
 
       initExtra = ''

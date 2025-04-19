@@ -1,14 +1,16 @@
-{ config, pkgs, inputs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "nodev";
@@ -17,8 +19,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.theme = pkgs.catppuccin-grub;
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ]; # Corectrl
+  boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"]; # Corectrl
   #boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.extraModprobeConfig = ''
     options snd_hda_intel power_save=0
@@ -30,17 +33,7 @@
 
   hardware.i2c.enable = true;
 
-  networking.hostName = "nixos";
-  networking.firewall.allowedTCPPorts = [ 8384 9999 ];
-
-  # Enable networking
-  networking = {
-    networkmanager = {
-      enable = true;
-      wifi.powersave = false;
-    };
-  };
-
+  
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
 
@@ -64,15 +57,17 @@
   services.xserver.enable = true;
 
   # Login Manager
-  environment.systemPackages = [(
-    pkgs.catppuccin-sddm.override {
-      flavor = "mocha";
-      font  = "Noto Sans";
-      fontSize = "9";
-      #background = "${./wallpaper.png}";
-      loginBackground = true;
-    }
-  )];
+  environment.systemPackages = [
+    (
+      pkgs.catppuccin-sddm.override {
+        flavor = "mocha";
+        font = "Noto Sans";
+        fontSize = "9";
+        #background = "${./wallpaper.png}";
+        loginBackground = true;
+      }
+    )
+  ];
 
   services.displayManager.sddm = {
     enable = true;
@@ -82,19 +77,21 @@
     autoNumlock = true;
     settings = {
       Theme = {
-        CursorTheme = "Bibata-Modern-Ice";  
+        CursorTheme = "Bibata-Modern-Ice";
       };
     };
   };
 
-  /*services.displayManager.sddm.enable = true;
+  /*
+    services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     plasma-browser-integration
     konsole
     dolphin
-  ];*/
+  ];
+  */
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -128,14 +125,14 @@
   users.users.gmartins = {
     isNormalUser = true;
     description = "Gonçalo Martins";
-    extraGroups = [ "networkmanager" "wheel" "i2c" ];
+    extraGroups = ["networkmanager" "wheel" "i2c"];
     #packages = with pkgs; [
-      #kdePackages.kate
-      #  thunderbird
+    #kdePackages.kate
+    #  thunderbird
     #];
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -154,10 +151,9 @@
   nix.settings.auto-optimise-store = true;
 
   nix.settings = {
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
   system.stateVersion = "24.05";
-
 }

@@ -53,7 +53,6 @@
 
     onlyoffice-desktopeditors
 
-    #(callPackage ./zen.nix {})
   ];
 
   programs.firefox.enable = true;

@@ -1,13 +1,14 @@
-{ pkgs, lib, inputs, ... }:
-
 {
-
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   services.hypridle = {
     enable = true;
     package = inputs.hypridle.packages.${pkgs.system}.hypridle;
-   
-    settings = {
 
+    settings = {
       general = {
         "lock_cmd" = "pidof hyprlock || hyprlock";
         "before_sleep_cmd" = "loginctl lock-session";
@@ -32,6 +33,6 @@
       ];
     };
   };
-  
+
   systemd.user.services.hypridle.Unit.After = lib.mkForce "graphical-session.target";
 }

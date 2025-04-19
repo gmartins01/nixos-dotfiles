@@ -53,75 +53,76 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     hypr-dynamic-cursors = {
-        url = "github:VirtCode/hypr-dynamic-cursors";
-        inputs.hyprland.follows = "hyprland"; # to make sure that the plugin is built for the correct version of hyprland
+      url = "github:VirtCode/hypr-dynamic-cursors";
+      inputs.hyprland.follows = "hyprland"; # to make sure that the plugin is built for the correct version of hyprland
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, 
-              nix-flatpak, chaotic, nixos-wsl, ... 
-            }@inputs:
-    let
-      username = "gmartins";
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      devShells = import ./shell/devShells.nix { pkgs = pkgs; };
-    in
-    {
-      nixosConfigurations = {
-        laptop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/laptop/configuration.nix
-            inputs.home-manager.nixosModules.default
-            ./modules/nixos
-          ];
-        };
-
-        desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/desktop/configuration.nix
-            ./modules/nixos
-            inputs.clipboard-sync.nixosModules.default
-            nix-flatpak.nixosModules.nix-flatpak
-            chaotic.nixosModules.default
-
-            { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
-          ];
-        };
-
-        wsl = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          system = "x86_64-linux";
-          modules = [
-            nixos-wsl.nixosModules.default
-            ./hosts/wsl/configuration.nix
-            
-          ];
-        };
-      };
-
-      homeConfigurations."${username}@desktop" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = { inherit inputs; };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nix-flatpak,
+    chaotic,
+    nixos-wsl,
+    ...
+  } @ inputs: let
+    username = "gmartins";
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    devShells = import ./shell/devShells.nix {pkgs = pkgs;};
+  in {
+    nixosConfigurations = {
+      laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
         modules = [
-          ./hosts/desktop/home.nix
-          inputs.ags.homeManagerModules.default
-          inputs.stylix.homeManagerModules.stylix
+          ./hosts/laptop/configuration.nix
+          inputs.home-manager.nixosModules.default
+          ./modules/nixos
         ];
       };
 
-      homeConfigurations."${username}@wsl" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = { inherit inputs; };
+      desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
         modules = [
-          ./hosts/wsl/home.nix
+          ./hosts/desktop/configuration.nix
+          ./modules/nixos
+          inputs.clipboard-sync.nixosModules.default
+          nix-flatpak.nixosModules.nix-flatpak
+          chaotic.nixosModules.default
+
+          {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         ];
       };
 
-      devShells.${system} = devShells;
-
+      wsl = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "x86_64-linux";
+        modules = [
+          nixos-wsl.nixosModules.default
+          ./hosts/wsl/configuration.nix
+        ];
+      };
     };
-}
 
+    homeConfigurations."${username}@desktop" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${system};
+      extraSpecialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/desktop/home.nix
+        inputs.ags.homeManagerModules.default
+        inputs.stylix.homeManagerModules.stylix
+      ];
+    };
+
+    homeConfigurations."${username}@wsl" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${system};
+      extraSpecialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/wsl/home.nix
+      ];
+    };
+
+    devShells.${system} = devShells;
+  };
+}
