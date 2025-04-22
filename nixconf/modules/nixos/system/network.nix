@@ -4,7 +4,7 @@
   ...
 }: {
   networking.hostName = "nixos";
-  networking.firewall.allowedTCPPorts = [8384 9999];
+  networking.firewall.allowedTCPPorts = [8384 9999 51820];
 
   # Enable networking
   networking = {
@@ -14,6 +14,10 @@
       wifi.powersave = false;
     };
   };
+
+  networking.wireguard.enable = true;
+  networking.firewall.checkReversePath = false; # required for WG
+
   /*
   security.enableWrappers = true;
 
@@ -29,14 +33,21 @@
 
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
-
+    wireguard-ui
     protonvpn-gui
 
     #openresolv
-    #openvpn
+    openvpn
     #networkmanager-openvpn
 
-    #wireguard-tools
-    #wg-netmanager
+    wireguard-tools
+    wg-netmanager
   ];
+
+
+  # enable NAT
+  networking.nat.enable = true;
+  networking.nat.externalInterface = "eth0";
+  networking.nat.internalInterfaces = [ "wg0" ];
+
 }

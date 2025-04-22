@@ -10,6 +10,7 @@
     ./nautilus.nix
     ./dconf.nix
     ./docker.nix
+    ./protonvpn.nix
   ];
 
   environment.systemPackages = with pkgs; [

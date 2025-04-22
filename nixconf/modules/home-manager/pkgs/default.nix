@@ -11,5 +11,7 @@
     inputs.zen-browser.packages.${pkgs.system}.default
     pkgs.postman
     pkgs.tmux
+
+    pkgs.yazi # terminal file explorer
   ];
 }
