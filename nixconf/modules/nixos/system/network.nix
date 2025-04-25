@@ -18,23 +18,10 @@
   networking.wireguard.enable = true;
   networking.firewall.checkReversePath = false; # required for WG
 
-  /*
-  security.enableWrappers = true;
-
-  security.wrappers.openvpn = {
-    enable = true;
-    source = "${pkgs.openvpn}/bin/openvpn";
-    owner = "root";
-    group = "root";
-    permissions = "u+rx,g+rx";
-    capabilities = "cap_net_admin,cap_net_raw+eip";
-  };
-  */
-
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
     wireguard-ui
-    protonvpn-gui
+    #protonvpn-gui
 
     #openresolv
     openvpn

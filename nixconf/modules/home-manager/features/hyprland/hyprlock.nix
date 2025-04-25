@@ -1,13 +1,15 @@
-{ pkgs, lib, inputs,config, ... }:
-
 {
-
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}: {
   programs.hyprlock = {
     enable = true;
     package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
-    
-    settings = {
 
+    settings = {
       background = {
         monitor = "";
         path = "screenshot";
@@ -22,8 +24,8 @@
         inner_color = lib.mkForce "rgba(0, 0, 0, 0.0)";
 
         outer_color = lib.mkForce "rgba(${config.stylix.base16Scheme.base07}ff)";
-        check_color= lib.mkForce "rgba(${config.stylix.base16Scheme.base0A}ff)";
-        fail_color= lib.mkForce "rgba(${config.stylix.base16Scheme.base08}ff)";
+        check_color = lib.mkForce "rgba(${config.stylix.base16Scheme.base0A}ff)";
+        fail_color = lib.mkForce "rgba(${config.stylix.base16Scheme.base08}ff)";
 
         rounding = 12;
         fade_on_empty = false;
@@ -34,7 +36,7 @@
         valign = "center";
       };
 
-       label = [
+      label = [
         {
           monitor = "";
           text = "$TIME";
@@ -68,9 +70,6 @@
           shadow_boost = 0.3;
         }
       ];
-
     };
-
   };
-  
 }

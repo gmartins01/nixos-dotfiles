@@ -1,6 +1,10 @@
-{ pkgs, lib, inputs, config, ... }:
-
 {
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     ./modules/monitors.nix
     ./modules/general.nix
@@ -16,7 +20,7 @@
     enable = true;
     package = null;
     portalPackage = null;
-    
+
     systemd.variables = ["--all"];
 
     xwayland.enable = true;
@@ -53,14 +57,12 @@
         "XDG_SESSION_TYPE,wayland"
       ];
     };
-
   };
 
   hyprland.plugins = {
-    enable = true; 
-    
+    enable = true;
+
     csgoVulkanFix.enable = false;
     dynamicCursors.enable = false;
   };
-
 }

@@ -1,9 +1,12 @@
-{ lib, pkgs, inputs, ... }:
-
 {
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   options = {
     enable = lib.mkEnableOption "CS:GO Vulkan Fix plugin";
-    
+
     package = lib.mkOption {
       type = lib.types.package;
       default = inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix;
@@ -24,3 +27,4 @@
     };
   };
 }
+

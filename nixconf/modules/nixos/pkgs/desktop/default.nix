@@ -10,7 +10,6 @@
     ./nautilus.nix
     ./dconf.nix
     ./docker.nix
-    ./protonvpn.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -53,7 +52,6 @@
     obsidian # Notes
 
     onlyoffice-desktopeditors
-
   ];
 
   programs.firefox.enable = true;
