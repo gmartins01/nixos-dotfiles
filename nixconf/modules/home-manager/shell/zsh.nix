@@ -46,7 +46,7 @@
         "hm-status" = "journalctl --unit home-manager-${config.home.username}.service -n 100 -r"; # To see home-manager logs
       };
 
-      initExtra = ''
+      initContent = ''
         bindkey "^[[1;5D" backward-word
         bindkey "^[[1;5C" forward-word
         bindkey "^[[3~" delete-char

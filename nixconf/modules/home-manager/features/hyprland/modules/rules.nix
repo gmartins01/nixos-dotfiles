@@ -1,7 +1,9 @@
-{ pkgs, lib, config, ... }:
-
 {
-
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     settings = {
       windowrule = [
@@ -22,6 +24,7 @@
         "float,class:^(thunar)$,title:^(File Operation Progress)$"
         "float,class:^(nemo)$,title:^(.*Properties.*)$"
         "float,class:^(fr.handbrake.ghb)$"
+        "size 400 600,class:^(protonvpn-app)$,title:^(Proton VPN)$"
 
         # Clipboard
         "float, class:(clipse)"
@@ -37,5 +40,4 @@
       ];
     };
   };
-
 }
