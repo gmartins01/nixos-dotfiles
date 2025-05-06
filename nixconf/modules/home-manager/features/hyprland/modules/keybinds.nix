@@ -37,13 +37,13 @@
         "$shiftMod, M, fullscreen"
         "$mainMod, R, exec, $menu"
         "$shiftMod, P, pseudo"
-        "$mainMod, J, togglesplit"
+        "$shiftMod, S, togglesplit"
 
         # Focus movement
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+        "$mainMod, h, movefocus, l"
+        "$mainMod, l, movefocus, r"
+        "$mainMod, k, movefocus, u"
+        "$mainMod, j, movefocus, d"
 
         # Workspace controls
         "$mainMod, 1, workspace, 1"

@@ -31,10 +31,14 @@
     wg-netmanager
   ];
 
-
   # enable NAT
   networking.nat.enable = true;
   networking.nat.externalInterface = "eth0";
-  networking.nat.internalInterfaces = [ "wg0" ];
+  networking.nat.internalInterfaces = ["wg0"];
+  boot.kernel.sysctl = {
+    "net.core.default_qdisc" = "fq_codel";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+    "net.ipv6.tcp_congestion_control" = "bbr";
+  };
 
 }

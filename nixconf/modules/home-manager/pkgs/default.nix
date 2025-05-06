@@ -14,5 +14,6 @@
 
     pkgs.yazi # terminal file explorer
     pkgs.proton-pass
+    pkgs.gimp3
   ];
 }
