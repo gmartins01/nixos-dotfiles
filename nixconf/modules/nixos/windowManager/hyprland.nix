@@ -34,6 +34,7 @@
     # To fix some gtk apps
     adwaita-icon-theme
     gnome-themes-extra
+    papirus-icon-theme
 
     bulky # Bulk rename
     

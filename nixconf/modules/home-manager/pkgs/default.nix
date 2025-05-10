@@ -10,10 +10,13 @@
   home.packages = [
     inputs.zen-browser.packages.${pkgs.system}.default
     pkgs.postman
-    pkgs.tmux
-
-    pkgs.yazi # terminal file explorer
-    pkgs.proton-pass
     pkgs.gimp3
+
+    pkgs.proton-pass
+
+    pkgs.ghostty
+    pkgs.yazi # terminal file explorer
+    pkgs.tmux
+    pkgs.btop
   ];
 }

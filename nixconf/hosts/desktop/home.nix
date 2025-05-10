@@ -40,12 +40,12 @@ in {
           variant = variant;
           size = "standard";
         };
-    };
-    iconTheme = {
+    };*/
+    /*iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-    };
-    */
+    };*/
+    
     /*
      iconTheme = {
       package = pkgs.adwaita-icon-theme;
@@ -53,13 +53,13 @@ in {
     };
     */
 
-    gtk3.extraConfig = {
+    /*gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
 
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
-    };
+    };*/
 
     gtk3.bookmarks = [
       "file:///home/gmartins/Downloads"
@@ -128,6 +128,7 @@ in {
     #QT_QPA_PLATFORMTHEME="kde";
     TERM = "kitty";
     TERMINAL = "screen-256color";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.

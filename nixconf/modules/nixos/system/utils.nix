@@ -42,7 +42,7 @@
   services.tumbler.enable = true;
 
   # To fix copy from xwayland apps
-  services.clipboard-sync.enable = true;
+  services.clipboard-sync.enable = false;
 
   security = {
     # allow wayland lockers to unlock the screen

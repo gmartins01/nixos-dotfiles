@@ -51,7 +51,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
+    
     hypr-dynamic-cursors = {
       url = "github:VirtCode/hypr-dynamic-cursors";
       inputs.hyprland.follows = "hyprland"; # to make sure that the plugin is built for the correct version of hyprland
