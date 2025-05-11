@@ -109,7 +109,7 @@
 
         # Monitor cycling
         "$mainMod, Tab, focusmonitor, +1"
-        "$shiftMod, Tab, focusmonitor, -1"
+        "$shiftMod, Tab, movecurrentworkspacetomonitor, +1"
 
 
         # Global keybinds

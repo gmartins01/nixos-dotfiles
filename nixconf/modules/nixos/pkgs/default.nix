@@ -18,6 +18,9 @@
     neovim
     lua54Packages.luarocks-nix
     lua
+
+    x265
+    intel-vaapi-driver
   ];
 
 
@@ -27,7 +30,12 @@
     enable = true;
     libraries = with pkgs; [
       stdenv.cc.cc
-      #stdlib
+     /* libGL
+      libva
+      openssl
+      glib
+      libusb1
+      dbus-glib*/
     ];
   };
 }

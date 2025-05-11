@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   networking.hostName = "nixos";
@@ -15,35 +16,16 @@
     };
   };
 
-  networking.networkmanager.wifi.backend = "iwd";
-  
- /* networking.wireless.iwd.enable = true;
-
-  networking.wireless.iwd.settings = {
-    # veja “man iwd.config” para as seções e chaves válidas
-    General = {
-      DisableScanning = true; # desativa o scan de background
-      AutoEnable = true; # reconecta redes conhecidas
-    };
-    # por exemplo, ativa IPv6 e auto-connect
-    Network = {
-      EnableIPv6 = true;
-    };
-    Settings = {
-      AutoConnect = true;
-    };
-  };*/
   networking.wireguard.enable = true;
   networking.firewall.checkReversePath = false; # required for WG
 
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
+    networkmanager
     wireguard-ui
     #protonvpn-gui
 
-    #openresolv
     openvpn
-    #networkmanager-openvpn
     networkmanager
 
     wireguard-tools

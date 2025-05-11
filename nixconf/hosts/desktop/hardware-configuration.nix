@@ -40,6 +40,11 @@
     fsType = "ntfs-3g";
     options = ["rw" "uid=1000" "gid=1000" "nofail"];
   };
+  fileSystems."/run/media/gmartins/Windows" = {
+    device = "/dev/disk/by-uuid/E0A6ADAFA6AD871E";
+    fsType = "ntfs-3g";
+    options = ["rw" "uid=1000" "gid=1000" "nofail"];
+  };
   fileSystems."/mnt/Games" = {
     device = "/dev/disk/by-uuid/65D2524E26C8D66D";
     fsType = "ntfs-3g";
