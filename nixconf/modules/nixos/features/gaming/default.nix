@@ -21,6 +21,7 @@
     extraPackages = with pkgs; [
       mesa
       libva
+      rocmPackages.clr.icd
       # amf
       # amdvlk
     ];
