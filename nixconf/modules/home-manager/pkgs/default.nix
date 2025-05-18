@@ -14,7 +14,6 @@
 
     pkgs.proton-pass
 
-    pkgs.ghostty
     pkgs.yazi # terminal file explorer
     pkgs.tmux
     pkgs.btop

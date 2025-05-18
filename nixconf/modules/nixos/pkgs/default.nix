@@ -23,19 +23,23 @@
     intel-vaapi-driver
   ];
 
-
   programs.java.enable = true;
+
+  programs.neovim.enable = true;
+  programs.neovim.defaultEditor = true;
 
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
       stdenv.cc.cc
-     /* libGL
+      /*
+        libGL
       libva
       openssl
       glib
       libusb1
-      dbus-glib*/
+      dbus-glib
+      */
     ];
   };
 }

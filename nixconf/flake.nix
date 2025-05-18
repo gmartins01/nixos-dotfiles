@@ -111,7 +111,7 @@
       modules = [
         ./hosts/desktop/home.nix
         inputs.ags.homeManagerModules.default
-        inputs.stylix.homeManagerModules.stylix
+        inputs.stylix.homeModules.stylix
       ];
     };
 

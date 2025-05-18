@@ -1,19 +1,23 @@
-{ pkgs, lib, config, ... }:
-
 {
-
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     settings = {
       input = {
-          kb_layout = "pt";
+        kb_layout = "pt";
 
-          follow_mouse = 1;
+        follow_mouse = 1;
 
-          sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
 
-          touchpad = {
-              natural_scroll = false;
-          };
+        touchpad = {
+          natural_scroll = false;
+        };
+
+        float_switch_override_focus = 0;
       };
 
       gestures = {
@@ -36,8 +40,6 @@
           sensitivity = "-0.9";
         }
       ];
-      
     };
   };
-
 }
