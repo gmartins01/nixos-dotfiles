@@ -6,6 +6,7 @@ return { -- Highlight, edit, and navigate code
 		ensure_installed = {
 			"javascript",
 			"typescript",
+			"tsx",
 			"bash",
 			"c",
 			"diff",
