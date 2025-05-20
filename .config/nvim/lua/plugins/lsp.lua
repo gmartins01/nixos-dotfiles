@@ -213,6 +213,10 @@ return {
 					cmd = { "typescript-language-server", "--stdio" },
 					autostart = true,
 				},
+
+				cssls = {
+					filetypes = { "css", "scss" },
+				},
 			}
 
 			local ensure_installed = vim.tbl_keys(servers or {})

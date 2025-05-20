@@ -62,7 +62,7 @@ local config = {
   settings = {
     java = {
       -- TODO Replace this with the absolute path to your main java version (JDTLS requires JDK 21 or higher)
-      home = "/home/gmartins/SDKs/Java/17/bin/java",
+      home = "/home/gmartins/SDKs/Java/21/bin/java",
       eclipse = {
         downloadSources = true,
       },
