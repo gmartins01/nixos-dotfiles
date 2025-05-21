@@ -187,8 +187,8 @@ return {
 				lua_ls = {
 					-- cmd = { ... },
 					-- filetypes = { ... },
-					 capabilities = capabilities,
- 					settings = {
+					capabilities = capabilities,
+					settings = {
 						Lua = {
 							completion = {
 								callSnippet = "Replace",

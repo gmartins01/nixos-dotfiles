@@ -17,6 +17,7 @@
   ];
 
   home.file = {
+    "SDKs/Java/21".source = pkgs.jdk21;
     "SDKs/Java/17".source = pkgs.jdk17;
     "SDKs/Java/8".source = pkgs.jdk8;
   };
