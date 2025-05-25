@@ -53,7 +53,7 @@
   "theme.matugen": false,
   "bar.clock.format": "%H:%M",
   "theme.bar.buttons.borderSize": "0.1em",
-  "theme.bar.outer_spacing": "0.6em",
+  "theme.bar.outer_spacing": "0.7em",
   "theme.osd.enable": true,
   "menus.dashboard.shortcuts.left.shortcut1.tooltip": "Firefox",
   "menus.dashboard.shortcuts.left.shortcut1.command": "firefox",
@@ -466,5 +466,6 @@
   "bar.windowtitle.custom_title": true,
   "bar.workspaces.showAllActive": true,
   "theme.bar.buttons.modules.updates.enableBorder": false,
-  "theme.bar.buttons.modules.kbLayout.enableBorder": false
+  "theme.bar.buttons.modules.kbLayout.enableBorder": false,
+  "theme.bar.buttons.modules.power.enableBorder": true
 }

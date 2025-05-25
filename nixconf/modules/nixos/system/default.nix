@@ -9,5 +9,6 @@
     ./razer.nix
     ./utils.nix
     ./network.nix
+    ./radeon.nix
   ];
 }

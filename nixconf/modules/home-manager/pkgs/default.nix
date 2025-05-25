@@ -10,7 +10,7 @@
   home.packages = [
     inputs.zen-browser.packages.${pkgs.system}.default
     pkgs.postman
-    pkgs.gimp3
+    pkgs.gimp
 
     pkgs.proton-pass
 

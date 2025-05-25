@@ -35,7 +35,7 @@
         "clipboard-sync &"
         "clipse -listen"
         "polychromatic-tray-applet"
-        "corectrl &"
+        # "corectrl &"
         "gsettings set org.gnome.desktop.interface cursor-theme '${config.stylix.cursor.name}'"
         "gsettings set org.gnome.desktop.interface cursor-size ${toString config.stylix.cursor.size}"
         "gsettings set org.gnome.desktop.interface icon-theme ${config.stylix.iconTheme.dark}"

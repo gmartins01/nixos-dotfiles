@@ -21,7 +21,7 @@
     keepassxc
     #jetbrains.idea-ultimate
     #xwaylandvideobridge
-    corectrl
+    #corectrl
     vlc
     mediawriter
     gnome-calculator
