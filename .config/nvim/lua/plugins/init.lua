@@ -15,9 +15,5 @@ return {
 		opts = { signs = false },
 	},
 
-	{ "ThePrimeagen/harpoon" },
-
-	{ "mbbill/undotree" },
-
-		"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 }

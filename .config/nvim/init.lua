@@ -15,20 +15,20 @@ vim.api.nvim_create_augroup("RelativeNumberToggle", { clear = true })
 
 -- Disable relative numbering when entering Insert mode
 vim.api.nvim_create_autocmd("InsertEnter", {
-  group = "RelativeNumberToggle",
-  pattern = "*",
-  callback = function()
-    vim.opt.relativenumber = false
-  end,
+	group = "RelativeNumberToggle",
+	pattern = "*",
+	callback = function()
+		vim.opt.relativenumber = false
+	end,
 })
 
 -- Re-enable relative numbering when leaving Insert mode
 vim.api.nvim_create_autocmd("InsertLeave", {
-  group = "RelativeNumberToggle",
-  pattern = "*",
-  callback = function()
-    vim.opt.relativenumber = true
-  end,
+	group = "RelativeNumberToggle",
+	pattern = "*",
+	callback = function()
+		vim.opt.relativenumber = true
+	end,
 })
 
 -- Enable mouse mode
