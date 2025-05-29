@@ -467,5 +467,8 @@
   "bar.workspaces.showAllActive": true,
   "theme.bar.buttons.modules.updates.enableBorder": false,
   "theme.bar.buttons.modules.kbLayout.enableBorder": false,
-  "theme.bar.buttons.modules.power.enableBorder": true
+  "theme.bar.buttons.modules.power.enableBorder": true,
+  "bar.customModules.storage.paths": [
+    "/"
+  ]
 }

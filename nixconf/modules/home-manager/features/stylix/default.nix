@@ -25,7 +25,7 @@
     base0F = "f0c6c6"; # flamingo
   };
 
-  stylix.image = ./wallpaper.png;
+  stylix.image = null;
 
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Ice";
@@ -41,7 +41,7 @@
   stylix.iconTheme.package = pkgs.papirus-icon-theme;
   stylix.targets.gtk.flatpakSupport.enable = false;
   stylix.targets.hyprlock.enable = false;
-  stylix.targets.hyprpaper.enable = true;
+  stylix.targets.hyprpaper.enable = false;
 
   stylix.fonts = {
     monospace = {

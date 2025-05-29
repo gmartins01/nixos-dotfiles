@@ -6,12 +6,12 @@
   ...
 }: {
   services.hyprpaper = {
-    enable = false;
-    package = inputs.hyprpaper.packages.${pkgs.system}.default;
+    enable = true;
+    package = pkgs.hyprpaper;
 
     settings = {
-      preload = ["${config.theme.wallpaper}"];
-      wallpaper = [", ${config.theme.wallpaper}"];
+      preload = ["~/Pictures/wallpaper.png"];
+      wallpaper = [", ~/Pictures/wallpaper.png"];
     };
   };
 

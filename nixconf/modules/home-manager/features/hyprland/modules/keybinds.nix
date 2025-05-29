@@ -11,7 +11,7 @@
     settings = {
       "$mainMod" = "SUPER";
       "$shiftMod" = "SUPER SHIFT";
-      "$terminal" = "${pkgs.kitty}/bin/kitty";
+      "$terminal" = "${pkgs.wezterm}/bin/wezterm";
       "$fileManager" = "${pkgs.nautilus}/bin/nautilus";
       "$menu" = "${pkgs.fuzzel}/bin/fuzzel";
 
@@ -98,7 +98,7 @@
         ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
 
         # Utilities
-        "$mainMod, V, exec, ${pkgs.kitty}/bin/kitty --class clipse -e ${pkgs.clipse}/bin/clipse"
+        "$mainMod, V, exec, ${pkgs.wezterm}/bin/wezterm start --class clipse -e ${pkgs.clipse}/bin/clipse"
         "ALT, Tab, cyclenext"
         "$shiftMod, E, exec, BEMOJI_PICKER_CMD='fuzzel -d' ${pkgs.bemoji}/bin/bemoji"
 

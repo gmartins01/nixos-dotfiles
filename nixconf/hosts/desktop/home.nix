@@ -126,7 +126,7 @@ in {
 
   home.sessionVariables = {
     #QT_QPA_PLATFORMTHEME="kde";
-    TERM = "kitty";
+    TERM = "wezterm";
     TERMINAL = "screen-256color";
     EDITOR = "nvim";
   };
