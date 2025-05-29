@@ -12,7 +12,10 @@
 
   environment.systemPackages = with pkgs; [
     git
-    
+    wget
+
+    fd
+
     tmux
 
     neovim
