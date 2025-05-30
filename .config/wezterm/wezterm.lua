@@ -10,10 +10,6 @@ config.font_size = 13
 
 config.color_scheme = "Catppuccin Mocha"
 
-if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	config.window_decorations = "RESIZE"
-end
-
 config.default_prog = { "zsh" }
 
 config.front_end = "WebGpu"
@@ -33,5 +29,11 @@ config.use_fancy_tab_bar = true
 config.tab_and_split_indices_are_zero_based = false
 
 config.window_close_confirmation = "NeverPrompt"
+
+config.warn_about_missing_glyphs = false
+
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+  config.default_domain = 'WSL:NixOS'
+end
 
 return config
