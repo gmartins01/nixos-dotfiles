@@ -19,6 +19,8 @@
     pkgs.btop
 
     pkgs.wezterm
+
+    pkgs.gparted
   ];
 
   programs.direnv = {

@@ -3,7 +3,12 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  amdgpu-kernel-module = pkgs.callPackage ./amd-patch.nix {
+    # Make sure the module targets the same kernel as your system is using.
+    kernel = config.boot.kernelPackages.kernel;
+  };
+in {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -22,7 +27,11 @@
   boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"]; # Corectrl
   #boot.kernelPackages = pkgs.linuxPackages_cachyos;
   #boot.kernelPackages = pkgs.linuxPackages_latest;
-
+  boot.extraModulePackages = [
+    (amdgpu-kernel-module.overrideAttrs (_: {
+      patches = [./amdgpu-revert.patch];
+    }))
+  ];
   #boot.extraModprobeConfig = ''
   #  options snd_hda_intel power_save=0
   #'';
@@ -33,7 +42,6 @@
 
   hardware.i2c.enable = true;
 
-  
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
 

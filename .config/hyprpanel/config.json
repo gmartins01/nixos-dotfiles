@@ -470,5 +470,6 @@
   "theme.bar.buttons.modules.power.enableBorder": true,
   "bar.customModules.storage.paths": [
     "/"
-  ]
+  ],
+  "bar.volume.scrollDown": "hyprpanel vol -5"
 }

@@ -12,6 +12,7 @@
       webkitgtk
       accountsservice
       inputs.ags.packages.${pkgs.system}.hyprland
+      inputs.ags.packages.${pkgs.system}.notifd
     ];
   };
 }

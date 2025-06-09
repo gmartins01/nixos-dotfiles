@@ -1,6 +1,7 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk4"
 import { Variable } from "astal"
 import WorkspacesPanelButton from "./WorkspacesPanelButton";
+import Workspaces from "./modules/workspaces/worspaces";
 import Hyprland from "gi://AstalHyprland"
 
 const panelButton = {
@@ -9,7 +10,7 @@ const panelButton = {
 
 
 
-export default function Bar(gdkmonitor: Gdk.Monitor) {
+export default function Bar(gdkmonitor: Gdk.Monitor, monitorIndex: number) {
      const { BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
 
     return <window
@@ -22,11 +23,8 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
         >
             <box
                 orientation={Gtk.Orientation.HORIZONTAL}
-                hexpand
-                vexpand
             >
-<WorkspacesPanelButton />
-                {/* Aqui você pode adicionar widgets posteriormente */}
+            <Workspaces monitor={monitorIndex}/>
             </box>
         </window>
     
