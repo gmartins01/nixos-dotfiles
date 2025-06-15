@@ -1,5 +1,5 @@
-import { App } from "astal/gtk4"
-import style from "./style.scss"
+import { App } from "astal/gtk3"
+import style from "./style/main.scss"
 import Bar from "./src/components/bar/Bar"
 
 App.start({
