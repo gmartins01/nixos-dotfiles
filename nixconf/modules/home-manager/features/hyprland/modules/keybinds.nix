@@ -1,7 +1,10 @@
-{ pkgs, lib, config, inputs, ... }:
-
 {
-
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}: {
   home.file.".config/hypr/scripts/screenshot.sh" = {
     source = ./../scripts/screenshot.sh;
     executable = true;
@@ -98,7 +101,9 @@
         ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
 
         # Utilities
-        "$mainMod, V, exec, ${pkgs.wezterm}/bin/wezterm start --class clipse -e ${pkgs.clipse}/bin/clipse"
+        #"$mainMod, V, exec, ${pkgs.wezterm}/bin/wezterm start --class clipse -e ${pkgs.clipse}/bin/clipse"
+        "$mainMod, V, exec, copyq show"
+
         "ALT, Tab, cyclenext"
         "$shiftMod, E, exec, BEMOJI_PICKER_CMD='fuzzel -d' ${pkgs.bemoji}/bin/bemoji"
 
@@ -111,9 +116,8 @@
         "$mainMod, Tab, focusmonitor, +1"
         "$shiftMod, Tab, movecurrentworkspacetomonitor, +1"
 
-
         # Global keybinds
-        "SUPER, F10, pass, class:^(com\.obsproject\.Studio)$"     
+        "SUPER, F10, pass, class:^(com\.obsproject\.Studio)$"
       ];
     };
   };

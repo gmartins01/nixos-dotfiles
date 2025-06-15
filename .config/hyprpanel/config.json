@@ -471,5 +471,10 @@
   "bar.customModules.storage.paths": [
     "/"
   ],
-  "bar.volume.scrollDown": "hyprpanel vol -5"
+  "bar.volume.scrollDown": "pamixer -d 5",
+  "bar.volume.scrollUp": "pamixer -i 5",
+  "bar.systray.ignore": [
+    "CopyQ_copyq"
+  ],
+  "bar.customModules.ram.labelType": "percentage"
 }

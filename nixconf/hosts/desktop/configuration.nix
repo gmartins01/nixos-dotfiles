@@ -27,11 +27,11 @@ in {
   boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"]; # Corectrl
   #boot.kernelPackages = pkgs.linuxPackages_cachyos;
   #boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.extraModulePackages = [
+  /*boot.extraModulePackages = [
     (amdgpu-kernel-module.overrideAttrs (_: {
       patches = [./amdgpu-revert.patch];
     }))
-  ];
+  ];*/
   #boot.extraModprobeConfig = ''
   #  options snd_hda_intel power_save=0
   #'';

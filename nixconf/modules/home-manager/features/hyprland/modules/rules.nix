@@ -29,6 +29,9 @@
         # Clipboard
         "float, class:(clipse)"
         "size 622 652, class:(clipse)"
+        "float,class:(com.github.hluk.copyq)"
+        "size 469 443, class:(com.github.hluk.copyq)"
+        "move onscreen cursor,class:(com.github.hluk.copyq)"
 
         #Steam
         "float,class:^(steam)$,title:^(Friends List)$"

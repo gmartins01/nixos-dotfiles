@@ -17,6 +17,7 @@
     #clipboard
     wl-clipboard
     clipse
+    copyq
     
     libsForQt5.qt5ct
     kdePackages.qt6ct
