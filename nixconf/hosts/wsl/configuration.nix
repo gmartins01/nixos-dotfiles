@@ -1,6 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     # include NixOS-WSL modules
     #<nixos-wsl/modules>
@@ -9,6 +13,10 @@
 
   wsl.enable = true;
   wsl.defaultUser = "gmartins";
+  wsl.docker-desktop.enable = true;
+  users.users.gmartins.extraGroups = ["docker"];
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless.enable = true;
 
   environment.systemPackages = with pkgs; [
     git
@@ -33,15 +41,16 @@
     zip
 
     go
-    (python3.withPackages (ps: with ps; [
-      pip
-    ]))
+    (python3.withPackages (ps:
+      with ps; [
+        pip
+      ]))
     nodejs_22
 
     inputs.home-manager.packages.${pkgs.system}.default
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   programs.java.enable = true;
 
