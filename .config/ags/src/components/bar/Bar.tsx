@@ -4,7 +4,7 @@ import Workspaces from "./modules/workspaces/Worspaces";
 import Hyprland from "gi://AstalHyprland"
 
 
-export default function Bar(gdkmonitor: Gdk.Monitor, monitorIndex: number) {
+export default function Bar(gdkmonitor: Gdk.Monitor) {
     const { BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
 
     return <window
@@ -18,8 +18,10 @@ export default function Bar(gdkmonitor: Gdk.Monitor, monitorIndex: number) {
         <centerbox
             orientation={Gtk.Orientation.HORIZONTAL}
         >
-            <Workspaces gdkmonitor={gdkmonitor} />
-            teste
+            <box halign={Gtk.Align.START}>
+                <Workspaces gdkmonitor={gdkmonitor} />
+            </box>
+
         </centerbox>
     </window>
 

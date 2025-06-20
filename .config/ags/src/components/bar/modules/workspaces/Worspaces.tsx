@@ -1,11 +1,11 @@
 import { Gtk, Gdk } from "astal/gtk3";
 import { bind, Variable } from "astal";
-import Hyprland from "gi://AstalHyprland";
+import AstalHyprland from "gi://AstalHyprland";
 //import { getAppIcon } from "./icons";
 
 const workspaceRename = Array.from({ length: 30 }, (_, i) => i % 10);
 
-const hyprland = Hyprland.get_default();
+const hyprland = AstalHyprland.get_default();
 
 const ignoredClients = ["xwaylandvideobridge"];
 
@@ -18,7 +18,7 @@ class Workspace {
     readonly active: ReturnType<typeof Variable<boolean>>;
     readonly className: ReturnType<typeof Variable<string>>;
     isDestroyed: boolean = false;
-    clients: ReturnType<typeof Variable<Hyprland.Client[]>>;
+    clients: ReturnType<typeof Variable<AstalHyprland.Client[]>>;
     visible: ReturnType<typeof Variable<boolean>>;
 
     constructor(args: { id: number; name: string; translatedId: number | undefined }) {
@@ -62,22 +62,23 @@ class Workspace {
                     } catch (e) {
                         console.error("Error dispatching workspace:", e);
                     }
-                }}
+                }
+                }
                 onDestroy={() => {
                     this.isDestroyed = true;
                     this.className.drop();
                 }}
                 child={
-                    <box>
-                        <label className="label" label={this.translatedId.toString()} />
+                    < box >
+                        <label valign={Gtk.Align.CENTER} className="label" label={this.translatedId.toString()} />
                         {/* {bind(this.clients).as((clients) => */}
                         {/*     clients.map((client) => { */}
                         {/*         return <icon className="icon" icon={getAppIcon(client?.class)} />; */}
                         {/*     }), */}
                         {/* )} */}
-                    </box>
+                    </box >
                 }
-            ></button>
+            ></button >
         );
     }
 
@@ -89,7 +90,7 @@ class Workspace {
         this.active.set(value);
     }
 
-    reload(clients: Hyprland.Client[]) {
+    reload(clients: AstalHyprland.Client[]) {
         this.clients.set(clients.filter((client) => client.workspace.id === this.id));
     }
 
@@ -98,7 +99,7 @@ class Workspace {
     }
 }
 
-function HyprToGdkMonitor(monitor: Hyprland.Monitor): Gdk.Monitor | undefined {
+function HyprToGdkMonitor(monitor: AstalHyprland.Monitor): Gdk.Monitor | undefined {
     try {
         return Gdk.Display?.get_default()?.get_monitor_at_point(monitor.x + 1, monitor.y + 1);
     } catch (_err) {
@@ -108,7 +109,7 @@ function HyprToGdkMonitor(monitor: Hyprland.Monitor): Gdk.Monitor | undefined {
 
 
 function fetchWorkspaces(monitor: Gdk.Monitor): Workspace[] {
-    const hyprland = Hyprland.get_default();
+    const hyprland = AstalHyprland.get_default();
 
     const workspaces = hyprland.get_workspaces()
         .filter(ws => HyprToGdkMonitor(ws.monitor) === monitor)
@@ -131,7 +132,7 @@ function fetchWorkspaces(monitor: Gdk.Monitor): Workspace[] {
 }
 
 export default function Workspaces(props: { gdkmonitor: Gdk.Monitor }) {
-    const hyprland = Hyprland.get_default();
+    const hyprland = AstalHyprland.get_default();
     const workspaces = Variable(fetchWorkspaces(props.gdkmonitor));
     workspaces
         .get()
@@ -182,12 +183,14 @@ export default function Workspaces(props: { gdkmonitor: Gdk.Monitor }) {
         }
     });
 
-    return <eventbox onScroll={(_, event) =>
+    return <eventbox valign={Gtk.Align.CENTER} onScroll={(_, event) =>
         event.delta_y > 0 ?
-            Hyprland.get_default().dispatch("workspace", "e-1")
-            : Hyprland.get_default().dispatch("workspace", "e+1")}>
+            AstalHyprland.get_default().dispatch("workspace", "e-1")
+            : AstalHyprland.get_default().dispatch("workspace", "e+1")}>
         <box
-            className="workspaces">
+            className="workspaces"
+            spacing={10}
+        >
             {bind(workspaces).as((workspaces) => workspaces.map((ws) => ws.widget))}
         </box>
     </eventbox>;
