@@ -25,7 +25,7 @@
     vlc
     mediawriter
     gnome-calculator
-    handbrake
+    #handbrake
     easyeffects
     #vscode
     stremio

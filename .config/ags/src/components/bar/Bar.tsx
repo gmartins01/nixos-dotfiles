@@ -2,6 +2,7 @@ import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import { Variable } from "astal"
 import Workspaces from "./modules/workspaces/Worspaces";
 import Hyprland from "gi://AstalHyprland"
+import { SysTray } from "./modules/SysTray";
 
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
@@ -20,6 +21,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
         >
             <box halign={Gtk.Align.START}>
                 <Workspaces gdkmonitor={gdkmonitor} />
+                <SysTray />
             </box>
 
         </centerbox>

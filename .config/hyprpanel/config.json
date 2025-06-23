@@ -476,5 +476,7 @@
   "bar.systray.ignore": [
     "CopyQ_copyq"
   ],
-  "bar.customModules.ram.labelType": "percentage"
+  "bar.customModules.ram.labelType": "percentage",
+  "menus.transition": "crossfade",
+  "theme.bar.menus.enableShadow": false
 }
