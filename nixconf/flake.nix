@@ -2,10 +2,10 @@
   description = "NixOS config flake";
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    #master.url = "github:nixos/nixpkgs/master";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
@@ -17,20 +17,20 @@
     # hyprwm
     hyprland.url = "github:hyprwm/hyprland";
 
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs = {
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
-    };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    #
+    # hyprlock = {
+    #   url = "github:hyprwm/hyprlock";
+    #   inputs = {
+    #     hyprlang.follows = "hyprland/hyprlang";
+    #     hyprutils.follows = "hyprland/hyprutils";
+    #     nixpkgs.follows = "hyprland/nixpkgs";
+    #     systems.follows = "hyprland/systems";
+    #   };
+    # };
 
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
@@ -53,6 +53,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     home-manager,
     nix-flatpak,
     chaotic,
@@ -62,6 +63,15 @@
     username = "gmartins";
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+
+    pkgs-stable = import inputs.nixpkgs-stable {
+      system = system;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
+    };
+
     devShells = import ./shell/devShells.nix {pkgs = pkgs;};
   in {
     nixosConfigurations = {
@@ -75,7 +85,10 @@
       };
 
       desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          inherit pkgs-stable;
+        };
         modules = [
           ./hosts/desktop/configuration.nix
           ./modules/nixos

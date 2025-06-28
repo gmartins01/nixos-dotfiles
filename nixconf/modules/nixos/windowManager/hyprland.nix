@@ -41,7 +41,6 @@
     
     glib
 
-    brightnessctl
     ddcutil
   ];
 
