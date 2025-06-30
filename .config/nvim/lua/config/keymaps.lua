@@ -29,7 +29,9 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste withot replacing register" })
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without replacing register" })
+vim.keymap.set("x", "<leader>d", '"_d', { desc = "Delete without replacing register" })
+vim.keymap.set("n", "<leader>x", '"_x', { desc = "Cut without replacing register" })
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Jump to next quickfix item and center" })
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Jump to previous quickfix item and center" })
@@ -42,7 +44,7 @@ vim.keymap.set(
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "Replace word under cursor in the whole file" }
 )
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable", silent = true })
+--vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable", silent = true })
 
 -- Terminal
 vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { desc = "Move to the window on the left" })
@@ -56,4 +58,3 @@ vim.keymap.set("t", "<C-l>", "<C-l><Cmd>clear<CR>", { desc = "Clear terminal scr
 
 -- Enter visual mode from insert mode
 vim.keymap.set("i", "<C-a>", "<C-\\><C-n>v", { silent = true, desc = "Enter Visual mode from Insert mode" })
-
