@@ -95,8 +95,6 @@
           inputs.clipboard-sync.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
           chaotic.nixosModules.default
-
-          {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         ];
       };
 

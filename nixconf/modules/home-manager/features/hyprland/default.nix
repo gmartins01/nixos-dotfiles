@@ -13,7 +13,7 @@
     ./modules/rules.nix
     ./hypridle.nix
     ./hyprlock.nix
-    ./hyprpaper.nix
+    #./hyprpaper.nix
     ./plugins
   ];
 
@@ -29,7 +29,7 @@
     settings = {
       exec-once = [
         "hyprpanel"
-        #"hyprpaper"
+        "hyprpaper"
         "systemctl --user restart xdg-desktop-portal-hyprland"
         "systemctl start --user polkit-gnome-authentication-agent-1"
         "nm-applet --indicator & disown"
