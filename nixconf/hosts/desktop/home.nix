@@ -40,12 +40,15 @@ in {
           variant = variant;
           size = "standard";
         };
-    };*/
-    /*iconTheme = {
+    };
+    */
+    /*
+      iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-    };*/
-    
+    };
+    */
+
     /*
      iconTheme = {
       package = pkgs.adwaita-icon-theme;
@@ -53,13 +56,15 @@ in {
     };
     */
 
-    /*gtk3.extraConfig = {
+    /*
+      gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
 
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
-    };*/
+    };
+    */
 
     gtk3.bookmarks = [
       "file:///home/gmartins/Downloads"
@@ -109,6 +114,17 @@ in {
       "application/xml" = ["code.desktop"];
       "image/jpeg" = ["org.kde.gwenview.desktop"];
       "image/png" = ["org.kde.gwenview.desktop"];
+    };
+    desktopEntries = {
+      nvim = {
+        name = "Neovim";
+        icon = "utilities-terminal";
+        genericName = "Text Editor";
+        exec = "wezterm -e nvim %F";
+        terminal = false;
+        mimeType = ["text/plain" "text/markdown"];
+        categories = ["Development" "TextEditor"];
+      };
     };
   };
 
