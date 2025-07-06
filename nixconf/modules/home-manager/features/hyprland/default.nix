@@ -19,10 +19,11 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null;
-    portalPackage = null;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
     systemd.variables = ["--all"];
+    systemd.enable = false;
 
     xwayland.enable = true;
 
@@ -58,6 +59,10 @@
         "XDG_SESSION_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
       ];
+
+      debug = {
+        full_cm_proto = true; # For gamescope
+      };
     };
   };
 

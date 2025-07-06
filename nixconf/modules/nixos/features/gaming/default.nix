@@ -55,5 +55,8 @@
     extraCompatPackages = [pkgs.proton-ge-bin];
   };
 
-  programs.steam.gamescopeSession.enable = true;
+  programs.gamescope = {
+    enable = true;
+    package = pkgs.gamescope;
+  };
 }

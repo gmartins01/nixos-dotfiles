@@ -10,5 +10,6 @@
     ./utils.nix
     ./network.nix
     ./radeon.nix
+    ./boot.nix
   ];
 }
