@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  outputs,
   ...
 }: let
   amdgpu-kernel-module = pkgs.callPackage ./amd-patch.nix {
@@ -121,6 +122,7 @@ in {
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [outputs.overlays.stable-packages];
 
   # Automatic updates
   system.autoUpgrade.enable = true;

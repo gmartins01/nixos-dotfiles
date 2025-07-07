@@ -60,20 +60,18 @@
     nixos-wsl,
     ...
   } @ inputs: let
+    inherit (self) outputs;
+
     username = "gmartins";
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
 
-    pkgs-stable = import inputs.nixpkgs-stable {
-      system = system;
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = _: true;
-      };
-    };
-
     devShells = import ./shell/devShells.nix {pkgs = pkgs;};
   in {
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
+    overlays = import ./overlays {inherit inputs outputs;};
+
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
@@ -86,8 +84,7 @@
 
       desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs;
-          inherit pkgs-stable;
+          inherit inputs outputs;
         };
         modules = [
           ./hosts/desktop/configuration.nix
