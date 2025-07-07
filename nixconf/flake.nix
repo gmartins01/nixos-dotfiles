@@ -96,7 +96,7 @@
       };
 
       wsl = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs outputs;};
         system = "x86_64-linux";
         modules = [
           nixos-wsl.nixosModules.default
