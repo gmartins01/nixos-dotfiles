@@ -17,11 +17,11 @@
     # hyprwm
     hyprland.url = "github:hyprwm/hyprland";
 
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-    #
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     # hyprlock = {
     #   url = "github:hyprwm/hyprlock";
     #   inputs = {
@@ -58,6 +58,7 @@
     nix-flatpak,
     chaotic,
     nixos-wsl,
+    hyprland,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -107,17 +108,18 @@
 
     homeConfigurations."${username}@desktop" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = {inherit inputs;};
+      extraSpecialArgs = {inherit inputs outputs;};
       modules = [
         ./hosts/desktop/home.nix
         inputs.ags.homeManagerModules.default
+        hyprland.homeManagerModules.default
         inputs.stylix.homeModules.stylix
       ];
     };
 
     homeConfigurations."${username}@wsl" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = {inherit inputs;};
+      extraSpecialArgs = {inherit inputs outputs;};
       modules = [
         ./hosts/wsl/home.nix
       ];

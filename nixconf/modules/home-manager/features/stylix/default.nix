@@ -27,8 +27,8 @@
 
   stylix.image = null;
 
-  stylix.cursor.package = pkgs.bibata-cursors;
-  stylix.cursor.name = "Bibata-Modern-Ice";
+  stylix.cursor.package = pkgs.bibata-hyprcursor; #pkgs.bibata-cursors;
+  stylix.cursor.name = "Bibata-Modern-Ice-Hyprcursor"; #"Bibata-Modern-Ice";
   stylix.cursor.size = 24;
 
   stylix.targets.gtk.enable = true;

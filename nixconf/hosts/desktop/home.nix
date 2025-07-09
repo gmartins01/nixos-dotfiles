@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  outputs,
   lib,
   ...
 }: let
@@ -139,6 +140,17 @@ in {
     [Context]
     filesystems=${builtins.concatStringsSep ";" dirs}
   '';
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.stable-packages
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   home.sessionVariables = {
     #QT_QPA_PLATFORMTHEME="kde";

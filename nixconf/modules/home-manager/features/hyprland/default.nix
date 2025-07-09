@@ -4,7 +4,10 @@
   inputs,
   config,
   ...
-}: {
+}: let
+  cursor = "Bibata-Modern-Ice-Hyprcursor";
+  cursorPackage = pkgs.bibata-hyprcursor;
+in {
   imports = [
     ./modules/monitors.nix
     ./modules/general.nix
@@ -17,15 +20,25 @@
     ./plugins
   ];
 
+  xdg.dataFile."icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
-    systemd.variables = ["--all"];
-    systemd.enable = false;
+    systemd = {
+      enable = false;
+      variables = ["--all"];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
 
     xwayland.enable = true;
+
+    #plugins = [inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors];
 
     settings = {
       exec-once = [
@@ -39,14 +52,14 @@
         "copyq --start-server"
         "polychromatic-tray-applet"
         # "corectrl &"
-        "gsettings set org.gnome.desktop.interface cursor-theme '${config.stylix.cursor.name}'"
+        "dconf write /org/gnome/desktop/interface/cursor-theme \"'Bibata-Modern-Ice'\""
         "gsettings set org.gnome.desktop.interface cursor-size ${toString config.stylix.cursor.size}"
         "gsettings set org.gnome.desktop.interface icon-theme ${config.stylix.iconTheme.dark}"
       ];
 
       env = [
         "XCURSOR_SIZE, ${toString config.stylix.cursor.size}"
-        "XCURSOR_THEME, ${config.stylix.cursor.name}"
+        "XCURSOR_THEME, Bibata-Modern-Ice"
         "HYPRCURSOR_THEME, ${config.stylix.cursor.name}"
         "HYPRCURSOR_SIZE, ${toString config.stylix.cursor.size}"
         "CLUTTER_BACKEND,wayland"
@@ -70,6 +83,7 @@
     enable = true;
 
     csgoVulkanFix.enable = false;
-    dynamicCursors.enable = false;
+    dynamicCursors.enable = true;
+    hyprbars.enable = true;
   };
 }

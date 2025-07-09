@@ -20,7 +20,13 @@ in {
     dynamicCursors = mkOption {
       type = types.submodule (import ./hypr-dynamic-cursors.nix {inherit lib pkgs inputs;});
       default = {};
-      description = "Hypr Dynamic Cursors  plugin configuration";
+      description = "hypr dynamic cursors  plugin configuration";
+    };
+
+    hyprbars = mkOption {
+      type = types.submodule (import ./hyprbars.nix {inherit lib pkgs inputs;});
+      default = {};
+      description = "Hyprbars plugin configuration";
     };
   };
 
@@ -38,6 +44,12 @@ in {
         settings = cfg.dynamicCursors.settings;
       };
     })
+
+    (mkIf cfg.hyprbars.enable {
+      wayland.windowManager.hyprland = {
+        plugins = [cfg.hyprbars.package];
+        settings = cfg.hyprbars.settings;
+      };
+    })
   ]);
 }
-

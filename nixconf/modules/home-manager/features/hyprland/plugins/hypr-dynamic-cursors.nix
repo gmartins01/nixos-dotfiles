@@ -46,7 +46,17 @@
 
             effects = false;
 
-            ipc = true;
+            #ipc = true;
+          };
+
+          hyprcursor = {
+            nearest = true;
+
+            enabled = true;
+
+            resolution = -1;
+
+            fallback = "clientside";
           };
         };
       };
@@ -54,4 +64,3 @@
     };
   };
 }
-
