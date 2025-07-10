@@ -58,3 +58,7 @@ vim.keymap.set("t", "<C-l>", "<C-l><Cmd>clear<CR>", { desc = "Clear terminal scr
 
 -- Enter visual mode from insert mode
 vim.keymap.set("i", "<C-a>", "<C-\\><C-n>v", { silent = true, desc = "Enter Visual mode from Insert mode" })
+
+-- For indentation
+vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
+vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
