@@ -37,6 +37,8 @@ vim.keymap.set({ "n", "v", "x" }, '<leader>yy', '"+yy', { noremap = true, silent
 vim.keymap.set({ "n", "v", "x" }, '<leader>Y', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
 vim.keymap.set({ "n", "v", "x" }, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
 vim.keymap.set({ "n", "v", "x" }, '<leader>P', '"+P', { noremap = true, silent = true, desc = 'Paste from clipboard without replacing register' })
+vim.keymap.set("n", '<leader>dd', '"+dd', { noremap = true, silent = true, desc = 'Cut to clipboard' })
+vim.keymap.set("v", '<leader>d', '"+d', { noremap = true, silent = true, desc = 'Cut selection to clipboard' })
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Jump to next quickfix item and center" })
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Jump to previous quickfix item and center" })
