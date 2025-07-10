@@ -27,7 +27,7 @@ in {
     platformTheme.name = "kde";
   };
   */
-
+/*
   gtk = {
     enable = true;
     cursorTheme.name = "Bibata-Modern-Ice";
@@ -68,7 +68,7 @@ in {
       gtk-application-prefer-dark-theme = 1;
     };
     */
-
+/*
     gtk3.bookmarks = [
       "file:///home/gmartins/Downloads"
       "file:///home/gmartins/Documents"
@@ -76,7 +76,7 @@ in {
       "file:///home/gmartins/Pictures"
       "file:///home/gmartins/Videos"
     ];
-  };
+  };*/
 
   xdg.configFile = {
     /*

@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  cursor = "Bibata-Modern-Ice-Hyprcursor";
+  cursor = config.home.pointerCursor.name;
   cursorPackage = pkgs.bibata-hyprcursor;
 in {
   imports = [
@@ -20,7 +20,7 @@ in {
     ./plugins
   ];
 
-  xdg.dataFile."icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
+  xdg.dataFile."icons/${cursor}-Hyprcursor".source = "${cursorPackage}/share/icons/${cursor}-Hyprcursor";
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -50,16 +50,16 @@ in {
         "copyq --start-server"
         #"polychromatic-tray-applet"
         # "corectrl &"
-        "dconf write /org/gnome/desktop/interface/cursor-theme \"'Bibata-Modern-Ice'\""
-        "gsettings set org.gnome.desktop.interface cursor-size 24"
+        "dconf write /org/gnome/desktop/interface/cursor-theme \"'${cursor}'\""
+        "gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}"
         "gsettings set org.gnome.desktop.interface icon-theme ${config.stylix.iconTheme.dark}"
       ];
 
       env = [
-        "XCURSOR_SIZE,24"
-        "XCURSOR_THEME,Bibata-Modern-Ice"
-        "HYPRCURSOR_THEME,${cursor}"
-        "HYPRCURSOR_SIZE,24"
+        "XCURSOR_SIZE,${toString config.home.pointerCursor.size}"
+        "XCURSOR_THEME,${cursor}"
+        "HYPRCURSOR_THEME,${cursor}-Hyprcursor"
+        "HYPRCURSOR_SIZE,${toString config.home.pointerCursor.size}"
         "CLUTTER_BACKEND,wayland"
         "GDK_BACKEND,wayland,x11"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
