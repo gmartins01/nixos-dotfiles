@@ -122,7 +122,10 @@ in {
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [outputs.overlays.stable-packages];
+  nixpkgs.overlays = [
+    outputs.overlays.stable-packages
+    outputs.overlays.additions
+  ];
 
   # Automatic updates
   system.autoUpgrade.enable = true;

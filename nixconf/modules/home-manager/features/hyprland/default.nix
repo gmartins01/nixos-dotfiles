@@ -4,7 +4,10 @@
   inputs,
   config,
   ...
-}: {
+}: let
+  cursor = config.home.pointerCursor.name;
+  cursorPackage = pkgs.bibata-hyprcursor;
+in {
   imports = [
     ./modules/monitors.nix
     ./modules/general.nix
@@ -17,13 +20,21 @@
     ./plugins
   ];
 
+  xdg.dataFile."icons/${cursor}-Hyprcursor".source = "${cursorPackage}/share/icons/${cursor}-Hyprcursor";
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
-    systemd.variables = ["--all"];
-    systemd.enable = false;
+    systemd = {
+      enable = false;
+      variables = ["--all"];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
 
     xwayland.enable = true;
 
@@ -37,18 +48,18 @@
         "clipboard-sync &"
         #"clipse -listen"
         "copyq --start-server"
-        "polychromatic-tray-applet"
+        #"polychromatic-tray-applet"
         # "corectrl &"
-        "gsettings set org.gnome.desktop.interface cursor-theme '${config.stylix.cursor.name}'"
-        "gsettings set org.gnome.desktop.interface cursor-size ${toString config.stylix.cursor.size}"
+        "dconf write /org/gnome/desktop/interface/cursor-theme \"'${cursor}'\""
+        "gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}"
         "gsettings set org.gnome.desktop.interface icon-theme ${config.stylix.iconTheme.dark}"
       ];
 
       env = [
-        "XCURSOR_SIZE, ${toString config.stylix.cursor.size}"
-        "XCURSOR_THEME, ${config.stylix.cursor.name}"
-        "HYPRCURSOR_THEME, ${config.stylix.cursor.name}"
-        "HYPRCURSOR_SIZE, ${toString config.stylix.cursor.size}"
+        "XCURSOR_SIZE,${toString config.home.pointerCursor.size}"
+        "XCURSOR_THEME,${cursor}"
+        "HYPRCURSOR_THEME,${cursor}-Hyprcursor"
+        "HYPRCURSOR_SIZE,${toString config.home.pointerCursor.size}"
         "CLUTTER_BACKEND,wayland"
         "GDK_BACKEND,wayland,x11"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
@@ -70,6 +81,7 @@
     enable = true;
 
     csgoVulkanFix.enable = false;
-    dynamicCursors.enable = false;
+    dynamicCursors.enable = true;
+    hyprbars.enable = false;
   };
 }

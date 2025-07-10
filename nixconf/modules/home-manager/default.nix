@@ -12,6 +12,7 @@
     ./features/hyprland
     ./features/stylix
     ./pkgs
+    ./features/gtk.nix
     #./plasma
   ];
 

@@ -25,7 +25,7 @@ in
     xwallpaper
     lua
     cmake
-    picom
+    #picom
     clipster
     clipmenu
     numlockx

@@ -21,6 +21,8 @@
     pkgs.wezterm
 
     pkgs.gparted
+
+    pkgs.bibata-cursors
   ];
 
   programs.direnv = {

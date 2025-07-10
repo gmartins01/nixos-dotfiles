@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  outputs,
   lib,
   ...
 }: let
@@ -26,9 +27,11 @@ in {
     platformTheme.name = "kde";
   };
   */
-
+/*
   gtk = {
     enable = true;
+    cursorTheme.name = "Bibata-Modern-Ice";
+    cursorTheme.size = 24;
     /*
       font.name = "TeX Gyre Adventor 10";
     theme = {
@@ -65,7 +68,7 @@ in {
       gtk-application-prefer-dark-theme = 1;
     };
     */
-
+/*
     gtk3.bookmarks = [
       "file:///home/gmartins/Downloads"
       "file:///home/gmartins/Documents"
@@ -73,7 +76,7 @@ in {
       "file:///home/gmartins/Pictures"
       "file:///home/gmartins/Videos"
     ];
-  };
+  };*/
 
   xdg.configFile = {
     /*
@@ -139,6 +142,17 @@ in {
     [Context]
     filesystems=${builtins.concatStringsSep ";" dirs}
   '';
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.stable-packages
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   home.sessionVariables = {
     #QT_QPA_PLATFORMTHEME="kde";
