@@ -91,6 +91,16 @@ vim.opt.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 vim.opt.confirm = true
 
+vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#a6d189", fg = "#2e3440" })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("highlight_yank", {}),
+	desc = "Hightlight selection on yank",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 200 })
+	end,
+})
+
 require("config.keymaps")
 
 require("config.lazy")
