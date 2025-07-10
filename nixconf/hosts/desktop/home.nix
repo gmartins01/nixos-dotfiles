@@ -30,6 +30,8 @@ in {
 
   gtk = {
     enable = true;
+    cursorTheme.name = "Bibata-Modern-Ice";
+    cursorTheme.size = 24;
     /*
       font.name = "TeX Gyre Adventor 10";
     theme = {

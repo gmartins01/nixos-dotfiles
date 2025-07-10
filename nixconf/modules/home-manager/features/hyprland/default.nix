@@ -38,8 +38,6 @@ in {
 
     xwayland.enable = true;
 
-    #plugins = [inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors];
-
     settings = {
       exec-once = [
         "hyprpanel"
@@ -50,18 +48,18 @@ in {
         "clipboard-sync &"
         #"clipse -listen"
         "copyq --start-server"
-        "polychromatic-tray-applet"
+        #"polychromatic-tray-applet"
         # "corectrl &"
         "dconf write /org/gnome/desktop/interface/cursor-theme \"'Bibata-Modern-Ice'\""
-        "gsettings set org.gnome.desktop.interface cursor-size ${toString config.stylix.cursor.size}"
+        "gsettings set org.gnome.desktop.interface cursor-size 24"
         "gsettings set org.gnome.desktop.interface icon-theme ${config.stylix.iconTheme.dark}"
       ];
 
       env = [
-        "XCURSOR_SIZE, ${toString config.stylix.cursor.size}"
-        "XCURSOR_THEME, Bibata-Modern-Ice"
-        "HYPRCURSOR_THEME, ${config.stylix.cursor.name}"
-        "HYPRCURSOR_SIZE, ${toString config.stylix.cursor.size}"
+        "XCURSOR_SIZE,24"
+        "XCURSOR_THEME,Bibata-Modern-Ice"
+        "HYPRCURSOR_THEME,${cursor}"
+        "HYPRCURSOR_SIZE,24"
         "CLUTTER_BACKEND,wayland"
         "GDK_BACKEND,wayland,x11"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
@@ -84,6 +82,6 @@ in {
 
     csgoVulkanFix.enable = false;
     dynamicCursors.enable = true;
-    hyprbars.enable = true;
+    hyprbars.enable = false;
   };
 }
