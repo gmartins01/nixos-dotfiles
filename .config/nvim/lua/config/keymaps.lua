@@ -29,9 +29,14 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without replacing register" })
-vim.keymap.set("x", "<leader>d", '"_d', { desc = "Delete without replacing register" })
-vim.keymap.set("n", "<leader>x", '"_x', { desc = "Cut without replacing register" })
+-- Copy & Paste
+--vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without replacing register" })
+vim.keymap.set("n", "x", '"_x', { noremap = true, silent = true })
+vim.keymap.set({ "n", "v", "x" }, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
+vim.keymap.set({ "n", "v", "x" }, '<leader>yy', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
+vim.keymap.set({ "n", "v", "x" }, '<leader>Y', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
+vim.keymap.set({ "n", "v", "x" }, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
+vim.keymap.set({ "n", "v", "x" }, '<leader>P', '"+P', { noremap = true, silent = true, desc = 'Paste from clipboard without replacing register' })
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Jump to next quickfix item and center" })
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Jump to previous quickfix item and center" })

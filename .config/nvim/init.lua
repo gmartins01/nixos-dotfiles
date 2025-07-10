@@ -39,9 +39,9 @@ vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
+--vim.schedule(function()
+--	vim.opt.clipboard = "unnamedplus"
+--end)
 
 -- Tab size
 vim.opt.tabstop = 2
