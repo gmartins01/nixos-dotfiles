@@ -11,5 +11,7 @@ in {
   home.sessionVariables.QML2_IMPORT_PATH = lib.concatStringsSep ":" [
     "${quickshell}/lib/qt-6/qml"
     "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
+    "${pkgs.kdePackages.qt5compat}/lib/qt-6/qml"
+    "${quickshell}/lib/qml"
   ];
 }
