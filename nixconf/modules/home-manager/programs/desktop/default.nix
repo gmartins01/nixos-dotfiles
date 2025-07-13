@@ -10,10 +10,6 @@
 
     pkgs.proton-pass
 
-    pkgs.yazi # terminal file explorer
-    pkgs.tmux
-    pkgs.btop
-
     pkgs.wezterm
 
     pkgs.gparted
