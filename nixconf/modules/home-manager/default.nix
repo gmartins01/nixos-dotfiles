@@ -11,8 +11,9 @@
     ./features/ags
     ./features/hyprland
     ./features/stylix
-    ./pkgs
+    ./programs
     ./features/gtk.nix
+    ./features/quickshell.nix
     #./plasma
   ];
 

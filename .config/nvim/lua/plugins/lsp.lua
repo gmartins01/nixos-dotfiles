@@ -208,6 +208,12 @@ return {
 				cssls = {
 					filetypes = { "css", "scss" },
 				},
+
+				-- qmlls = {
+				-- 	cmd = { "qmlls", "-E" },
+				-- 	filetypes = { "qml" },
+				-- 	autostart = true,
+				-- },
 			}
 
 			local ensure_installed = vim.tbl_keys(servers or {})
@@ -220,6 +226,7 @@ return {
 				"jdtls",
 				"java-debug-adapter",
 				"java-test",
+				"qmlls",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -238,6 +245,11 @@ return {
 						--	end
 					end,
 				},
+			})
+
+			require("lspconfig").qmlls.setup({
+				cmd = { "qmlls", "-E" },
+				filetypes = { "qml" },
 			})
 		end,
 	},

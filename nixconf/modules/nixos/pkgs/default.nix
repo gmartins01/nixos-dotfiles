@@ -32,6 +32,8 @@
     enable = true;
     libraries = with pkgs; [
       stdenv.cc.cc
+      brotli
+      glib
       /*
         libGL
       libva

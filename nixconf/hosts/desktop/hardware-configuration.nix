@@ -30,8 +30,8 @@
     options = ["fmask=0077" "dmask=0077"];
   };
 
-  fileSystems."/run/media/gmartins/Backup" = {
-    device = "/dev/disk/by-uuid/24AF66E86D22A2B0";
+  fileSystems."/run/media/gmartins/Media" = {
+    device = "/dev/disk/by-uuid/08C7B85A2E313D5C";
     fsType = "ntfs-3g";
     options = ["rw" "uid=1000" "gid=1000" "nofail"];
   };

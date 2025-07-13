@@ -10,11 +10,11 @@
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     withUWSM = true;
-
   };
 
   environment.systemPackages = with pkgs; [
     inputs.hyprpanel.packages.${pkgs.system}.default
+
     hyprpaper
 
     # Screenshot
@@ -61,6 +61,7 @@
 
   qt = {
     enable = true;
+    style = "kvantum";
     platformTheme = "kde";
   };
 

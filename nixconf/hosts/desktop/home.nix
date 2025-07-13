@@ -27,7 +27,7 @@ in {
     platformTheme.name = "kde";
   };
   */
-/*
+  /*
   gtk = {
     enable = true;
     cursorTheme.name = "Bibata-Modern-Ice";
@@ -44,31 +44,31 @@ in {
           size = "standard";
         };
     };
-    */
-    /*
-      iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    */
+  */
+  /*
+    iconTheme = {
+    name = "Papirus-Dark";
+    package = pkgs.papirus-icon-theme;
+  };
+  */
 
-    /*
-     iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
-    };
-    */
+  /*
+   iconTheme = {
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
+  };
+  */
 
-    /*
-      gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+  /*
+    gtk3.extraConfig = {
+    gtk-application-prefer-dark-theme = 1;
+  };
 
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    */
-/*
+  gtk4.extraConfig = {
+    gtk-application-prefer-dark-theme = 1;
+  };
+  */
+  /*
     gtk3.bookmarks = [
       "file:///home/gmartins/Downloads"
       "file:///home/gmartins/Documents"
@@ -76,7 +76,8 @@ in {
       "file:///home/gmartins/Pictures"
       "file:///home/gmartins/Videos"
     ];
-  };*/
+  };
+  */
 
   xdg.configFile = {
     /*
