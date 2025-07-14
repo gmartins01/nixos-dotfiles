@@ -4,55 +4,62 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    width: iconBg.implicitWidth + textBg.implicitWidth
-    height: 35
+    implicitHeight: 35
+    implicitWidth: iconBg.implicitWidth + spacing + textBg.implicitWidth
     radius: 5
     color: "#24273A"
 
-    RowLayout {
-        anchors.fill: parent
-        spacing: 0
+    property int spacing: 6
 
-        Rectangle {
-            id: iconBg
-            implicitHeight: root.height
-            implicitWidth: iconBg.height
-            topLeftRadius: root.radius
-            bottomLeftRadius: root.radius
-            color: "#B7BCF8"
+    // ICON on the left
+    Rectangle {
+        id: iconBg
+        implicitHeight: root.implicitHeight
+        implicitWidth:  implicitHeight
+        topLeftRadius:    root.radius
+        bottomLeftRadius: root.radius
+        color: "#B7BCF8"
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignCenter
-            Layout.leftMargin: 0
-
-            Text {
-                anchors.centerIn: parent
-                text: "󰥔"
-                font.family: "Jetbrains Mono NF"
-                font.pixelSize: 22
-                font.weight: Font.Bold
-                color: "#24273A"
-            }
+        anchors {
+            left:           parent.left
+            leftMargin:     0
+            verticalCenter: parent.verticalCenter
         }
 
-        Rectangle {
-            id: textBg
-            implicitHeight: root.height
-            implicitWidth: timeText.paintedWidth + 15
-            radius: root.radius
-            color: root.color
+        Text {
+            anchors.centerIn: parent
+            text: ""
+            font.family: "Jetbrains Mono NF"
+            font.pixelSize: 22
+            font.weight:  Font.Bold
+            color: "#24273A"
+        }
+    }
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignCenter
-            Layout.rightMargin: 0
+    // TEXT on the right of the icon
+    Rectangle {
+        id: textBg
+        implicitHeight: root.implicitHeight
+        property int padding: 8
+        implicitWidth: timeText.paintedWidth + padding*2
+        topRightRadius:    root.radius
+        bottomRightRadius: root.radius
+        color:             root.color
 
-            Text {
-                id: timeText
-                anchors.centerIn: parent
-                text: Time.time
-                font.family: "Jetbrains Mono NF"
-                font.pixelSize: 16
-                font.weight: Font.Bold
-                color: "#B7BCF8"
-            }
+        anchors {
+            left:           iconBg.right
+            leftMargin:     spacing
+            verticalCenter: parent.verticalCenter
+        }
+
+        Text {
+            id: timeText
+            anchors.centerIn: parent   // GUARANTEES vertical centering
+            text: Time.time
+            font.family: "Jetbrains Mono NF"
+            font.pixelSize: 16
+            font.weight:  Font.Bold
+            color: "#B7BCF8"
         }
     }
 
@@ -60,9 +67,9 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
-
-        //onEntered: parent.color = "#B7BCF8"
-        //onExited: parent.color = "#B7BCF8"
-        //onClicked: banging
+        onClicked: {
+            // your handler…
+        }
     }
 }
+

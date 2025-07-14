@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
@@ -14,6 +16,7 @@ Rectangle {
     visible: SystemTray.items.values.length
     height: 30
     color: "transparent"
+    implicitHeight: parent.height
 
     property var ignoredClasses: ["xwaylandvideobridge"]
 
@@ -37,14 +40,26 @@ Rectangle {
                     anchors.centerIn: parent
                     width: 20
                     height: 20
-                    source: modelData.icon
+                    source: {
+                        let icon = sysItem.modelData.icon;
+                        if (icon.includes("?path=")) {
+                            const [name, path] = icon.split("?path=");
+                            icon = `file://${path}/${name.slice(name.lastIndexOf("/") + 1)}`;
+                        }
+                        return icon;
+                    }
+                    asynchronous: true
                 }
 
                 QsMenuAnchor {
                     id: menu
-                    menu: sysItem.modelData.menu
+                    menu: modelData.menu
+
                     anchor.window: root.bar
-                    anchor.rect: Qt.rect(sysItem.x, sysItem.y + sysItem.height + root.height, sysItem.width, sysItem.height)
+
+                    property var iconPos: sysItem.mapToItem(root.bar.contentItem, 0, 0)
+
+                    anchor.rect: Qt.rect(iconPos.x, iconPos.y + sysItem.height + 5, sysItem.width, sysItem.height)
                 }
 
                 MouseArea {
@@ -56,6 +71,10 @@ Rectangle {
                         if (event.button === Qt.LeftButton) {
                             modelData.activate();
                         } else if (event.button === Qt.RightButton && modelData.hasMenu) {
+                            menu.iconPos  = sysItem.mapToItem(root.bar.contentItem,-75, 0);
+
+                         
+
                             menu.open();
                         } else {
                             console.log("Systray item title:", modelData.title || modelData.tooltipTitle);

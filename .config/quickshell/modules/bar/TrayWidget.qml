@@ -3,23 +3,32 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.SystemTray
 
-Rectangle {
-  required property PanelWindow bar
-  implicitHeight: parent.height
-  implicitWidth: rowL.implicitWidth + 20
-  color: "#FFF" 
+
+Item {
+    id: root
+
+    readonly property Repeater items: items
+
+    clip: true
+    visible: width > 0 && height > 0 // To avoid warnings about being visible with no size
+
+    implicitWidth: layout.implicitWidth
+    implicitHeight: layout.implicitHeight
+
+    Column {
+        id: layout
+
+        spacing: 5
 
 
-  RowLayout {
-    spacing: 10
-    id: rowL
-    anchors.centerIn: parent
-    Repeater {
-      model: SystemTray.items
-      TrayItem {
-        required property SystemTrayItem modelData
-        item: modelData
-      }
+
+        Repeater {
+            id: items
+
+            model: SystemTray.items
+
+            TrayItem {}
+        }
     }
-  }
+
 }

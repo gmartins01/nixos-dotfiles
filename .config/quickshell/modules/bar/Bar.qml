@@ -83,9 +83,6 @@ Scope {
                     anchors.bottomMargin: 10
                     anchors.rightMargin: 10
 
-                    TrayWidget {
-                        bar: bar
-                    }
                     SysTray {
                         Layout.preferredWidth: (SystemTray.items.values.length * 25)
 

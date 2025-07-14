@@ -1,36 +1,46 @@
-import QtQuick
+pragma ComponentBehavior: Bound
+
 import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.SystemTray
+import QtQuick
 
-IconImage {
-  id: root
-  required property SystemTrayItem item
+MouseArea {
+    id: root
 
-  source: root.item.icon
-  implicitSize: 15
-  MouseArea {
-    anchors.fill: parent
+    required property SystemTrayItem modelData
+
     acceptedButtons: Qt.LeftButton | Qt.RightButton
+    implicitWidth: 20
+    implicitHeight: 20
+
     onClicked: event => {
-      switch (event.button) {
-        case Qt.LeftButton: root.item.activate(); break;
-        case Qt.RightButton: 
-          if (root.item.hasMenu) {
-            const window = QsWindow.window;
-            // the bellow is kinda hard coded, find a better solution
-            const widgetRect = window.contentItem.mapFromItem(root, 80, root.height + 10 , root.width, root.height);
-            menuAnchor.anchor.rect = widgetRect;
-            menuAnchor.open();
-          } 
-          break;
-      }
+        if (event.button === Qt.LeftButton)
+            modelData.activate();
+        else if (modelData.hasMenu)
+            menu.open();
     }
-  }
-  QsMenuAnchor {
-    id: menuAnchor
-    menu: root.item.menu
-    anchor.window: root.QsWindow.window?? null
-    anchor.adjustment: PopupAdjustment.Flip
-  }
+
+    // TODO custom menu
+    QsMenuAnchor {
+        id: menu
+
+        menu: root.modelData.menu
+        anchor.window: this.QsWindow.window
+    }
+
+    IconImage {
+        id: icon
+
+        source: {
+            let icon = root.modelData.icon;
+            if (icon.includes("?path=")) {
+                const [name, path] = icon.split("?path=");
+                icon = `file://${path}/${name.slice(name.lastIndexOf("/") + 1)}`;
+            }
+            return icon;
+        }
+        asynchronous: true
+        anchors.fill: parent
+    }
 }
