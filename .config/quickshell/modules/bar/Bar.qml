@@ -6,6 +6,8 @@ import Quickshell.Services.SystemTray
 Scope {
     id: bar
 
+    property bool isSoleBar: Quickshell.screens.length == 1
+
     Variants {
         model: Quickshell.screens
 
@@ -13,6 +15,8 @@ Scope {
             id: barWindow
             property var modelData
             screen: modelData
+
+            property string screenName: modelData.name
 
             anchors {
                 top: true
@@ -26,10 +30,11 @@ Scope {
 
             Rectangle {
                 id: barBase
-                anchors.top: parent.top
-                anchors.topMargin: 0
+                //anchors.top: parent.top
+                //anchors.topMargin: 0
                 height: 45
-                width: parent.width
+                anchors.fill: parent
+                //width: parent.width
                 color: '#181926'
 
                 RowLayout {
@@ -69,6 +74,10 @@ Scope {
                             //onExited: parent.color = "#B7BCF8"
                             //onClicked: banging
                         }
+                    }
+
+                    HyprlandWorkspaces {
+                        monitorName: barWindow.screenName
                     }
                 }
 
