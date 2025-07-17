@@ -23,7 +23,7 @@
     intel-vaapi-driver
   ];
 
-  programs.java.enable = true;
+  #programs.java.enable = true;
 
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;

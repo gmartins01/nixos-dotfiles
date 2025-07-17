@@ -9,7 +9,7 @@ let
     src = pkgs.fetchurl {
       name = "VSCode_${version}_${plat}.tar.gz";
       url = "https://update.code.visualstudio.com/${version}/${plat}/stable";
-      sha256 = "sha256-Rr7JNWloV4VkgGk9zDEnD/WRHSYv5su8UrOSIl3247c=";
+      sha256 = "sha256-zgrNohvsmhcRQmkX7Io2/U3qbVWdcqwT7VK7Y3ENb9g=";
 
     };
 

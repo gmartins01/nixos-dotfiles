@@ -149,6 +149,12 @@ in {
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
+      (final: prev: {
+        jdk8 = prev.jdk8.overrideAttrs {
+          separateDebugInfo = false;
+          __structuredAttrs = false;
+        };
+      })
     ];
     config = {
       allowUnfree = true;

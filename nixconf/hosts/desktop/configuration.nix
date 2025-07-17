@@ -125,6 +125,12 @@ in {
   nixpkgs.overlays = [
     outputs.overlays.stable-packages
     outputs.overlays.additions
+    (final: prev: {
+      jdk8 = prev.jdk8.overrideAttrs {
+        separateDebugInfo = false;
+        __structuredAttrs = false;
+      };
+    })
   ];
 
   # Automatic updates

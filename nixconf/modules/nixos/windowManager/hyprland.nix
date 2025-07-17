@@ -61,7 +61,7 @@
 
   qt = {
     enable = true;
-    style = "kvantum";
+    style = "breeze";
     platformTheme = "kde";
   };
 
