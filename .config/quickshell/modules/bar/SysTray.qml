@@ -73,8 +73,6 @@ Rectangle {
                         } else if (event.button === Qt.RightButton && modelData.hasMenu) {
                             menu.iconPos  = sysItem.mapToItem(root.bar.contentItem,-75, 0);
 
-                         
-
                             menu.open();
                         } else {
                             console.log("Systray item title:", modelData.title || modelData.tooltipTitle);

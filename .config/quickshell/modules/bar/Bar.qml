@@ -6,8 +6,6 @@ import Quickshell.Services.SystemTray
 Scope {
     id: bar
 
-    property bool isSoleBar: Quickshell.screens.length == 1
-
     Variants {
         model: Quickshell.screens
 

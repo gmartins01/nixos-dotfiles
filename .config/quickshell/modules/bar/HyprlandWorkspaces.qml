@@ -1,11 +1,14 @@
 import QtQuick
 import Quickshell
 import Quickshell.Hyprland
+import QtQuick.Layouts
 
-Item {
+Rectangle {
     id: root
-    implicitWidth: workspaceRow.implicitWidth
-    implicitHeight: workspaceRow.implicitHeight
+    implicitWidth: workspaceRow.implicitWidth + 15
+    implicitHeight: 35
+    radius: 6
+    color: "#24273A"
 
     property string monitorName: ""
 
@@ -38,26 +41,41 @@ Item {
         id: workspaceRow
         spacing: 8
 
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+        }
+
         Repeater {
             model: Hyprland.workspaces.values.filter(ws => ws.monitor && ws.monitor.name === monitorName)
 
-            Rectangle {
+            Item {
                 required property var modelData
+                property bool hovered: false
+
                 width: 15
                 height: 24
-                radius: 4
-                color: modelData.active ? "#4a9eef" : "#333333"
-                border.color: "#555555"
+
+                Rectangle {
+                    id: background
+                    anchors.fill: parent
+                    radius: 4
+
+                    color: hovered ? "#494D64" : (modelData.active ? "#B7BCF8" : "#24273A")
+                }
 
                 MouseArea {
                     anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.hovered = true
+                    onExited: parent.hovered = false
                     onClicked: Hyprland.dispatch("workspace " + modelData.id)
                 }
 
                 Text {
                     text: modelData.id
                     anchors.centerIn: parent
-                    color: modelData.active ? "#ffffff" : "#cccccc"
+                    color: modelData.active ? "#181825" : "#B7BCF8"
                     font.pixelSize: 15
                     font.family: "Jetbrains Mono NF"
                     font.bold: true

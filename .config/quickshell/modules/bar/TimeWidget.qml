@@ -11,7 +11,6 @@ Rectangle {
 
     property int spacing: 6
 
-    // ICON on the left
     Rectangle {
         id: iconBg
         implicitHeight: root.implicitHeight
@@ -36,7 +35,6 @@ Rectangle {
         }
     }
 
-    // TEXT on the right of the icon
     Rectangle {
         id: textBg
         implicitHeight: root.implicitHeight
@@ -48,13 +46,13 @@ Rectangle {
 
         anchors {
             left:           iconBg.right
-            leftMargin:     spacing
+            leftMargin:     parent.spacing-2
             verticalCenter: parent.verticalCenter
         }
 
         Text {
             id: timeText
-            anchors.centerIn: parent   // GUARANTEES vertical centering
+            anchors.centerIn: parent
             text: Time.time
             font.family: "Jetbrains Mono NF"
             font.pixelSize: 16
@@ -68,7 +66,6 @@ Rectangle {
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         onClicked: {
-            // your handler…
         }
     }
 }
