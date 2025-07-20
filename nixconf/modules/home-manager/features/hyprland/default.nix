@@ -78,7 +78,7 @@ in {
   };
 
   hyprland.plugins = {
-    enable = false;
+    enable = true;
 
     csgoVulkanFix.enable = false;
     dynamicCursors.enable = true;
