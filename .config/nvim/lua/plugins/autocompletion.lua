@@ -50,6 +50,10 @@ return { -- Autocompletion
 
 			completion = { completeopt = "menu,menuone,noinsert" },
 
+			formatting = {
+				format = require("nvim-highlight-colors").format,
+			},
+
 			mapping = cmp.mapping.preset.insert({
 				-- Select the [n]ext item
 				["<C-n>"] = cmp.mapping.select_next_item(),
