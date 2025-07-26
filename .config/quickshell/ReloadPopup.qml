@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Qt5Compat.GraphicalEffects
 
 Scope {
 	id: root
@@ -12,13 +13,11 @@ Scope {
 		target: Quickshell
 
 		function onReloadCompleted() {
-			Quickshell.inhibitReloadPopup();
 			root.failed = false;
 			popupLoader.loading = true;
 		}
 
 		function onReloadFailed(error: string) {
-			Quickshell.inhibitReloadPopup();
 			// Close any existing popup before making a new one.
 			popupLoader.active = false;
 
@@ -28,43 +27,40 @@ Scope {
 		}
 	}
 
-	// Keep the popup in a loader because it isn't needed most of the timeand will take up
-	// memory that could be used for something else.
+	// Keep the popup in a loader because it isn't needed most of the time
 	LazyLoader {
 		id: popupLoader
 
 		PanelWindow {
 			id: popup
 
-			anchors {
-				top: true
-				left: true
-			}
+			exclusiveZone: 0
+			anchors.top: true
+			margins.top: 0
 
-			margins {
-				top: 25
-				left: 25
-			}
-
-			implicitWidth: rect.width
-			implicitHeight: rect.height
+			implicitWidth: rect.width + shadow.radius * 2
+			implicitHeight: rect.height + shadow.radius * 2
 
 			// color blending is a bit odd as detailed in the type reference.
 			color: "transparent"
 
 			Rectangle {
 				id: rect
-				color: failed ?  "#40802020" : "#40009020"
+				anchors.centerIn: parent
+				color: failed ?  "#ffe99195" : "#ffD1E8D5"
 
-				implicitHeight: layout.implicitHeight + 50
+				implicitHeight: layout.implicitHeight + 30
 				implicitWidth: layout.implicitWidth + 30
+				radius: 12
 
 				// Fills the whole area of the rectangle, making any clicks go to it,
 				// which dismiss the popup.
 				MouseArea {
 					id: mouseArea
 					anchors.fill: parent
-					onClicked: popupLoader.active = false
+					onClicked: {
+						popupLoader.active = false
+					}
 
 					// makes the mouse area track mouse hovering, so the hide animation
 					// can be paused when hovering.
@@ -73,20 +69,27 @@ Scope {
 
 				ColumnLayout {
 					id: layout
+					spacing: 10
 					anchors {
 						top: parent.top
-						topMargin: 20
+						topMargin: 10
 						horizontalCenter: parent.horizontalCenter
 					}
 
 					Text {
-						text: root.failed ? "Reload failed." : "Reloaded completed!"
-						color: "white"
+						renderType: Text.NativeRendering
+						font.family: "Rubik"
+						font.pointSize: 14
+						text: root.failed ? "Quickshell: Reload failed" : "Quickshell reloaded"
+						color: failed ? "#ff93000A" : "#ff0C1F13"
 					}
 
 					Text {
+						renderType: Text.NativeRendering
+						font.family: "JetBrains Mono NF"
+						font.pointSize: 11
 						text: root.errorString
-						color: "white"
+						color: failed ? "#ff93000A" : "#ff0C1F13"
 						// When visible is false, it also takes up no space.
 						visible: root.errorString != ""
 					}
@@ -95,19 +98,22 @@ Scope {
 				// A progress bar on the bottom of the screen, showing how long until the
 				// popup is removed.
 				Rectangle {
+					z: 2
 					id: bar
-					color: "#20ffffff"
+					color: failed ? "#ff93000A" : "#ff0C1F13"
 					anchors.bottom: parent.bottom
 					anchors.left: parent.left
-					height: 20
+					anchors.margins: 10
+					height: 5
+					radius: 9999
 
 					PropertyAnimation {
 						id: anim
 						target: bar
 						property: "width"
-						from: rect.width
+						from: rect.width - bar.anchors.margins * 2
 						to: 0
-						duration: failed ? 10000 : 800
+						duration: failed ? 10000 : 1000
 						onFinished: popupLoader.active = false
 
 						// Pause the animation when the mouse is hovering over the popup,
@@ -116,6 +122,18 @@ Scope {
 						paused: mouseArea.containsMouse
 					}
 				}
+				// Its bg
+				Rectangle {
+					z: 1
+					id: bar_bg
+					color: failed ? "#30af1b25" : "#4027643e"
+					anchors.bottom: parent.bottom
+					anchors.left: parent.left
+					anchors.margins: 10
+					height: 5
+					radius: 9999
+					width: rect.width - bar.anchors.margins * 2
+				}
 
 				// We could set `running: true` inside the animation, but the width of the
 				// rectangle might not be calculated yet, due to the layout.
@@ -123,7 +141,17 @@ Scope {
 				// properties and children have been initialized.
 				Component.onCompleted: anim.start()
 			}
+
+			DropShadow {
+				id: shadow
+                anchors.fill: rect
+                horizontalOffset: 0
+                verticalOffset: 2
+                radius: 6
+                samples: radius * 2 + 1 // Ideally should be 2 * radius + 1, see qt docs
+                color: "#44000000"
+                source: rect
+            }
 		}
 	}
 }
-
