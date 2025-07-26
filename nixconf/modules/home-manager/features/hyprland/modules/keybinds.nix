@@ -23,6 +23,14 @@
         workspace_back_and_forth = true;
       };
 
+      #bindid = [
+        # "Super, Super_L, Toggle overview, global, quickshell:overviewToggleRelease"
+      #];
+
+      bindd = [
+        "Super, Period, Emoji >> clipboard, global, quickshell:overviewEmojiToggle"
+      ];
+
       bindm = [
         # mouse movements
         "$mainMod, mouse:272, movewindow"

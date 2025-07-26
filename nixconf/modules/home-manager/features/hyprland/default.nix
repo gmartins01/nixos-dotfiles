@@ -40,7 +40,9 @@ in {
 
     settings = {
       exec-once = [
-        "hyprpanel"
+        # "hyprpanel"
+        #"qs -c ~/.config/quickshell &"
+       "uwsm app -- quickshell &" 
         "hyprpaper"
         "systemctl --user restart xdg-desktop-portal-hyprland"
         "systemctl start --user polkit-gnome-authentication-agent-1"

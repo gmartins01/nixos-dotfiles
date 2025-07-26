@@ -94,6 +94,7 @@ in {
       noto-fonts-emoji
       unifont
       material-icons
+      material-symbols
       fira-code
       #roboton
       nerd-fonts.jetbrains-mono
