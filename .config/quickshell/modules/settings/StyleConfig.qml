@@ -26,7 +26,7 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("Colors & Wallpaper")
+        title: "Colors & Wallpaper"
 
         // Light/Dark mode preference
         ButtonGroup {
@@ -42,7 +42,7 @@ ContentPage {
 
         // Material palette selection
         ContentSubsection {
-            title: Translation.tr("Material palette")
+            title: "Material palette"
             ConfigSelectionArray {
                 currentValue: Config.options.appearance.palette.type
                 configOptionName: "appearance.palette.type"
@@ -51,15 +51,15 @@ ContentPage {
                     Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --noswitch`])
                 }
                 options: [
-                    {"value": "auto", "displayName": Translation.tr("Auto")},
-                    {"value": "scheme-content", "displayName": Translation.tr("Content")},
-                    {"value": "scheme-expressive", "displayName": Translation.tr("Expressive")},
-                    {"value": "scheme-fidelity", "displayName": Translation.tr("Fidelity")},
-                    {"value": "scheme-fruit-salad", "displayName": Translation.tr("Fruit Salad")},
-                    {"value": "scheme-monochrome", "displayName": Translation.tr("Monochrome")},
-                    {"value": "scheme-neutral", "displayName": Translation.tr("Neutral")},
-                    {"value": "scheme-rainbow", "displayName": Translation.tr("Rainbow")},
-                    {"value": "scheme-tonal-spot", "displayName": Translation.tr("Tonal Spot")}
+                    {"value": "auto", "displayName": "Auto"},
+                    {"value": "scheme-content", "displayName": "Content"},
+                    {"value": "scheme-expressive", "displayName": "Expressive"},
+                    {"value": "scheme-fidelity", "displayName": "Fidelity"},
+                    {"value": "scheme-fruit-salad", "displayName": "Fruit Salad"},
+                    {"value": "scheme-monochrome", "displayName": "Monochrome"},
+                    {"value": "scheme-neutral", "displayName": "Neutral"},
+                    {"value": "scheme-rainbow", "displayName": "Rainbow"},
+                    {"value": "scheme-tonal-spot", "displayName": "Tonal Spot"}
                 ]
             }
         }
@@ -67,26 +67,26 @@ ContentPage {
 
         // Wallpaper selection
         ContentSubsection {
-            title: Translation.tr("Wallpaper")
+            title: "Wallpaper"
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter
                 RippleButtonWithIcon {
                     id: rndWallBtn
                     buttonRadius: Appearance.rounding.small
                     materialIcon: "wallpaper"
-                    mainText: konachanWallProc.running ? Translation.tr("Be patient...") : Translation.tr("Random: Konachan")
+                    mainText: konachanWallProc.running ? "Be patient..." : "Random: Konachan"
                     onClicked: {
                         console.log(konachanWallProc.command.join(" "))
                         konachanWallProc.running = true;
                     }
                     StyledToolTip {
-                        content: Translation.tr("Random SFW Anime wallpaper from Konachan\nImage is saved to ~/Pictures/Wallpapers")
+                        content: "Random SFW Anime wallpaper from Konachan\nImage is saved to ~/Pictures/Wallpapers"
                     }
                 }
                 RippleButtonWithIcon {
                     materialIcon: "wallpaper"
                     StyledToolTip {
-                        content: Translation.tr("Pick wallpaper image on your system")
+                        content: "Pick wallpaper image on your system"
                     }
                     onClicked: {
                         Quickshell.execDetached(`${Directories.wallpaperSwitchScriptPath}`)
@@ -96,7 +96,7 @@ ContentPage {
                             spacing: 10
                             StyledText {
                                 font.pixelSize: Appearance.font.pixelSize.small
-                                text: Translation.tr("Choose file")
+                                text: "Choose file"
                                 color: Appearance.colors.colOnSecondaryContainer
                             }
                             RowLayout {
@@ -124,7 +124,7 @@ ContentPage {
         StyledText {
             Layout.topMargin: 5
             Layout.alignment: Qt.AlignHCenter
-            text: Translation.tr("Alternatively use /dark, /light, /img in the launcher")
+            text: "Alternatively use /dark, /light, /img in the launcher"
             font.pixelSize: Appearance.font.pixelSize.smaller
             color: Appearance.colors.colSubtext
         }
@@ -132,27 +132,27 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("Decorations & Effects")
+        title: "Decorations & Effects"
 
         ContentSubsection {
-            title: Translation.tr("Transparency")
+            title: "Transparency"
 
             ConfigRow {
                 ConfigSwitch {
-                    text: Translation.tr("Enable")
+                    text: "Enable"
                     checked: Config.options.appearance.transparency
                     onCheckedChanged: {
                         Config.options.appearance.transparency = checked;
                     }
                     StyledToolTip {
-                        content: Translation.tr("Might look ass. Unsupported.")
+                        content: "Might look ass. Unsupported."
                     }
                 }
             }
         }
 
         ContentSubsection {
-            title: Translation.tr("Fake screen rounding")
+            title: "Fake screen rounding"
 
             ButtonGroup {
                 id: fakeScreenRoundingButtonGroup
@@ -161,7 +161,7 @@ ContentPage {
                 SelectionGroupButton {
                     property int value: 0
                     leftmost: true
-                    buttonText: Translation.tr("No")
+                    buttonText: "No"
                     toggled: (fakeScreenRoundingButtonGroup.selectedPolicy === value)
                     onClicked: {
                         Config.options.appearance.fakeScreenRounding = value;
@@ -169,7 +169,7 @@ ContentPage {
                 }
                 SelectionGroupButton {
                     property int value: 1
-                    buttonText: Translation.tr("Yes")
+                    buttonText: "Yes"
                     toggled: (fakeScreenRoundingButtonGroup.selectedPolicy === value)
                     onClicked: {
                         Config.options.appearance.fakeScreenRounding = value;
@@ -178,7 +178,7 @@ ContentPage {
                 SelectionGroupButton {
                     property int value: 2
                     rightmost: true
-                    buttonText: Translation.tr("When not fullscreen")
+                    buttonText: "When not fullscreen"
                     toggled: (fakeScreenRoundingButtonGroup.selectedPolicy === value)
                     onClicked: {
                         Config.options.appearance.fakeScreenRounding = value;
@@ -188,19 +188,19 @@ ContentPage {
         }
 
         ContentSubsection {
-            title: Translation.tr("Shell windows")
+            title: "Shell windows"
 
             ConfigRow {
                 uniform: true
                 ConfigSwitch {
-                    text: Translation.tr("Title bar")
+                    text: "Title bar"
                     checked: Config.options.windows.showTitlebar
                     onCheckedChanged: {
                         Config.options.windows.showTitlebar = checked;
                     }
                 }
                 ConfigSwitch {
-                    text: Translation.tr("Center title")
+                    text: "Center title"
                     checked: Config.options.windows.centerTitle
                     onCheckedChanged: {
                         Config.options.windows.centerTitle = checked;

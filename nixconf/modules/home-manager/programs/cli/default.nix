@@ -7,6 +7,8 @@
     yazi # terminal file explorer
     tmux
     btop
+
+    matugen
   ];
 
   programs.direnv = {

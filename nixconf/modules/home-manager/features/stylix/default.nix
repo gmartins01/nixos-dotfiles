@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  stylix.enable = true;
+  stylix.enable = false;
 
   stylix.base16Scheme = {
     base00 = "24273a"; # base
@@ -26,8 +26,9 @@
   };
 
   stylix.image = null;
+  stylix.polarity = "dark";
 
-  #stylix.cursor.package = pkgs.bibata-hyprcursor; #pkgs.bibata-cursors; 
+  #stylix.cursor.package = pkgs.bibata-hyprcursor; #pkgs.bibata-cursors;
   #stylix.cursor.name =  "Bibata-Modern-Ice-Hyprcursor";# "Bibata-Modern-Ice";
   #stylix.cursor.size = 24;
 
@@ -71,6 +72,4 @@
     desktop = 1.0;
     popups = 1.0;
   };
-
-  stylix.polarity = "dark";
 }

@@ -9,15 +9,16 @@ import Quickshell
 GroupButton {
     id: lightDarkButtonRoot
     required property bool dark
-    property color previewBg: dark ? ColorUtils.colorWithHueOf("#3f3838", Appearance.m3colors.m3primary) : 
-        ColorUtils.colorWithHueOf("#F7F9FF", Appearance.m3colors.m3primary)
+    property color previewBg: dark ? ColorUtils.colorWithHueOf("#3f3838", Appearance.m3colors.m3primary) : ColorUtils.colorWithHueOf("#F7F9FF", Appearance.m3colors.m3primary)
     property color previewFg: dark ? Qt.lighter(previewBg, 2.2) : ColorUtils.mix(previewBg, "#292929", 0.85)
     padding: 5
     Layout.fillWidth: true
     colBackground: Appearance.colors.colLayer2
-    toggled: Appearance.m3colors.darkmode === dark
+    //toggled: Appearance.m3colors.darkmode === dark
+    toggled: Config.options.appearance.isDarkMode === dark
     onClicked: {
-        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode ${dark ? "dark" : "light"} --noswitch`])
+        Config.options.appearance.isDarkMode = dark;
+        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode ${dark ? "dark" : "light"} --noswitch`]);
     }
     contentItem: Item {
         anchors.centerIn: parent
@@ -113,7 +114,7 @@ GroupButton {
             }
             StyledText {
                 Layout.fillWidth: true
-                text: dark ? Translation.tr("Dark") : Translation.tr("Light")
+                text: dark ? "Dark" : "Light"
                 color: lightDarkButtonRoot.toggled ? Appearance.m3colors.m3onPrimary : Appearance.colors.colOnLayer2
                 horizontalAlignment: Text.AlignHCenter
             }

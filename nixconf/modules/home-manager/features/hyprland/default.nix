@@ -42,7 +42,7 @@ in {
       exec-once = [
         # "hyprpanel"
         #"qs -c ~/.config/quickshell &"
-       "uwsm app -- quickshell &" 
+        "uwsm app -- quickshell &"
         "hyprpaper"
         "systemctl --user restart xdg-desktop-portal-hyprland"
         "systemctl start --user polkit-gnome-authentication-agent-1"
@@ -50,6 +50,8 @@ in {
         "clipboard-sync &"
         #"clipse -listen"
         "copyq --start-server"
+        #"wl-paste --type text --watch cliphist store"
+        #"wl-paste --type image --watch cliphist store"
         #"polychromatic-tray-applet"
         # "corectrl &"
         "dconf write /org/gnome/desktop/interface/cursor-theme \"'${cursor}'\""

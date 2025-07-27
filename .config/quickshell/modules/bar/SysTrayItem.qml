@@ -60,7 +60,7 @@ MouseArea {
 
     IconImage {
         id: trayIcon
-        visible: !Config.options.bar.tray.monochromeIcons
+        //visible: !Config.options.bar.tray.monochromeIcons
         source: {
             let icon = root.item.icon;
             if (icon.includes("?path=")) {

@@ -17,8 +17,8 @@ Scope {
     property var focusedScreen: Quickshell.screens.find(s => s.name === Hyprland.focusedMonitor?.name)
 
     function triggerOsd() {
-        showOsdValues = true
-        osdTimeout.restart()
+        showOsdValues = true;
+        osdTimeout.restart();
     }
 
     Timer {
@@ -27,35 +27,39 @@ Scope {
         repeat: false
         running: false
         onTriggered: {
-            root.showOsdValues = false
-            root.protectionMessage = ""
+            root.showOsdValues = false;
+            root.protectionMessage = "";
         }
     }
 
     Connections {
         target: Brightness
         function onBrightnessChanged() {
-            showOsdValues = false
+            showOsdValues = false;
         }
     }
 
-    Connections { // Listen to volume changes
+    Connections {
+        // Listen to volume changes
         target: Audio.sink?.audio ?? null
         function onVolumeChanged() {
-            if (!Audio.ready) return
-            root.triggerOsd()
+            if (!Audio.ready)
+                return;
+            root.triggerOsd();
         }
         function onMutedChanged() {
-            if (!Audio.ready) return
-            root.triggerOsd()
+            if (!Audio.ready)
+                return;
+            root.triggerOsd();
         }
     }
 
-    Connections { // Listen to protection triggers
+    Connections {
+        // Listen to protection triggers
         target: Audio
         function onSinkProtectionTriggered(reason) {
             root.protectionMessage = reason;
-            root.triggerOsd()
+            root.triggerOsd();
         }
     }
 
@@ -69,7 +73,7 @@ Scope {
             Connections {
                 target: root
                 function onFocusedScreenChanged() {
-                    osdRoot.screen = root.focusedScreen
+                    osdRoot.screen = root.focusedScreen;
                 }
             }
 
@@ -82,6 +86,7 @@ Scope {
                 top: !Config.options.bar.bottom
                 bottom: Config.options.bar.bottom
             }
+            
             mask: Region {
                 item: osdValuesWrapper
             }
@@ -170,26 +175,26 @@ Scope {
     }
 
     IpcHandler {
-		target: "osdVolume"
+        target: "osdVolume"
 
-		function trigger() {
-            root.triggerOsd()
+        function trigger() {
+            root.triggerOsd();
         }
 
         function hide() {
-            showOsdValues = false
+            showOsdValues = false;
         }
 
         function toggle() {
-            showOsdValues = !showOsdValues
+            showOsdValues = !showOsdValues;
         }
-	}
+    }
     GlobalShortcut {
         name: "osdVolumeTrigger"
         description: "Triggers volume OSD on press"
 
         onPressed: {
-            root.triggerOsd()
+            root.triggerOsd();
         }
     }
     GlobalShortcut {
@@ -197,8 +202,7 @@ Scope {
         description: "Hides volume OSD on press"
 
         onPressed: {
-            root.showOsdValues = false
+            root.showOsdValues = false;
         }
     }
-
 }

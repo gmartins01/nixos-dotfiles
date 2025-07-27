@@ -17,8 +17,8 @@ Scope {
     property var brightnessMonitor: Brightness.getMonitorForScreen(focusedScreen)
 
     function triggerOsd() {
-        showOsdValues = true
-        osdTimeout.restart()
+        showOsdValues = true;
+        osdTimeout.restart();
     }
 
     Timer {
@@ -27,23 +27,25 @@ Scope {
         repeat: false
         running: false
         onTriggered: {
-            showOsdValues = false
+            showOsdValues = false;
         }
     }
-    
+
     Connections {
         target: Audio.sink?.audio ?? null
         function onVolumeChanged() {
-            if (!Audio.ready) return
-            root.showOsdValues = false
+            if (!Audio.ready)
+                return;
+            root.showOsdValues = false;
         }
     }
 
     Connections {
         target: Brightness
         function onBrightnessChanged() {
-            if (!root.brightnessMonitor.ready) return
-            root.triggerOsd()
+            if (!root.brightnessMonitor.ready)
+                return;
+            root.triggerOsd();
         }
     }
 
@@ -57,7 +59,7 @@ Scope {
             Connections {
                 target: root
                 function onFocusedScreenChanged() {
-                    osdRoot.screen = root.focusedScreen
+                    osdRoot.screen = root.focusedScreen;
                 }
             }
 
@@ -70,6 +72,7 @@ Scope {
                 top: !Config.options.bar.bottom
                 bottom: Config.options.bar.bottom
             }
+
             mask: Region {
                 item: osdValuesWrapper
             }
@@ -113,32 +116,31 @@ Scope {
                     }
                 }
             }
-
         }
     }
 
     IpcHandler {
-		target: "osdBrightness"
+        target: "osdBrightness"
 
-		function trigger() {
-            root.triggerOsd()
+        function trigger() {
+            root.triggerOsd();
         }
 
         function hide() {
-            showOsdValues = false
+            showOsdValues = false;
         }
 
         function toggle() {
-            showOsdValues = !showOsdValues
+            showOsdValues = !showOsdValues;
         }
-	}
+    }
 
     GlobalShortcut {
         name: "osdBrightnessTrigger"
         description: "Triggers brightness OSD on press"
 
         onPressed: {
-            root.triggerOsd()
+            root.triggerOsd();
         }
     }
     GlobalShortcut {
@@ -146,8 +148,7 @@ Scope {
         description: "Hides brightness OSD on press"
 
         onPressed: {
-            root.showOsdValues = false
+            root.showOsdValues = false;
         }
     }
-
 }

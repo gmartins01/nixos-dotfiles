@@ -35,6 +35,11 @@
     };
     */
 
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
     gtk3.bookmarks = [
       "file:///home/gmartins/Downloads"
       "file:///home/gmartins/Documents"

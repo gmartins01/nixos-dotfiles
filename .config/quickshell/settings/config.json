@@ -5,13 +5,14 @@
     "appearance": {
         "extraBackgroundTint": true,
         "fakeScreenRounding": 0,
+        "isDarkMode": true,
         "palette": {
-            "type": "scheme-tonal-spot"
+            "type": "scheme-fruit-salad"
         },
         "transparency": false,
         "wallpaperTheming": {
-            "enableAppsAndShell": false,
-            "enableQtApps": false,
+            "enableAppsAndShell": true,
+            "enableQtApps": true,
             "enableTerminal": false
         }
     },
@@ -34,11 +35,11 @@
         "clockY": -500,
         "fixedClockPosition": false,
         "parallax": {
-            "enableSidebar": true,
+            "enableSidebar": false,
             "enableWorkspace": false,
             "workspaceZoom": 1
         },
-        "wallpaperPath": "/home/gmartins/Pictures/wallpaper.png"
+        "wallpaperPath": "/home/gmartins/Pictures/Wallpapers/konachan_random_image.jpg"
     },
     "bar": {
         "borderless": false,
@@ -129,7 +130,7 @@
     "overview": {
         "columns": 5,
         "rows": 2,
-        "scale": 0.19
+        "scale": 0.18
     },
     "policies": {
         "ai": 0,
@@ -172,7 +173,7 @@
         "format": "hh:mm"
     },
     "windows": {
-        "centerTitle": true,
-        "showTitlebar": true
+        "centerTitle": false,
+        "showTitlebar": false
     }
 }
