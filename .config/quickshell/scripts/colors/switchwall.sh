@@ -34,15 +34,62 @@ handle_kde_material_you_colors() {
     "$XDG_CONFIG_HOME"/matugen/templates/kde/kde-material-you-colors-wrapper.sh --scheme-variant "$kde_scheme_variant"
 }
 
+
+
+set_wallpaper_path() {
+    local path="$1"
+    if [ -f "$SHELL_CONFIG_FILE" ]; then
+        jq --arg path "$path" \
+           '.background.wallpaperPath = $path' \
+           "$SHELL_CONFIG_FILE" \
+        > "$SHELL_CONFIG_FILE.tmp" \
+        && mv "$SHELL_CONFIG_FILE.tmp" "$SHELL_CONFIG_FILE"
+    fi
+}
+
+set_qt_kvantum_theme() {
+    local mode="$1"
+    local kvconfig="$HOME/.config/Kvantum/kvantum.kvconfig"
+
+    mkdir -p "$(dirname "$kvconfig")"
+
+    if [[ "$mode" == "dark" ]]; then
+        echo "[General]
+theme=KvLibadwaitaDark" > "$kvconfig"
+    else
+        echo "[General]
+theme=KvLibadwaita" > "$kvconfig"
+    fi
+}
+
+set_qt_theme() {
+    local theme="$1"
+
+    mkdir -p "$XDG_CONFIG_HOME/qt5ct"
+    mkdir -p "$XDG_CONFIG_HOME/qt6ct"
+
+    # Use same config for both
+    local conf="[Appearance]
+style=$theme
+icon_theme=Papirus-Dark
+standard_dialogs=xdgdesktopportal
+custom_palette=false
+
+[Fonts]
+general=Sans,10,-1,5,50,0,0,0,0,0
+fixed=Monospace,10,-1,5,50,0,0,0,0,0"
+
+    echo "$conf" > "$XDG_CONFIG_HOME/qt5ct/qt5ct.conf"
+    echo "$conf" > "$XDG_CONFIG_HOME/qt6ct/qt6ct.conf"
+}
+
 pre_process() {
     local mode_flag="$1"
     # Set GNOME color-scheme if mode_flag is dark or light
     if [[ "$mode_flag" == "dark" ]]; then
         dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-        dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3-dark'"
     elif [[ "$mode_flag" == "light" ]]; then
         dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
-        dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'"
     fi
 
     if [ ! -d "$CACHE_DIR"/user/generated ]; then
@@ -139,7 +186,8 @@ switch() {
         fi
     fi
 
-
+    # Set wallpaper path
+    set_wallpaper_path "$imgpath"
 
     pre_process "$mode_flag"
 

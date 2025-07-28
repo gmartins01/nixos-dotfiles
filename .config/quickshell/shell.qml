@@ -6,7 +6,7 @@
 //@ pragma Env QT_SCALE_FACTOR=1
 
 import "./modules/common/"
-//import "./modules/background/"
+import "./modules/background/"
 import "./modules/bar/"
 import "./modules/cheatsheet/"
 import "./modules/dock/"
@@ -31,7 +31,7 @@ ShellRoot {
     // Enable/disable modules here. False = not loaded at all, so rest assured
     // no unnecessary stuff will take up memory if you decide to only use, say, the overview.
     property bool enableBar: true
-    //property bool enableBackground: true
+    property bool enableBackground: true
     property bool enableCheatsheet: true
     property bool enableDock: true
    // property bool enableLock: true
@@ -56,7 +56,7 @@ ShellRoot {
     }
 
     LazyLoader { active: enableBar; component: Bar {} }
-    //LazyLoader { active: enableBackground; component: Background {} }
+    LazyLoader { active: enableBackground; component: Background {} }
     LazyLoader { active: enableCheatsheet; component: Cheatsheet {} }
     LazyLoader { active: enableDock && Config.options.dock.enable; component: Dock {} }
     //LazyLoader { active: enableLock; component: Lock {} }
