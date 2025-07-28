@@ -20,6 +20,11 @@ in {
     ./plugins
   ];
 
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+  };
+
   xdg.dataFile."icons/${cursor}-Hyprcursor".source = "${cursorPackage}/share/icons/${cursor}-Hyprcursor";
 
   wayland.windowManager.hyprland = {
@@ -55,8 +60,8 @@ in {
         #"polychromatic-tray-applet"
         # "corectrl &"
         "dconf write /org/gnome/desktop/interface/cursor-theme \"'${cursor}'\""
-        "gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}"
-        "gsettings set org.gnome.desktop.interface icon-theme ${config.stylix.iconTheme.dark}"
+        #"gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}"
+        #"gsettings set org.gnome.desktop.interface icon-theme ${config.stylix.iconTheme.dark}"
       ];
 
       env = [
@@ -67,7 +72,7 @@ in {
         "CLUTTER_BACKEND,wayland"
         "GDK_BACKEND,wayland,x11"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_QPA_PLATFORM,wayland"
+        #"QT_QPA_PLATFORM,wayland"
         "QT_SCALE_FACTOR,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "XDG_CURRENT_DESKTOP,Hyprland"

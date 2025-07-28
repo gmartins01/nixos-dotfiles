@@ -6,7 +6,15 @@
 }: let
   quickshell = inputs.quickshell.packages.${pkgs.system}.default;
 in {
-  home.packages = [quickshell pkgs.xdg-user-dirs pkgs.kdePackages.kdialog pkgs.kdePackages.qt5compat pkgs.kdePackages.qtdeclarative pkgs.cliphist];
+  home.packages = [
+    quickshell
+    pkgs.xdg-user-dirs
+    pkgs.kdePackages.kdialog
+    pkgs.kdePackages.qt5compat
+    pkgs.kdePackages.qtdeclarative
+    pkgs.cliphist
+    pkgs.nwg-look
+  ];
 
   home.sessionVariables.QML2_IMPORT_PATH = lib.concatStringsSep ":" [
     "${quickshell}/lib/qt-6/qml"

@@ -21,12 +21,15 @@ in {
 
   fish.enable = false;
 
-  /*
-    qt = {
-    enable = true;
-    platformTheme.name = "kde";
-  };
-  */
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "Adwaita-dark";
+  #   style = {
+  #     name = "Adwaita-dark";
+  #     package = pkgs.adwaita-qt;
+  #   };
+  # };
+
   /*
   gtk = {
     enable = true;
@@ -79,21 +82,21 @@ in {
   };
   */
 
-  xdg.configFile = {
-    /*
-      "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-    */
-
-    "Kvantum/kvantum.kvconfig".text = ''
-      [General]
-      theme=catppuccin-${variant}-${accent}
-    '';
-
-    "Kvantum/catppuccin-${variant}-${accent}".source = "${kvantumThemePackage}/share/Kvantum/catppuccin-${variant}-${accent}";
-  };
-
+  # xdg.configFile = {
+  #   /*
+  #     "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+  #   "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+  #   "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+  #   */
+  #
+  #   "Kvantum/kvantum.kvconfig".text = ''
+  #     [General]
+  #     theme=catppuccin-${variant}-${accent}
+  #   '';
+  #
+  #   "Kvantum/catppuccin-${variant}-${accent}".source = "${kvantumThemePackage}/share/Kvantum/catppuccin-${variant}-${accent}";
+  # };
+  #
   /*
     home.pointerCursor = {
     name = "Bibata-Modern-Ice";

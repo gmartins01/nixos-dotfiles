@@ -59,11 +59,11 @@
     BEMOJI_PICKER_CMD = "fuzzel";
   };
 
-  qt = {
-    enable = true;
-    # style = "breeze";
-    platformTheme = "kde";
-  };
+  #  qt = {
+  #    enable = true;
+  # #   # style = "breeze";
+  #    platformTheme = "kde";
+  #  };
 
   xdg.mime.enable = true;
   xdg.menus.enable = true;
