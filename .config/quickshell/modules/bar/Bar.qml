@@ -221,7 +221,7 @@ Scope {
 
                                     anchors.verticalCenter: parent.verticalCenter
 
-                                    Workspaces {
+                                    WorkspacesBack {
                                         id: workspacesWidget
                                         bar: barRoot
                                         Layout.fillHeight: true
@@ -238,6 +238,30 @@ Scope {
                                             }
                                         }
                                     }
+                                    // WorkspacesTeste1 {
+                                    //         id: workspacesWidget
+                                    //     bar: barRoot
+                                    //     monitor: modelDate
+                                    //     Layout.fillHeight: true
+                                    //
+                                    //     MouseArea {
+                                    //         // Right-click to toggle overview
+                                    //         anchors.fill: parent
+                                    //         acceptedButtons: Qt.RightButton
+                                    //
+                                    //         onPressed: event => {
+                                    //             if (event.button === Qt.RightButton) {
+                                    //                 Hyprland.dispatch('global quickshell:overviewToggle');
+                                    //             }
+                                    //         }
+                                    //     }
+                                    // }
+                                    //
+                                    // WorkspacesTeste {
+                                    //     id: workspaceTeste
+                                    //     monitorName: modelData.name
+                                    //     Layout.fillHeight: true
+                                    // }
                                 }
 
                                 Item {

@@ -23,27 +23,27 @@ ApplicationWindow {
     property bool showNextTime: false
     property var pages: [
         {
-            name: Translation.tr("Style"),
+            name: "Style",
             icon: "palette",
             component: "modules/settings/StyleConfig.qml"
         },
         {
-            name: Translation.tr("Interface"),
+            name: "Interface",
             icon: "cards",
             component: "modules/settings/InterfaceConfig.qml"
         },
         {
-            name: Translation.tr("Services"),
+            name: "Services",
             icon: "settings",
             component: "modules/settings/ServicesConfig.qml"
         },
         {
-            name: Translation.tr("Advanced"),
+            name: "Advanced",
             icon: "construction",
             component: "modules/settings/AdvancedConfig.qml"
         },
         {
-            name: Translation.tr("About"),
+            name: "About",
             icon: "info",
             component: "modules/settings/About.qml"
         }
@@ -105,7 +105,7 @@ ApplicationWindow {
                     leftMargin: 12
                 }
                 color: Appearance.colors.colOnLayer0
-                text: Translation.tr("Settings")
+                text: "Settings"
                 font.pixelSize: Appearance.font.pixelSize.title
                 font.family: Appearance.font.family.title
             }
@@ -157,10 +157,10 @@ ApplicationWindow {
                     FloatingActionButton {
                         id: fab
                         iconText: "edit"
-                        buttonText: Translation.tr("Edit config")
+                        buttonText: "Edit config"
                         expanded: navRail.expanded
                         onClicked: {
-                            Qt.openUrlExternally(`${Directories.config}/illogical-impulse/config.json`);
+                            Qt.openUrlExternally(`${Directories.config}/quickshell/settings/config.json`);
                         }
 
                         StyledToolTip {

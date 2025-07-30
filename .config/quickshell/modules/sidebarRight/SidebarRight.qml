@@ -138,7 +138,7 @@ Scope {
                                         Quickshell.reload(true)
                                     }
                                     StyledToolTip {
-                                        content: Translation.tr("Reload Hyprland & Quickshell")
+                                        content: "Reload Hyprland & Quickshell"
                                     }
                                 }
                                 QuickToggleButton {
@@ -149,7 +149,7 @@ Scope {
                                         Quickshell.execDetached(["qs", "-p", root.settingsQmlPath])
                                     }
                                     StyledToolTip {
-                                        content: Translation.tr("Settings")
+                                        content: "Settings"
                                     }
                                 }
                                 QuickToggleButton {
@@ -159,7 +159,7 @@ Scope {
                                         Hyprland.dispatch("global quickshell:sessionOpen")
                                     }
                                     StyledToolTip {
-                                        content: Translation.tr("Session")
+                                        content: "Session"
                                     }
                                 }
                             }

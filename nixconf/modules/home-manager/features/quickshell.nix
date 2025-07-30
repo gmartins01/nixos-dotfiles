@@ -14,6 +14,8 @@ in {
     pkgs.kdePackages.qtdeclarative
     pkgs.cliphist
     pkgs.nwg-look
+    pkgs.hyprpicker
+    #pkgs.wallust
   ];
 
   home.sessionVariables.QML2_IMPORT_PATH = lib.concatStringsSep ":" [
