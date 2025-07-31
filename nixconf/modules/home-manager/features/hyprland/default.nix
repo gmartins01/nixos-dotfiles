@@ -29,8 +29,10 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    package = pkgs.hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
 
     systemd = {
       enable = false;
@@ -46,8 +48,8 @@ in {
     settings = {
       exec-once = [
         # "hyprpanel"
-        #"qs -c ~/.config/quickshell &"
-        "uwsm app -- quickshell &"
+        "qs -c ~/.config/quickshell &"
+        #    "uwsm app -- quickshell &"
         "hyprpaper"
         "systemctl --user restart xdg-desktop-portal-hyprland"
         "systemctl start --user polkit-gnome-authentication-agent-1"
