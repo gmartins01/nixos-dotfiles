@@ -1,0 +1,21 @@
+{
+	"background": "#0f1416",
+	"onBackground": "#dee3e6",
+	"surface": "#0f1416",
+	"surfaceDim": "#0f1416",
+	"surfaceBright": "#353a3d",
+	"surfaceContainerLowest":"#0a0f11",
+	"surfaceContainerLow":"#171c1f",
+	"surfaceContainer":"#1b2023",
+	"surfaceTint":"#88d0ec",
+	"primary": "#88d0ec",
+	"onPrimary": "#003544",
+	"primaryContainer":"#004d61",
+	"onPrimaryContainer":"#b8eaff",
+	"onPrimaryFixed": "#001f28",
+	"secondary": "#b3cad5",
+	"onSecondary": "#1e333c",
+	"secondaryContainer": "#354a53",
+	"onSecondaryContainer": "#cfe6f1",
+	"tertiary": "#c3c3eb"
+}

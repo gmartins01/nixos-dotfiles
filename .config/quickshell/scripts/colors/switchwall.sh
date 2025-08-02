@@ -83,6 +83,15 @@ fixed=Monospace,10,-1,5,50,0,0,0,0,0"
     echo "$conf" > "$XDG_CONFIG_HOME/qt6ct/qt6ct.conf"
 }
 
+function reload_gtk_theme() {
+    local current_theme=$(dconf read /org/gnome/desktop/interface/gtk-theme | tr -d \')
+    echo $current_theme
+    dconf write /org/gnome/desktop/interface/gtk-theme "''"
+    sleep 1
+    dconf write /org/gnome/desktop/interface/gtk-theme "'$current_theme'"
+    #settings set org.gnome.desktop.interface gtk-theme $current_theme
+}
+
 pre_process() {
     local mode_flag="$1"
     # Set GNOME color-scheme if mode_flag is dark or light
@@ -92,18 +101,23 @@ pre_process() {
         dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
     fi
 
-    if [ ! -d "$CACHE_DIR"/user/generated ]; then
-        mkdir -p "$CACHE_DIR"/user/generated
-    fi
 }
 
 post_process() {
-    local screen_width="$1"
-    local screen_height="$2"
-    local wallpaper_path="$3"
+    #local screen_width="$1"
+    #local screen_height="$2"
+    #local wallpaper_path="$3"
 
+    local mode_flag="$1"
+    # Set GNOME color-scheme if mode_flag is dark or light
+    if [[ "$mode_flag" == "dark" ]]; then
+        echo "message"
+        dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3-dark'"
+    elif [[ "$mode_flag" == "light" ]]; then
+        dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'"
+    fi
 
-    handle_kde_material_you_colors &
+    #handle_kde_material_you_colors &
 
     # Determine the largest region on the wallpaper that's sufficiently un-busy to put widgets in
     # if [ ! -f "$MATUGEN_DIR/scripts/least_busy_region.py" ]; then
@@ -190,6 +204,14 @@ switch() {
     set_wallpaper_path "$imgpath"
 
     pre_process "$mode_flag"
+
+    matugen image "/home/gmartins/Downloads/teste/wallpaperflare.com_wallpaper.jpg" -m $mode_flag
+
+    echo $mode_flag
+
+    post_process "$mode_flag"
+    
+    reload_gtk_theme
 
 }
 
