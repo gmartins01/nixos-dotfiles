@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  home.packages = [
+  home.packages = with pkgs; [
     inputs.zen-browser.packages.${pkgs.system}.default
     pkgs.postman
     pkgs.stable.gimp

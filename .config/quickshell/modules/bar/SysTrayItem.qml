@@ -36,8 +36,7 @@ MouseArea {
             }
             break;
         case Qt.MiddleButton:
-            notifyProc.command = ["notify-send", "Tray Icon Title", item.title || item.tooltipTitle];
-            notifyProc.running = true;
+            Quickshell.execDetached(["notify-send", "Tray Icon Title", `${item.title || item.tooltipTitle}`, "-a", "Shell"]);
             break;
         }
         event.accepted = true;
@@ -94,8 +93,5 @@ MouseArea {
             }
         }
     }
-
-    Process {
-        id: notifyProc
-    }
+  
 }

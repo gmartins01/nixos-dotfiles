@@ -37,14 +37,14 @@
     "parallax": {
       "enableSidebar": false,
       "enableWorkspace": false,
-      "workspaceZoom": 1.06
+      "workspaceZoom": 1.1
     },
-    "wallpaperPath": "/home/gmartins/Pictures/Wallpapers/nix-logo.png"
+    "wallpaperPath": ""
   },
   "bar": {
     "borderless": false,
     "bottom": false,
-    "cornerStyle": 0,
+    "cornerStyle": 1,
     "resources": {
       "alwaysShowCpu": false,
       "alwaysShowSwap": true
@@ -91,7 +91,7 @@
     "hoverRegionHeight": 2,
     "hoverToReveal": true,
     "ignoredAppRegexes": [],
-    "monochromeIcons": true,
+    "monochromeIcons": false,
     "pinnedApps": [
       "zen-beta"
     ],

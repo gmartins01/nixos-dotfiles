@@ -9,22 +9,22 @@ ContentPage {
     forceWidth: true
 
     ContentSection {
-        title: Translation.tr("Audio")
+        title: "Audio"
 
         ConfigSwitch {
-            text: Translation.tr("Earbang protection")
+            text: "Earbang protection"
             checked: Config.options.audio.protection.enable
             onCheckedChanged: {
                 Config.options.audio.protection.enable = checked;
             }
             StyledToolTip {
-                content: Translation.tr("Prevents abrupt increments and restricts volume limit")
+                content: "Prevents abrupt increments and restricts volume limit"
             }
         }
         ConfigRow {
             // uniform: true
             ConfigSpinBox {
-                text: Translation.tr("Max allowed increase")
+                text: "Max allowed increase"
                 value: Config.options.audio.protection.maxAllowedIncrease
                 from: 0
                 to: 100
@@ -34,7 +34,7 @@ ContentPage {
                 }
             }
             ConfigSpinBox {
-                text: Translation.tr("Volume limit")
+                text: "Volume limit"
                 value: Config.options.audio.protection.maxAllowed
                 from: 0
                 to: 100
@@ -45,28 +45,14 @@ ContentPage {
             }
         }
     }
-    ContentSection {
-        title: Translation.tr("AI")
-        MaterialTextField {
-            Layout.fillWidth: true
-            placeholderText: Translation.tr("System prompt")
-            text: Config.options.ai.systemPrompt
-            wrapMode: TextEdit.Wrap
-            onTextChanged: {
-                Qt.callLater(() => {
-                    Config.options.ai.systemPrompt = text;
-                });
-            }
-        }
-    }
 
     ContentSection {
-        title: Translation.tr("Battery")
+        title: "Battery"
 
         ConfigRow {
             uniform: true
             ConfigSpinBox {
-                text: Translation.tr("Low warning")
+                text: "Low warning"
                 value: Config.options.battery.low
                 from: 0
                 to: 100
@@ -76,7 +62,7 @@ ContentPage {
                 }
             }
             ConfigSpinBox {
-                text: Translation.tr("Critical warning")
+                text: "Critical warning"
                 value: Config.options.battery.critical
                 from: 0
                 to: 100
@@ -89,17 +75,17 @@ ContentPage {
         ConfigRow {
             uniform: true
             ConfigSwitch {
-                text: Translation.tr("Automatic suspend")
+                text: "Automatic suspend"
                 checked: Config.options.battery.automaticSuspend
                 onCheckedChanged: {
                     Config.options.battery.automaticSuspend = checked;
                 }
                 StyledToolTip {
-                    content: Translation.tr("Automatically suspends the system when battery is low")
+                    content: "Automatically suspends the system when battery is low"
                 }
             }
             ConfigSpinBox {
-                text: Translation.tr("Suspend at")
+                text: "Suspend at"
                 value: Config.options.battery.suspend
                 from: 0
                 to: 100
@@ -112,10 +98,10 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("Networking")
+        title: "Networking"
         MaterialTextField {
             Layout.fillWidth: true
-            placeholderText: Translation.tr("User agent (for services that require it)")
+            placeholderText: "User agent (for services that require it)"
             text: Config.options.networking.userAgent
             wrapMode: TextEdit.Wrap
             onTextChanged: {
@@ -140,27 +126,27 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("Search")
+        title: "Search"
 
         ConfigSwitch {
-            text: Translation.tr("Use Levenshtein distance-based algorithm instead of fuzzy")
+            text: "Use Levenshtein distance-based algorithm instead of fuzzy"
             checked: Config.options.search.sloppy
             onCheckedChanged: {
                 Config.options.search.sloppy = checked;
             }
             StyledToolTip {
-                content: Translation.tr("Could be better if you make a ton of typos,\nbut results can be weird and might not work with acronyms\n(e.g. \"GIMP\" might not give you the paint program)")
+                content: "Could be better if you make a ton of typos,\nbut results can be weird and might not work with acronyms\n(e.g. \"GIMP\" might not give you the paint program)"
             }
         }
 
         ContentSubsection {
-            title: Translation.tr("Prefixes")
+            title: "Prefixes"
             ConfigRow {
                 uniform: true
 
                 MaterialTextField {
                     Layout.fillWidth: true
-                    placeholderText: Translation.tr("Action")
+                    placeholderText: "Action"
                     text: Config.options.search.prefix.action
                     wrapMode: TextEdit.Wrap
                     onTextChanged: {
@@ -169,7 +155,7 @@ ContentPage {
                 }
                 MaterialTextField {
                     Layout.fillWidth: true
-                    placeholderText: Translation.tr("Clipboard")
+                    placeholderText: "Clipboard"
                     text: Config.options.search.prefix.clipboard
                     wrapMode: TextEdit.Wrap
                     onTextChanged: {
@@ -178,7 +164,7 @@ ContentPage {
                 }
                 MaterialTextField {
                     Layout.fillWidth: true
-                    placeholderText: Translation.tr("Emojis")
+                    placeholderText: "Emojis"
                     text: Config.options.search.prefix.emojis
                     wrapMode: TextEdit.Wrap
                     onTextChanged: {
@@ -188,10 +174,10 @@ ContentPage {
             }
         }
         ContentSubsection {
-            title: Translation.tr("Web search")
+            title: "Web search"
             MaterialTextField {
                 Layout.fillWidth: true
-                placeholderText: Translation.tr("Base URL")
+                placeholderText: "Base URL"
                 text: Config.options.search.engineBaseUrl
                 wrapMode: TextEdit.Wrap
                 onTextChanged: {
@@ -202,10 +188,10 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("Time")
+        title: "Time"
 
         ContentSubsection {
-            title: Translation.tr("Format")
+            title: "Format"
             tooltip: ""
 
             ConfigSelectionArray {
@@ -216,15 +202,15 @@ ContentPage {
                 }
                 options: [
                     {
-                        displayName: Translation.tr("24h"),
+                        displayName: "24h",
                         value: "hh:mm"
                     },
                     {
-                        displayName: Translation.tr("12h am/pm"),
+                        displayName: "12h am/pm",
                         value: "h:mm ap"
                     },
                     {
-                        displayName: Translation.tr("12h AM/PM"),
+                        displayName: "12h AM/PM",
                         value: "h:mm AP"
                     },
                 ]

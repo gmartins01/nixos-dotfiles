@@ -83,13 +83,18 @@ fixed=Monospace,10,-1,5,50,0,0,0,0,0"
     echo "$conf" > "$XDG_CONFIG_HOME/qt6ct/qt6ct.conf"
 }
 
+
+apply_qt() {
+  sh "/home/gmartins/.config/quickshell/scripts/kvantum/materialQT.sh"          # generate kvantum theme
+  python "/home/gmartins/.config/quickshell/scripts/kvantum/changeAdwColors.py" # apply config colors
+}
+
 function reload_gtk_theme() {
     local current_theme=$(dconf read /org/gnome/desktop/interface/gtk-theme | tr -d \')
     echo $current_theme
     dconf write /org/gnome/desktop/interface/gtk-theme "''"
     sleep 1
     dconf write /org/gnome/desktop/interface/gtk-theme "'$current_theme'"
-    #settings set org.gnome.desktop.interface gtk-theme $current_theme
 }
 
 pre_process() {
@@ -100,7 +105,6 @@ pre_process() {
     elif [[ "$mode_flag" == "light" ]]; then
         dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
     fi
-
 }
 
 post_process() {
@@ -111,23 +115,12 @@ post_process() {
     local mode_flag="$1"
     # Set GNOME color-scheme if mode_flag is dark or light
     if [[ "$mode_flag" == "dark" ]]; then
-        echo "message"
         dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3-dark'"
     elif [[ "$mode_flag" == "light" ]]; then
         dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'"
     fi
 
-    #handle_kde_material_you_colors &
 
-    # Determine the largest region on the wallpaper that's sufficiently un-busy to put widgets in
-    # if [ ! -f "$MATUGEN_DIR/scripts/least_busy_region.py" ]; then
-    #     echo "Error: least_busy_region.py script not found in $MATUGEN_DIR/scripts/"
-    # else
-    #     "$MATUGEN_DIR/scripts/least_busy_region.py" \
-    #         --screen-width "$screen_width" --screen-height "$screen_height" \
-    #         --width 300 --height 200 \
-    #         "$wallpaper_path" > "$STATE_DIR"/user/generated/wallpaper/least_busy_region.json
-    # fi
 }
 
 check_and_prompt_upscale() {
@@ -171,7 +164,7 @@ check_and_prompt_upscale() {
     fi
 }
 
-THUMBNAIL_DIR="/tmp/mpvpaper_thumbnails"
+HUMBNAIL_DIR="/tmp/mpvpaper_thumbnails"
 CUSTOM_DIR="$XDG_CONFIG_HOME/hypr/custom"
 RESTORE_SCRIPT_DIR="$CUSTOM_DIR/scripts"
 RESTORE_SCRIPT="$RESTORE_SCRIPT_DIR/__restore_video_wallpaper.sh"
@@ -205,7 +198,7 @@ switch() {
 
     pre_process "$mode_flag"
 
-    matugen image $imgpath -m $mode_flag -t $type_flag
+    matugen image $imgpath --mode $mode_flag --type $type_flag
 
     echo $mode_flag
 

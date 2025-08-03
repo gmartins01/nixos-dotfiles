@@ -41,6 +41,7 @@
     kdePackages.okular # Document viewer (PDFs)
 
     kdePackages.gwenview # Image viewer
+    loupe
 
     ffmpegthumbnailer # Video thumbnails
 

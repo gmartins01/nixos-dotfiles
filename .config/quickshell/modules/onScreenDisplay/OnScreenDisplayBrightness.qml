@@ -112,7 +112,7 @@ Scope {
                         icon: "light_mode"
                         rotateIcon: true
                         scaleIcon: true
-                        name: Translation.tr("Brightness")
+                        name: "Brightness"
                     }
                 }
             }

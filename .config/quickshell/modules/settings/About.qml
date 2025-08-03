@@ -11,7 +11,7 @@ ContentPage {
     forceWidth: true
 
     ContentSection {
-        title: Translation.tr("Distro")
+        title: "Distro"
         
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
@@ -47,21 +47,21 @@ ContentPage {
 
             RippleButtonWithIcon {
                 materialIcon: "auto_stories"
-                mainText: Translation.tr("Documentation")
+                mainText: "Documentation"
                 onClicked: {
                     Qt.openUrlExternally(SystemInfo.documentationUrl)
                 }
             }
             RippleButtonWithIcon {
                 materialIcon: "support"
-                mainText: Translation.tr("Help & Support")
+                mainText: "Help & Support"
                 onClicked: {
                     Qt.openUrlExternally(SystemInfo.supportUrl)
                 }
             }
             RippleButtonWithIcon {
                 materialIcon: "bug_report"
-                mainText: Translation.tr("Report a Bug")
+                mainText: "Report a Bug"
                 onClicked: {
                     Qt.openUrlExternally(SystemInfo.bugReportUrl)
                 }
@@ -69,7 +69,7 @@ ContentPage {
             RippleButtonWithIcon {
                 materialIcon: "policy"
                 materialIconFill: false
-                mainText: Translation.tr("Privacy Policy")
+                mainText: "Privacy Policy"
                 onClicked: {
                     Qt.openUrlExternally(SystemInfo.privacyPolicyUrl)
                 }
@@ -79,7 +79,7 @@ ContentPage {
 
     }
     ContentSection {
-        title: Translation.tr("Dotfiles")
+        title: "Dotfiles"
 
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
@@ -94,7 +94,7 @@ ContentPage {
                 Layout.alignment: Qt.AlignVCenter
                 // spacing: 10
                 StyledText {
-                    text: Translation.tr("illogical-impulse")
+                    text: "illogical-impulse"
                     font.pixelSize: Appearance.font.pixelSize.title
                 }
                 StyledText {

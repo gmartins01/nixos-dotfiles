@@ -71,19 +71,6 @@ ContentPage {
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter
                 RippleButtonWithIcon {
-                    id: rndWallBtn
-                    buttonRadius: Appearance.rounding.small
-                    materialIcon: "wallpaper"
-                    mainText: konachanWallProc.running ? "Be patient..." : "Random: Konachan"
-                    onClicked: {
-                        console.log(konachanWallProc.command.join(" "))
-                        konachanWallProc.running = true;
-                    }
-                    StyledToolTip {
-                        content: "Random SFW Anime wallpaper from Konachan\nImage is saved to ~/Pictures/Wallpapers"
-                    }
-                }
-                RippleButtonWithIcon {
                     materialIcon: "wallpaper"
                     StyledToolTip {
                         content: "Pick wallpaper image on your system"
@@ -210,19 +197,19 @@ ContentPage {
         }
 
         ContentSubsection {
-            title: Translation.tr("Wallpaper parallax")
+            title: "Wallpaper parallax"
 
             ConfigRow {
                 uniform: true
                 ConfigSwitch {
-                    text: Translation.tr("Depends on workspace")
+                    text: "Depends on workspace"
                     checked: Config.options.background.parallax.enableWorkspace
                     onCheckedChanged: {
                         Config.options.background.parallax.enableWorkspace = checked;
                     }
                 }
                 ConfigSwitch {
-                    text: Translation.tr("Depends on sidebars")
+                    text: "Depends on sidebars"
                     checked: Config.options.background.parallax.enableSidebar
                     onCheckedChanged: {
                         Config.options.background.parallax.enableSidebar = checked;
@@ -230,7 +217,7 @@ ContentPage {
                 }
             }
             ConfigSpinBox {
-                text: Translation.tr("Preferred wallpaper zoom (%)")
+                text: "Preferred wallpaper zoom (%)"
                 value: Config.options.background.parallax.workspaceZoom * 100
                 from: 100
                 to: 150

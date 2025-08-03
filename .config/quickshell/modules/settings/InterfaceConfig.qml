@@ -7,70 +7,9 @@ import qs.modules.common.widgets
 
 ContentPage {
     forceWidth: true
-    ContentSection {
-        title: Translation.tr("Policies")
-
-        ConfigRow {
-            ColumnLayout {
-                // Weeb policy
-                ContentSubsectionLabel {
-                    text: Translation.tr("Weeb")
-                }
-                ConfigSelectionArray {
-                    currentValue: Config.options.policies.weeb
-                    configOptionName: "policies.weeb"
-                    onSelected: newValue => {
-                        Config.options.policies.weeb = newValue;
-                    }
-                    options: [
-                        {
-                            displayName: Translation.tr("No"),
-                            value: 0
-                        },
-                        {
-                            displayName: Translation.tr("Yes"),
-                            value: 1
-                        },
-                        {
-                            displayName: Translation.tr("Closet"),
-                            value: 2
-                        }
-                    ]
-                }
-            }
-
-            ColumnLayout {
-                // AI policy
-                ContentSubsectionLabel {
-                    text: Translation.tr("AI")
-                }
-                ConfigSelectionArray {
-                    currentValue: Config.options.policies.ai
-                    configOptionName: "policies.ai"
-                    onSelected: newValue => {
-                        Config.options.policies.ai = newValue;
-                    }
-                    options: [
-                        {
-                            displayName: Translation.tr("No"),
-                            value: 0
-                        },
-                        {
-                            displayName: Translation.tr("Yes"),
-                            value: 1
-                        },
-                        {
-                            displayName: Translation.tr("Local only"),
-                            value: 2
-                        }
-                    ]
-                }
-            }
-        }
-    }
 
     ContentSection {
-        title: Translation.tr("Bar")
+        title:"Bar"
 
         ConfigSelectionArray {
             currentValue: Config.options.bar.cornerStyle
@@ -80,57 +19,57 @@ ContentPage {
             }
             options: [
                 {
-                    displayName: Translation.tr("Hug"),
+                    displayName: "Hug",
                     value: 0
                 },
                 {
-                    displayName: Translation.tr("Float"),
+                    displayName: "Float",
                     value: 1
                 },
                 {
-                    displayName: Translation.tr("Plain rectangle"),
+                    displayName: "Plain rectangle",
                     value: 2
                 }
             ]
         }
 
         ContentSubsection {
-            title: Translation.tr("Appearance")
+            title: "Appearance"
             ConfigRow {
                 uniform: true
                 ConfigSwitch {
-                    text: Translation.tr('Borderless')
+                    text: 'Borderless'
                     checked: Config.options.bar.borderless
                     onCheckedChanged: {
                         Config.options.bar.borderless = checked;
                     }
                 }
                 ConfigSwitch {
-                    text: Translation.tr('Show background')
+                    text: 'Show background'
                     checked: Config.options.bar.showBackground
                     onCheckedChanged: {
                         Config.options.bar.showBackground = checked;
                     }
                     StyledToolTip {
-                        content: Translation.tr("Note: turning off can hurt readability")
+                        content: "Note: turning off can hurt readability"
                     }
                 }
             }
         }
 
         ContentSubsection {
-            title: Translation.tr("Buttons")
+            title: "Buttons"
             ConfigRow {
                 uniform: true
                 ConfigSwitch {
-                    text: Translation.tr("Screen snip")
+                    text: "Screen snip"
                     checked: Config.options.bar.utilButtons.showScreenSnip
                     onCheckedChanged: {
                         Config.options.bar.utilButtons.showScreenSnip = checked;
                     }
                 }
                 ConfigSwitch {
-                    text: Translation.tr("Color picker")
+                    text: "Color picker"
                     checked: Config.options.bar.utilButtons.showColorPicker
                     onCheckedChanged: {
                         Config.options.bar.utilButtons.showColorPicker = checked;
@@ -140,14 +79,14 @@ ContentPage {
             ConfigRow {
                 uniform: true
                 ConfigSwitch {
-                    text: Translation.tr("Mic toggle")
+                    text: "Mic toggle"
                     checked: Config.options.bar.utilButtons.showMicToggle
                     onCheckedChanged: {
                         Config.options.bar.utilButtons.showMicToggle = checked;
                     }
                 }
                 ConfigSwitch {
-                    text: Translation.tr("Keyboard toggle")
+                    text: "Keyboard toggle"
                     checked: Config.options.bar.utilButtons.showKeyboardToggle
                     onCheckedChanged: {
                         Config.options.bar.utilButtons.showKeyboardToggle = checked;
@@ -157,7 +96,7 @@ ContentPage {
             ConfigRow {
                 uniform: true
                 ConfigSwitch {
-                    text: Translation.tr("Dark/Light toggle")
+                    text: "Dark/Light toggle"
                     checked: Config.options.bar.utilButtons.showDarkModeToggle
                     onCheckedChanged: {
                         Config.options.bar.utilButtons.showDarkModeToggle = checked;
@@ -174,20 +113,20 @@ ContentPage {
         }
 
         ContentSubsection {
-            title: Translation.tr("Workspaces")
-            tooltip: Translation.tr("Tip: Hide icons and always show numbers for\nthe classic illogical-impulse experience")
+            title: "Workspaces"
+            tooltip: "Tip: Hide icons and always show numbers for\nthe classic illogical-impulse experience"
 
             ConfigRow {
                 uniform: true
                 ConfigSwitch {
-                    text: Translation.tr('Show app icons')
+                    text: 'Show app icons'
                     checked: Config.options.bar.workspaces.showAppIcons
                     onCheckedChanged: {
                         Config.options.bar.workspaces.showAppIcons = checked;
                     }
                 }
                 ConfigSwitch {
-                    text: Translation.tr('Always show numbers')
+                    text: 'Always show numbers'
                     checked: Config.options.bar.workspaces.alwaysShowNumbers
                     onCheckedChanged: {
                         Config.options.bar.workspaces.alwaysShowNumbers = checked;
@@ -195,7 +134,7 @@ ContentPage {
                 }
             }
             ConfigSpinBox {
-                text: Translation.tr("Workspaces shown")
+                text: "Workspaces shown"
                 value: Config.options.bar.workspaces.shown
                 from: 1
                 to: 30
@@ -205,7 +144,7 @@ ContentPage {
                 }
             }
             ConfigSpinBox {
-                text: Translation.tr("Number show delay when pressing Super (ms)")
+                text: "Number show delay when pressing Super (ms)"
                 value: Config.options.bar.workspaces.showNumberDelay
                 from: 0
                 to: 1000
@@ -217,9 +156,9 @@ ContentPage {
         }
 
         ContentSubsection {
-            title: Translation.tr("Weather")
+            title: "Weather"
             ConfigSwitch {
-                text: Translation.tr("Enable")
+                text: "Enable"
                 checked: Config.options.bar.weather.enable
                 onCheckedChanged: {
                     Config.options.bar.weather.enable = checked;
@@ -229,12 +168,12 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("Battery")
+        title: "Battery"
 
         ConfigRow {
             uniform: true
             ConfigSpinBox {
-                text: Translation.tr("Low warning")
+                text: "Low warning"
                 value: Config.options.battery.low
                 from: 0
                 to: 100
@@ -244,7 +183,7 @@ ContentPage {
                 }
             }
             ConfigSpinBox {
-                text: Translation.tr("Critical warning")
+                text: "Critical warning"
                 value: Config.options.battery.critical
                 from: 0
                 to: 100
@@ -257,17 +196,17 @@ ContentPage {
         ConfigRow {
             uniform: true
             ConfigSwitch {
-                text: Translation.tr("Automatic suspend")
+                text: "Automatic suspend"
                 checked: Config.options.battery.automaticSuspend
                 onCheckedChanged: {
                     Config.options.battery.automaticSuspend = checked;
                 }
                 StyledToolTip {
-                    content: Translation.tr("Automatically suspends the system when battery is low")
+                    content: "Automatically suspends the system when battery is low"
                 }
             }
             ConfigSpinBox {
-                text: Translation.tr("Suspend at")
+                text: "Suspend at"
                 value: Config.options.battery.suspend
                 from: 0
                 to: 100
@@ -280,10 +219,10 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("Dock")
+        title: "Dock"
 
         ConfigSwitch {
-            text: Translation.tr("Enable")
+            text: "Enable"
             checked: Config.options.dock.enable
             onCheckedChanged: {
                 Config.options.dock.enable = checked;
@@ -293,14 +232,14 @@ ContentPage {
         ConfigRow {
             uniform: true
             ConfigSwitch {
-                text: Translation.tr("Hover to reveal")
+                text: "Hover to reveal"
                 checked: Config.options.dock.hoverToReveal
                 onCheckedChanged: {
                     Config.options.dock.hoverToReveal = checked;
                 }
             }
             ConfigSwitch {
-                text: Translation.tr("Pinned on startup")
+                text: "Pinned on startup"
                 checked: Config.options.dock.pinnedOnStartup
                 onCheckedChanged: {
                     Config.options.dock.pinnedOnStartup = checked;
@@ -310,7 +249,7 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("On-screen display")
+        title: "On-screen display"
         ConfigSpinBox {
             text: Translation.tr("Timeout (ms)")
             value: Config.options.osd.timeout
@@ -324,9 +263,9 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("Overview")
+        title: "Overview"
         ConfigSpinBox {
-            text: Translation.tr("Scale (%)")
+            text: "Scale (%)"
             value: Config.options.overview.scale * 100
             from: 1
             to: 100
@@ -338,7 +277,7 @@ ContentPage {
         ConfigRow {
             uniform: true
             ConfigSpinBox {
-                text: Translation.tr("Rows")
+                text: "Rows"
                 value: Config.options.overview.rows
                 from: 1
                 to: 20
@@ -348,7 +287,7 @@ ContentPage {
                 }
             }
             ConfigSpinBox {
-                text: Translation.tr("Columns")
+                text: "Columns"
                 value: Config.options.overview.columns
                 from: 1
                 to: 20
@@ -361,16 +300,16 @@ ContentPage {
     }
 
     ContentSection {
-        title: Translation.tr("Screenshot tool")
+        title: "Screenshot tool"
 
         ConfigSwitch {
-            text: Translation.tr('Show regions of potential interest')
+            text: 'Show regions of potential interest'
             checked: Config.options.screenshotTool.showContentRegions
             onCheckedChanged: {
                 Config.options.screenshotTool.showContentRegions = checked;
             }
             StyledToolTip {
-                content: Translation.tr("Such regions could be images or parts of the screen that have some containment.\nMight not always be accurate.\nThis is done with an image processing algorithm run locally and no AI is used.")
+                content: "Such regions could be images or parts of the screen that have some containment.\nMight not always be accurate.\nThis is done with an image processing algorithm run locally and no AI is used."
             }
         }        
     }
