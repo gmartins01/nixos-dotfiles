@@ -1,0 +1,21 @@
+{
+	"background": "{{colors.background.default.hex}}",
+	"onBackground": "{{colors.on_background.default.hex}}",
+	"surface": "{{colors.surface.default.hex}}",
+	"surfaceDim": "{{colors.surface_dim.default.hex}}",
+	"surfaceBright": "{{colors.surface_bright.default.hex}}",
+	"surfaceContainerLowest":"{{colors.surface_container_lowest.default.hex}}",
+	"surfaceContainerLow":"{{colors.surface_container_low.default.hex}}",
+	"surfaceContainer":"{{colors.surface_container.default.hex}}",
+	"surfaceTint":"{{colors.surface_tint.default.hex}}",
+	"primary": "{{colors.primary_fixed_dim.default.hex}}",
+	"onPrimary": "{{colors.on_primary.default.hex}}",
+	"primaryContainer":"{{colors.primary_container.default.hex}}",
+	"onPrimaryContainer":"{{colors.on_primary_container.default.hex}}",
+	"onPrimaryFixed": "{{colors.on_primary_fixed.default.hex}}",
+	"secondary": "{{colors.secondary.default.hex}}",
+	"onSecondary": "{{colors.on_secondary.default.hex}}",
+	"secondaryContainer": "{{colors.secondary_container.default.hex}}",
+	"onSecondaryContainer": "{{colors.on_secondary_container.default.hex}}",
+	"tertiary": "{{colors.tertiary.default.hex}}"
+}

@@ -37,9 +37,9 @@
     "parallax": {
       "enableSidebar": false,
       "enableWorkspace": false,
-      "workspaceZoom": 1
+      "workspaceZoom": 1.06
     },
-    "wallpaperPath": ""
+    "wallpaperPath": "/home/gmartins/Pictures/Wallpapers/nix-logo.png"
   },
   "bar": {
     "borderless": false,

@@ -45,6 +45,7 @@ Singleton {
         property color m3outline: "#988E97"
         property color m3outlineVariant: "#4C444D"
         property color m3shadow: "#000000"
+        property color m3sourceColor: "#E5B6F2"
         property color m3scrim: "#000000"
         property color m3surfaceTint: "#E5B6F2"
         property color m3primary: "#E5B6F2"

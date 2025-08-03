@@ -205,7 +205,7 @@ switch() {
 
     pre_process "$mode_flag"
 
-    matugen image "/home/gmartins/Downloads/teste/wallpaperflare.com_wallpaper.jpg" -m $mode_flag
+    matugen image $imgpath -m $mode_flag -t $type_flag
 
     echo $mode_flag
 
