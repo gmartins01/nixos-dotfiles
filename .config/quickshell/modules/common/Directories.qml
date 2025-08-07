@@ -19,7 +19,6 @@ Singleton {
     property string scriptPath: Quickshell.shellPath("scripts")
     property string favicons: FileUtils.trimFileProtocol(`${Directories.cache}/media/favicons`)
     property string coverArt: FileUtils.trimFileProtocol(`${Directories.cache}/media/coverart`)
-    //property string shellConfig: FileUtils.trimFileProtocol(`${Directories.config}/illogical-impulse`)
     property string shellConfig: Quickshell.shellPath("settings")
     property string shellConfigName: "config.json"
     property string shellConfigPath: `${Directories.shellConfig}/${Directories.shellConfigName}`

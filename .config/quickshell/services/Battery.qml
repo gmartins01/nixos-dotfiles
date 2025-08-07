@@ -24,8 +24,8 @@ Singleton {
     onIsLowAndNotChargingChanged: {
         if (available && isLowAndNotCharging) Quickshell.execDetached([
             "notify-send", 
-            Translation.tr("Low battery"), 
-            Translation.tr("Consider plugging in your device"), 
+            "Low battery", 
+            "Consider plugging in your device", 
             "-u", "critical",
             "-a", "Shell"
         ])

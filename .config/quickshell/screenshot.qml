@@ -444,7 +444,7 @@ ShellRoot {
                                 }
                             }
                             StyledText {
-                                text: Translation.tr("Drag or click a region • LMB: Copy • RMB: Edit")
+                                text: "Drag or click a region • LMB: Copy • RMB: Edit"
                                 color: root.genericContentForeground
                             }
                         }

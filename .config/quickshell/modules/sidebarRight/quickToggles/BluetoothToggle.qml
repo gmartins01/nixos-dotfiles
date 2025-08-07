@@ -28,9 +28,9 @@ QuickToggleButton {
         }
     }
     StyledToolTip {
-        content: Translation.tr("%1 | Right-click to configure").arg(
+        content: "%1 | Right-click to configure".arg(
             (Bluetooth.bluetoothEnabled && Bluetooth.bluetoothDeviceName.length > 0) ? 
-            Bluetooth.bluetoothDeviceName : Translation.tr("Bluetooth"))
+            Bluetooth.bluetoothDeviceName : "Bluetooth")
 
     }
 }

@@ -13,10 +13,11 @@ MouseArea {
 
     required property var bar
     required property SystemTrayItem item
-    property bool targetMenuOpen: false
     property int trayItemWidth: Appearance.font.pixelSize.larger
 
     property var ignoredClasses: ["xwaylandvideobridge", "blueman", "Stremio", "Polychromatic"]
+
+    signal menuRequested(var menu, var item, real x, real y)
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
     Layout.fillHeight: true
@@ -31,6 +32,7 @@ MouseArea {
             break;
         case Qt.RightButton:
             if (item.hasMenu) {
+                //root.menuRequested(null, item, event.x, event.y);
                 menu.iconPos = root.mapToItem(bar.contentItem, -60, 0);
                 menu.open();
             }
@@ -40,6 +42,25 @@ MouseArea {
             break;
         }
         event.accepted = true;
+    }
+
+    onMenuRequested: (currMenu, item, x, y) => {
+        console.log("aqui", item.x, bar.width);
+        var pt = root.mapToItem(bar.contentItem, x, 0);
+
+        var menuW = systemTrayContextMenu.implicitWidth;
+
+        var rawX = pt.x - menuW;
+
+        var maxX = bar.contentItem.width - menuW;
+        var clampedX = Math.max(0, Math.min(rawX, maxX));
+
+        systemTrayContextMenu.contextMenuX = clampedX;
+        systemTrayContextMenu.contextMenuY = Appearance.sizes.barHeight + 4; // ou o offset vertical que quiseres
+
+        systemTrayContextMenu.currentTrayItem = item;
+        systemTrayContextMenu.currentTrayMenu = currMenu;
+        systemTrayContextMenu.showContextMenu = true;
     }
 
     QsMenuAnchor {
@@ -93,5 +114,8 @@ MouseArea {
             }
         }
     }
-  
+
+    SysTrayItemMenu {
+        id: systemTrayContextMenu
+    }
 }

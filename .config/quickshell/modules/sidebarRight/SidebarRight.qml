@@ -177,7 +177,6 @@ Scope {
                             GameMode {}
                             IdleInhibitor {}
                             EasyEffectsToggle {}
-                            CloudflareWarp {}
                         }
 
                         // Center widget group

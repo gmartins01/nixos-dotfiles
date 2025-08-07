@@ -4,7 +4,6 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.SystemTray
 
-// TODO: More fancy animation
 Item {
     id: root
 
@@ -29,6 +28,8 @@ Item {
 
                 bar: root.bar
                 item: modelData
+
+                
             }
         }
 
@@ -42,4 +43,6 @@ Item {
         //     }
         // }
     }
+
+   
 }

@@ -34,8 +34,7 @@ Item {
             elide: Text.ElideRight
             text: root.focusingThisMonitor && root.activeWindow?.activated && root.biggestWindow ? 
                 root.activeWindow?.appId :
-                (root.biggestWindow?.class) ?? Translation.tr("Desktop")
-
+                (root.biggestWindow?.class) ?? "Desktop"
         }
 
         StyledText {
@@ -45,7 +44,7 @@ Item {
             elide: Text.ElideRight
             text: root.focusingThisMonitor && root.activeWindow?.activated && root.biggestWindow ? 
                 root.activeWindow?.title :
-                (root.biggestWindow?.title) ?? `${Translation.tr("Workspace")} ${monitor.activeWorkspace?.id}`
+                (root.biggestWindow?.title) ?? `${"Workspace"} ${monitor.activeWorkspace?.id}`
         }
 
     }

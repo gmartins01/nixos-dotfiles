@@ -28,10 +28,6 @@ Singleton {
 
         adapter: JsonAdapter {
             id: persistentStatesJsonAdapter
-            property JsonObject ai: JsonObject {
-                property string model
-                property real temperature: 0.5
-            }
 
             property JsonObject sidebar: JsonObject {
                 property JsonObject bottomGroup: JsonObject {
@@ -40,10 +36,6 @@ Singleton {
                 }
             }
 
-            property JsonObject booru: JsonObject {
-                property bool allowNsfw: false
-                property string provider: "yandere"
-            }
         }
     }
 }
