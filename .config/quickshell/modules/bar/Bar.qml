@@ -213,56 +213,39 @@ Scope {
                                     }
                                 }
 
-                                BarGroup {
-                                    id: workspacesGroup
-                                    padding: workspacesWidget.widgetPadding
-                                    Layout.fillHeight: false
+                                anchors.verticalCenter: parent.verticalCenter
+                                ActiveWindow {
+                                    visible: barRoot.useShortenedForm === 0
                                     Layout.fillWidth: false
-
-                                    anchors.verticalCenter: parent.verticalCenter
-
-                                    WorkspacesBack {
-                                        id: workspacesWidget
-                                        bar: barRoot
-                                        Layout.fillHeight: true
-
-                                        MouseArea {
-                                            // Right-click to toggle overview
-                                            anchors.fill: parent
-                                            acceptedButtons: Qt.RightButton
-
-                                            onPressed: event => {
-                                                if (event.button === Qt.RightButton) {
-                                                    Hyprland.dispatch('global quickshell:overviewToggle');
-                                                }
-                                            }
-                                        }
-                                    }
-                                    // WorkspacesTeste1 {
-                                    //         id: workspacesWidget
-                                    //     bar: barRoot
-                                    //     monitor: modelDate
-                                    //     Layout.fillHeight: true
-                                    //
-                                    //     MouseArea {
-                                    //         // Right-click to toggle overview
-                                    //         anchors.fill: parent
-                                    //         acceptedButtons: Qt.RightButton
-                                    //
-                                    //         onPressed: event => {
-                                    //             if (event.button === Qt.RightButton) {
-                                    //                 Hyprland.dispatch('global quickshell:overviewToggle');
-                                    //             }
-                                    //         }
-                                    //     }
-                                    // }
-                                    //
-                                    // WorkspacesTeste {
-                                    //     id: workspaceTeste
-                                    //     monitorName: modelData.name
-                                    //     Layout.fillHeight: true
-                                    // }
+                                    Layout.fillHeight: true
+                                    bar: barRoot
                                 }
+
+                                // WorkspacesTeste1 {
+                                //         id: workspacesWidget
+                                //     bar: barRoot
+                                //     monitor: modelDate
+                                //     Layout.fillHeight: true
+                                //
+                                //     MouseArea {
+                                //         // Right-click to toggle overview
+                                //         anchors.fill: parent
+                                //         acceptedButtons: Qt.RightButton
+                                //
+                                //         onPressed: event => {
+                                //             if (event.button === Qt.RightButton) {
+                                //                 Hyprland.dispatch('global quickshell:overviewToggle');
+                                //             }
+                                //         }
+                                //     }
+                                // }
+                                //
+                                // WorkspacesTeste {
+                                //     id: workspaceTeste
+                                //     monitorName: modelData.name
+                                //     Layout.fillHeight: true
+                                // }
+
 
                                 Item {
                                     Layout.fillWidth: true
@@ -282,13 +265,30 @@ Scope {
                     RowLayout { // Middle section
                         id: middleSection
                         anchors.centerIn: parent
-                        spacing: Config.options?.bar.borderless ? 4 : 8
-                        ActiveWindow {
-                            visible: barRoot.useShortenedForm === 0
-                            Layout.rightMargin: Appearance.rounding.screenRounding
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            bar: barRoot
+                        //spacing: Config.options?.bar.borderless ? 4 : 8
+                        BarGroup {
+                            id: workspacesGroup
+                            padding: workspacesWidget.widgetPadding
+                            Layout.fillHeight: false
+                            Layout.fillWidth: false
+
+                            WorkspacesBack {
+                                id: workspacesWidget
+                                bar: barRoot
+                                Layout.fillHeight: true
+
+                                MouseArea {
+                                    // Right-click to toggle overview
+                                    anchors.fill: parent
+                                    acceptedButtons: Qt.RightButton
+
+                                    onPressed: event => {
+                                        if (event.button === Qt.RightButton) {
+                                            Hyprland.dispatch('global quickshell:overviewToggle');
+                                        }
+                                    }
+                                }
+                            }
                         }
                         // Item {
                         //     Layout.fillWidth: true

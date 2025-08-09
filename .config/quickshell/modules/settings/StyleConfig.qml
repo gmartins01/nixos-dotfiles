@@ -46,37 +46,67 @@ ContentPage {
             ConfigSelectionArray {
                 currentValue: Config.options.appearance.palette.type
                 configOptionName: "appearance.palette.type"
-                onSelected: (newValue) => {
+                onSelected: newValue => {
                     Config.options.appearance.palette.type = newValue;
-                    Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --noswitch`])
+                    Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --noswitch`]);
                 }
                 options: [
-                    {"value": "auto", "displayName": "Auto"},
-                    {"value": "scheme-content", "displayName": "Content"},
-                    {"value": "scheme-expressive", "displayName": "Expressive"},
-                    {"value": "scheme-fidelity", "displayName": "Fidelity"},
-                    {"value": "scheme-fruit-salad", "displayName": "Fruit Salad"},
-                    {"value": "scheme-monochrome", "displayName": "Monochrome"},
-                    {"value": "scheme-neutral", "displayName": "Neutral"},
-                    {"value": "scheme-rainbow", "displayName": "Rainbow"},
-                    {"value": "scheme-tonal-spot", "displayName": "Tonal Spot"}
+                    {
+                        "value": "auto",
+                        "displayName": "Auto"
+                    },
+                    {
+                        "value": "scheme-content",
+                        "displayName": "Content"
+                    },
+                    {
+                        "value": "scheme-expressive",
+                        "displayName": "Expressive"
+                    },
+                    {
+                        "value": "scheme-fidelity",
+                        "displayName": "Fidelity"
+                    },
+                    {
+                        "value": "scheme-fruit-salad",
+                        "displayName": "Fruit Salad"
+                    },
+                    {
+                        "value": "scheme-monochrome",
+                        "displayName": "Monochrome"
+                    },
+                    {
+                        "value": "scheme-neutral",
+                        "displayName": "Neutral"
+                    },
+                    {
+                        "value": "scheme-rainbow",
+                        "displayName": "Rainbow"
+                    },
+                    {
+                        "value": "scheme-tonal-spot",
+                        "displayName": "Tonal Spot"
+                    }
                 ]
             }
         }
-
 
         // Wallpaper selection
         ContentSubsection {
             title: "Wallpaper"
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter
+
+                Item {
+                    Layout.fillWidth: true
+                }
                 RippleButtonWithIcon {
                     materialIcon: "wallpaper"
                     StyledToolTip {
                         content: "Pick wallpaper image on your system"
                     }
                     onClicked: {
-                        Quickshell.execDetached(`${Directories.wallpaperSwitchScriptPath}`)
+                        Quickshell.execDetached(`${Directories.wallpaperSwitchScriptPath}`);
                     }
                     mainContentComponent: Component {
                         RowLayout {
@@ -105,6 +135,10 @@ ContentPage {
                         }
                     }
                 }
+
+                Item {
+                    Layout.fillWidth: true
+                }
             }
         }
 
@@ -115,7 +149,6 @@ ContentPage {
             font.pixelSize: Appearance.font.pixelSize.smaller
             color: Appearance.colors.colSubtext
         }
-    
     }
 
     ContentSection {
@@ -223,7 +256,7 @@ ContentPage {
                 to: 150
                 stepSize: 1
                 onValueChanged: {
-                    console.log(value/100)
+                    console.log(value / 100);
                     Config.options.background.parallax.workspaceZoom = value / 100;
                 }
             }

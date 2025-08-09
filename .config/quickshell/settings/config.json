@@ -36,7 +36,7 @@
       "enableWorkspace": false,
       "workspaceZoom": 1.1
     },
-    "wallpaperPath": "/home/gmartins/Pictures/Wallpapers/wallpaper.jpg"
+    "wallpaperPath": "/home/gmartins/Pictures/Wallpapers/nix-logo.png"
   },
   "bar": {
     "borderless": false,
@@ -90,8 +90,7 @@
     "ignoredAppRegexes": [],
     "monochromeIcons": false,
     "pinnedApps": [
-      "zen-beta",
-      "org.gnome.nautilus"
+      "zen-beta"
     ],
     "pinnedOnStartup": false
   },

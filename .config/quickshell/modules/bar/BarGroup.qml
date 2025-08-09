@@ -14,11 +14,11 @@ Item {
         id: background
         anchors {
             fill: parent
-            topMargin: 4
-            bottomMargin: 4
+            topMargin: 6
+            bottomMargin: 6
         }
-        color: Config.options?.bar.borderless ? "transparent" : Appearance.colors.colLayer1
-        radius: Appearance.rounding.small
+        color: Config.options?.bar.borderless ? "transparent" : Appearance.colors.colLayer1Alt
+        radius: Appearance.rounding.verysmall
     }
 
     RowLayout {
