@@ -15,7 +15,7 @@ MouseArea {
     required property SystemTrayItem item
     property int trayItemWidth: Appearance.font.pixelSize.larger
 
-    property var ignoredClasses: ["xwaylandvideobridge", "blueman", "Stremio", "Polychromatic"]
+    property var ignoredClasses: Config.options.bar.tray.ignoredClasses
 
     signal menuRequested(var menu, var item, real x, real y)
 

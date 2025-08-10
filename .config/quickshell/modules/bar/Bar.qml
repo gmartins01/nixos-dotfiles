@@ -246,7 +246,6 @@ Scope {
                                 //     Layout.fillHeight: true
                                 // }
 
-
                                 Item {
                                     Layout.fillWidth: true
                                     Layout.fillHeight: true
@@ -454,7 +453,7 @@ Scope {
                             RowLayout {
                                 id: rightSectionRowLayout
                                 anchors.fill: parent
-                                spacing: Config.options.bar.borderless ? 0 : 5
+                                spacing: Config.options.bar.borderless ? 0 : 7
                                 layoutDirection: Qt.RightToLeft
 
                                 BarGroup {
@@ -507,23 +506,6 @@ Scope {
                                             property real realSpacing: 10
                                             spacing: 0
 
-                                            // Revealer {
-                                            //     reveal: Audio.sink?.audio?.muted ?? false
-                                            //     Layout.fillHeight: true
-                                            //     Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
-                                            //     Behavior on Layout.rightMargin {
-                                            //         NumberAnimation {
-                                            //             duration: Appearance.animation.elementMoveFast.duration
-                                            //             easing.type: Appearance.animation.elementMoveFast.type
-                                            //             easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
-                                            //         }
-                                            //     }
-                                            //     MaterialSymbol {
-                                            //         text: "volume_off"
-                                            //         iconSize: Appearance.font.pixelSize.larger
-                                            //         color: rightSidebarButton.colText
-                                            //     }
-                                            // }
                                             Revealer {
                                                 reveal: Audio.source?.audio?.muted ?? false
                                                 Layout.fillHeight: true
@@ -611,6 +593,7 @@ Scope {
                                     Layout.fillHeight: false
                                     Layout.fillWidth: false
                                     Layout.leftMargin: Appearance.rounding.screenRounding
+                                    Layout.rightMargin: Config.options.bar.borderless ? -7 : 0
 
                                     SysTray {
                                         bar: barRoot

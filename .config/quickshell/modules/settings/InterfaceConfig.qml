@@ -9,7 +9,7 @@ ContentPage {
     forceWidth: true
 
     ContentSection {
-        title:"Bar"
+        title: "Bar"
 
         ConfigSelectionArray {
             currentValue: Config.options.bar.cornerStyle
@@ -156,12 +156,18 @@ ContentPage {
         }
 
         ContentSubsection {
-            title: "Weather"
-            ConfigSwitch {
-                text: "Enable"
-                checked: Config.options.bar.weather.enable
-                onCheckedChanged: {
-                    Config.options.bar.weather.enable = checked;
+            title: "SysTray"
+            MaterialTextField {
+                Layout.fillWidth: true
+                placeholderText: "Ignored classes (comma separated)"
+                text: Config.options.bar.tray.ignoredClasses.join(", ")
+                wrapMode: TextEdit.Wrap
+                onTextChanged: {
+                    Config.options.bar.tray.ignoredClasses = text.split(",").map(function (s) {
+                        return s.trim();
+                    }).filter(function (s) {
+                        return s.length > 0;
+                    });
                 }
             }
         }
@@ -311,6 +317,6 @@ ContentPage {
             StyledToolTip {
                 content: "Such regions could be images or parts of the screen that have some containment.\nMight not always be accurate.\nThis is done with an image processing algorithm run locally and no AI is used."
             }
-        }        
+        }
     }
 }

@@ -121,6 +121,7 @@ Singleton {
                     property bool showPerformanceProfileToggle: false
                 }
                 property JsonObject tray: JsonObject {
+                    property list<string> ignoredClasses: [] 
                     property bool monochromeIcons: true
                 }
                 property JsonObject workspaces: JsonObject {
