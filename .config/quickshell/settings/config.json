@@ -36,12 +36,12 @@
       "enableWorkspace": false,
       "workspaceZoom": 1.1
     },
-    "wallpaperPath": "/home/gmartins/Pictures/Wallpapers/nix-logo.png"
+    "wallpaperPath": "/home/gmartins/Pictures/Wallpapers/qk81y2vbscz71.jpg"
   },
   "bar": {
-    "borderless": false,
+    "borderless": true,
     "bottom": false,
-    "cornerStyle": 2,
+    "cornerStyle": 0,
     "resources": {
       "alwaysShowCpu": false,
       "alwaysShowSwap": true

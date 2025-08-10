@@ -281,8 +281,40 @@ main() {
 
     # Only prompt for wallpaper if not using --color and not using --noswitch and no imgpath set
     if [[ -z "$imgpath" && -z "$color_flag" && -z "$noswitch_flag" ]]; then
-        cd "$(xdg-user-dir PICTURES)/Wallpapers/showcase" 2>/dev/null || cd "$(xdg-user-dir PICTURES)/Wallpapers" 2>/dev/null || cd "$(xdg-user-dir PICTURES)" || return 1
-        imgpath="$(kdialog --getopenfilename . --title 'Choose wallpaper')"
+       
+        pictures_dir="$(xdg-user-dir PICTURES)"
+
+        candidates=(
+          "$pictures_dir/Wallpapers/showcase"
+          "$pictures_dir/Wallpapers"
+          "$pictures_dir"
+        )
+
+        startdir=""
+        for d in "${candidates[@]}"; do
+          if [ -d "$d" ]; then
+            startdir="$d"
+            break
+          fi
+        done
+
+        if [ -z "$startdir" ]; then
+          echo "Pictures dir not found" >&2
+          return 1
+        fi
+
+        startdir="${startdir%$'\n'}"         
+        startdir="$(readlink -f "$startdir")"
+        imgpath="$(zenity --file-selection \
+            --title='Change Wallpaper' \
+            --filename="${startdir%/}/" \
+            --file-filter='Images | *.png *.jpg *.jpeg *.webp')"
+
+        status=$?
+
+        if [ $status -ne 0 ] || [ -z "${imgpath:-}" ]; then
+            exit 0
+        fi
     fi
 
     # If type_flag is 'auto', detect scheme type from image (after imgpath is set)

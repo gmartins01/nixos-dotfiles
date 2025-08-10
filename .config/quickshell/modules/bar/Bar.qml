@@ -454,7 +454,7 @@ Scope {
                             RowLayout {
                                 id: rightSectionRowLayout
                                 anchors.fill: parent
-                                spacing: 5
+                                spacing: Config.options.bar.borderless ? 0 : 5
                                 layoutDirection: Qt.RightToLeft
 
                                 BarGroup {
@@ -624,17 +624,6 @@ Scope {
                                     Layout.fillWidth: true
                                     Layout.fillHeight: true
                                 }
-
-                                // Weather
-                                // Loader {
-                                //     Layout.leftMargin: 8
-                                //     Layout.fillHeight: true
-                                //     active: Config.options.bar.weather.enable
-                                //     sourceComponent: BarGroup {
-                                //         implicitHeight: Appearance.sizes.baseBarHeight
-                                //         WeatherBar {}
-                                //     }
-                                // }
                             }
                         }
                     }

@@ -9,12 +9,12 @@ in {
   home.packages = [
     quickshell
     pkgs.xdg-user-dirs
-    pkgs.kdePackages.kdialog
     pkgs.kdePackages.qt5compat
     pkgs.kdePackages.qtdeclarative
     pkgs.cliphist
     pkgs.nwg-look
     pkgs.hyprpicker
+    pkgs.zenity
     #pkgs.wallust
   ];
 

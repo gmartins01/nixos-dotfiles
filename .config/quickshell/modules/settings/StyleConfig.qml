@@ -13,18 +13,6 @@ ContentPage {
     baseWidth: lightDarkButtonGroup.implicitWidth
     forceWidth: true
 
-    Process {
-        id: konachanWallProc
-        property string status: ""
-        command: ["bash", "-c", FileUtils.trimFileProtocol(`${Directories.scriptPath}/colors/random_konachan_wall.sh`)]
-        stdout: SplitParser {
-            onRead: data => {
-                console.log(`Konachan wall proc output: ${data}`);
-                konachanWallProc.status = data.trim();
-            }
-        }
-    }
-
     ContentSection {
         title: "Colors & Wallpaper"
 
