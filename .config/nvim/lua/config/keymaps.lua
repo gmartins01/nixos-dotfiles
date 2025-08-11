@@ -79,3 +79,9 @@ vim.keymap.set("i", "<C-a>", "<C-\\><C-n>v", { silent = true, desc = "Enter Visu
 -- For indentation
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
+
+-- Move lines up/down
+vim.keymap.set("n", "<A-J>", ":m .+1<CR>==", { silent = true, desc = "Move line down (normal)" })
+vim.keymap.set("n", "<A-K>", ":m .-2<CR>==", { silent = true, desc = "Move line up (normal)" })
+vim.keymap.set("v", "<A-J>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move line down (visual)" })
+vim.keymap.set("v", "<A-K>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move line up (visual)" })
