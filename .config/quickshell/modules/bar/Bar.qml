@@ -17,6 +17,8 @@ Scope {
     readonly property int osdHideMouseMoveThreshold: 20
     property bool showBarBackground: Config.options.bar.showBackground
 
+    property bool trayVisible: false
+
     component VerticalBarSeparator: Rectangle {
         Layout.topMargin: Appearance.sizes.baseBarHeight / 3
         Layout.bottomMargin: Appearance.sizes.baseBarHeight / 3
@@ -592,16 +594,54 @@ Scope {
                                 BarGroup {
                                     Layout.fillHeight: false
                                     Layout.fillWidth: false
-                                    Layout.leftMargin: Appearance.rounding.screenRounding
-                                    Layout.rightMargin: Config.options.bar.borderless ? -7 : 0
 
-                                    SysTray {
-                                        bar: barRoot
-                                        visible: barRoot.useShortenedForm === 0
-                                        Layout.fillWidth: false
+                                    MaterialSymbol {
+                                        text: bar.trayVisible ? "chevron_right" : "chevron_left"
+                                        iconSize: Appearance.font.pixelSize.larger
+                                        color: Appearance.colors.colOnLayer0
                                         Layout.fillHeight: true
+                                        Layout.alignment: Qt.AlignVCenter
+                                        Layout.rightMargin: root.trayVisible ? 0 : Appearance.rounding.screenRounding
+
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            acceptedButtons: Qt.LeftButton
+                                            hoverEnabled: true
+                                            onClicked: event => {
+                                                if (event.button === Qt.LeftButton) {
+                                                    bar.trayVisible = !bar.trayVisible;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
+
+                                Revealer {
+                                    reveal: bar.trayVisible
+                                    Layout.fillHeight: true
+                                    Layout.fillWidth: false
+                                    // Layout.alignment: Qt.AlignVCenter
+
+                                    BarGroup {
+                                        id: rightCenterGroup
+                                        Layout.fillHeight: true
+
+                                        SysTray {
+                                            bar: barRoot
+                                            visible: barRoot.useShortenedForm === 0
+                                            Layout.fillWidth: false
+                                            Layout.fillHeight: true
+                                        }
+                                    }
+                                }
+
+                                // SysTray {
+                                //     bar: barRoot
+                                //     visible: barRoot.useShortenedForm === 0
+                                //     Layout.fillWidth: false
+                                //     Layout.fillHeight: true
+                                // }
+                                // }
 
                                 Item {
                                     Layout.fillWidth: true

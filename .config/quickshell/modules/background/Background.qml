@@ -64,20 +64,7 @@ Scope {
             Image {
                 id: wallpaperImage
                 visible: !bgRoot.wallpaperIsVideo
-                // property real value // 0 to 1, for offset
-                // value: {
-                //     // Range = half-groups that workspaces span on
-                //     const chunkSize = 5;
-                //     const lower = Math.floor(bgRoot.firstWorkspaceId / chunkSize) * chunkSize;
-                //     const upper = Math.ceil(bgRoot.lastWorkspaceId / chunkSize) * chunkSize;
-                //     const range = upper - lower;
-                //     return (Config.options.background.parallax.enableWorkspace ? ((bgRoot.monitor.activeWorkspace.id - lower) / range) : 0.5)
-                //         + (0.15 * GlobalStates.sidebarRightOpen * Config.options.background.parallax.enableSidebar)
-                //         - (0.15 * GlobalStates.sidebarLeftOpen * Config.options.background.parallax.enableSidebar)
-                // }
-                // property real effectiveValue: Math.max(0, Math.min(1, value))
-                // x: -(bgRoot.movableXSpace) - (effectiveValue - 0.5) * 2 * bgRoot.movableXSpace
-                // y: -(bgRoot.movableYSpace)
+
                 source: bgRoot.wallpaperPath
                 //fillMode: Image.FillMode
                 anchors.fill: parent

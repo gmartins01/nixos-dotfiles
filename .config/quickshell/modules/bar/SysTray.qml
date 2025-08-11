@@ -31,14 +31,14 @@ Item {
             }
         }
 
-        StyledText {
-            Layout.alignment: Qt.AlignVCenter
-            font.pixelSize: Appearance.font.pixelSize.larger
-            color: Appearance.colors.colSubtext
-            text: "•"
-            visible: {
-                Config.options.bar.borderless && SystemTray.items.values.length > 0;
-            }
-        }
+        // StyledText {
+        //     Layout.alignment: Qt.AlignVCenter
+        //     font.pixelSize: Appearance.font.pixelSize.larger
+        //     color: Appearance.colors.colSubtext
+        //     text: "•"
+        //     visible: {
+        //         Config.options.bar.borderless && SystemTray.items.values.length > 0;
+        //     }
+        // }
     }
 }
