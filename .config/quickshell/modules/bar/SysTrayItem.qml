@@ -45,7 +45,6 @@ MouseArea {
     }
 
     onMenuRequested: (currMenu, item, x, y) => {
-        console.log("aqui", item.x, bar.width);
         var pt = root.mapToItem(bar.contentItem, x, 0);
 
         var menuW = systemTrayContextMenu.implicitWidth;

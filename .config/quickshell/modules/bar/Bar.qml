@@ -262,6 +262,12 @@ Scope {
                             }
                         }
                     }
+                    // id: barRightSideMouseArea
+                    //
+                    //                     anchors.right: parent.right
+                    //                     implicitHeight: Appearance.sizes.baseBarHeight
+                    //                     height: Appearance.sizes.barHeight
+                    //                     width: (barRoot.width - middleSection.width) / 2
 
                     RowLayout { // Middle section
                         id: middleSection
@@ -270,7 +276,7 @@ Scope {
                         BarGroup {
                             id: workspacesGroup
                             padding: workspacesWidget.widgetPadding
-                            Layout.fillHeight: false
+                            Layout.fillHeight: true
                             Layout.fillWidth: false
 
                             WorkspacesBack {
@@ -470,147 +476,149 @@ Scope {
                                         Layout.fillWidth: true
                                     }
                                 }
-                                BarGroup {
-                                    Layout.fillHeight: false
+                                // BarGroup {
+                                //     Layout.fillHeight: false
+                                //     Layout.fillWidth: false
+                                //
+                                RippleButton {
+                                    id: rightSidebarButton
+
+                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                    //Layout.rightMargin: Appearance.rounding.screenRounding
                                     Layout.fillWidth: false
 
-                                    RippleButton { // Right sidebar button
-                                        id: rightSidebarButton
+                                    implicitWidth: indicatorsRowLayout.implicitWidth + 10 * 2
+                                    implicitHeight: indicatorsRowLayout.implicitHeight + 5 * 2
 
-                                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                                        //Layout.rightMargin: Appearance.rounding.screenRounding
-                                        Layout.fillWidth: false
+                                    buttonRadius: Appearance.rounding.full
+                                    colBackground: barRightSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
+                                    colBackgroundHover: Appearance.colors.colLayer1Hover
+                                    colRipple: Appearance.colors.colLayer1Active
+                                    colBackgroundToggled: Appearance.colors.colSecondaryContainer
+                                    colBackgroundToggledHover: Appearance.colors.colSecondaryContainerHover
+                                    colRippleToggled: Appearance.colors.colSecondaryContainerActive
+                                    toggled: GlobalStates.sidebarRightOpen
+                                    property color colText: toggled ? Appearance.m3colors.m3onSecondaryContainer : Appearance.colors.colOnLayer0
 
-                                        implicitWidth: indicatorsRowLayout.implicitWidth + 10 * 2
-                                        implicitHeight: indicatorsRowLayout.implicitHeight + 5 * 2
+                                    Behavior on colText {
+                                        animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
+                                    }
 
-                                        buttonRadius: Appearance.rounding.full
-                                        colBackground: barRightSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
-                                        colBackgroundHover: Appearance.colors.colLayer1Hover
-                                        colRipple: Appearance.colors.colLayer1Active
-                                        colBackgroundToggled: Appearance.colors.colSecondaryContainer
-                                        colBackgroundToggledHover: Appearance.colors.colSecondaryContainerHover
-                                        colRippleToggled: Appearance.colors.colSecondaryContainerActive
-                                        toggled: GlobalStates.sidebarRightOpen
-                                        property color colText: toggled ? Appearance.m3colors.m3onSecondaryContainer : Appearance.colors.colOnLayer0
+                                    // onPressed: {
+                                    //     Hyprland.dispatch('global quickshell:sidebarRightToggle');
+                                    // }
 
-                                        Behavior on colText {
-                                            animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
+                                    onPressed: {
+                                        if (sidebarRightLoader.item) {
+                                            sidebarRightLoader.item.toggle();
                                         }
+                                    }
 
-                                        onPressed: {
-                                            Hyprland.dispatch('global quickshell:sidebarRightToggle');
-                                        }
+                                    RowLayout {
+                                        id: indicatorsRowLayout
+                                        anchors.centerIn: parent
+                                        property real realSpacing: 10
+                                        spacing: 0
 
-                                        RowLayout {
-                                            id: indicatorsRowLayout
-                                            anchors.centerIn: parent
-                                            property real realSpacing: 10
-                                            spacing: 0
-
-                                            Revealer {
-                                                reveal: Audio.source?.audio?.muted ?? false
-                                                Layout.fillHeight: true
-                                                Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
-                                                Behavior on Layout.rightMargin {
-                                                    NumberAnimation {
-                                                        duration: Appearance.animation.elementMoveFast.duration
-                                                        easing.type: Appearance.animation.elementMoveFast.type
-                                                        easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
-                                                    }
-                                                }
-                                                MaterialSymbol {
-                                                    text: "mic_off"
-                                                    iconSize: Appearance.font.pixelSize.larger
-                                                    color: rightSidebarButton.colText
+                                        Revealer {
+                                            reveal: Audio.source?.audio?.muted ?? false
+                                            Layout.fillHeight: true
+                                            Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
+                                            Behavior on Layout.rightMargin {
+                                                NumberAnimation {
+                                                    duration: Appearance.animation.elementMoveFast.duration
+                                                    easing.type: Appearance.animation.elementMoveFast.type
+                                                    easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
                                                 }
                                             }
-                                            // Loader {
-                                            //     active: HyprlandXkb.layoutCodes.length > 1
-                                            //     visible: active
-                                            //     Layout.rightMargin: indicatorsRowLayout.realSpacing
-                                            //     sourceComponent: StyledText {
-                                            //         text: HyprlandXkb.currentLayoutCode
-                                            //         font.pixelSize: Appearance.font.pixelSize.small
-                                            //         color: rightSidebarButton.colText
-                                            //     }
-                                            // }
-                                            // Network icon
-                                            // MaterialSymbol {
-                                            //     Layout.rightMargin: indicatorsRowLayout.realSpacing
-                                            //     text: Network.materialSymbol
-                                            //     iconSize: Appearance.font.pixelSize.larger
-                                            //     color: rightSidebarButton.colText
-                                            // }
-
                                             MaterialSymbol {
-                                                id: volumeIcon
-
-                                                Layout.rightMargin: indicatorsRowLayout.realSpacing
-
-                                                text: {
-                                                    if (Audio.sink?.audio.muted) {
-                                                        return "volume_off";
-                                                    } else if (Audio.sink?.audio.volume === 0) {
-                                                        return "volume_mute";
-                                                    } else if (Audio.sink?.audio.volume <= 0.30) {
-                                                        return "volume_down";
-                                                    } else {
-                                                        return "volume_up";
-                                                    }
-                                                }
-
-                                                iconSize: Appearance.font.pixelSize.larger
-                                                color: rightSidebarButton.colText
-
-                                                WheelHandler {
-                                                    target: volumeIcon
-                                                    onWheel: event => {
-                                                        const current = Audio.sink.audio.volume;
-                                                        const step = current < 0.1 ? 0.01 : 0.02;
-                                                        if (event.angleDelta.y < 0)
-                                                            Audio.sink.audio.volume = Math.max(0, current - step);
-                                                        else if (event.angleDelta.y > 0)
-                                                            Audio.sink.audio.volume = Math.min(1, current + step);
-                                                    }
-                                                    acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
-                                                }
-                                            }
-
-                                            MaterialSymbol {
-                                                text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
+                                                text: "mic_off"
                                                 iconSize: Appearance.font.pixelSize.larger
                                                 color: rightSidebarButton.colText
                                             }
+                                        }
+                                        // Loader {
+                                        //     active: HyprlandXkb.layoutCodes.length > 1
+                                        //     visible: active
+                                        //     Layout.rightMargin: indicatorsRowLayout.realSpacing
+                                        //     sourceComponent: StyledText {
+                                        //         text: HyprlandXkb.currentLayoutCode
+                                        //         font.pixelSize: Appearance.font.pixelSize.small
+                                        //         color: rightSidebarButton.colText
+                                        //     }
+                                        // }
+                                        // Network icon
+                                        // MaterialSymbol {
+                                        //     Layout.rightMargin: indicatorsRowLayout.realSpacing
+                                        //     text: Network.materialSymbol
+                                        //     iconSize: Appearance.font.pixelSize.larger
+                                        //     color: rightSidebarButton.colText
+                                        // }
 
-                                            BatteryIndicator {
-                                                visible: (barRoot.useShortenedForm < 2 && UPower.displayDevice.isLaptopBattery)
-                                                Layout.alignment: Qt.AlignVCenter
+                                        MaterialSymbol {
+                                            id: volumeIcon
+
+                                            Layout.rightMargin: indicatorsRowLayout.realSpacing
+
+                                            text: {
+                                                if (Audio.sink?.audio.muted) {
+                                                    return "volume_off";
+                                                } else if (Audio.sink?.audio.volume === 0) {
+                                                    return "volume_mute";
+                                                } else if (Audio.sink?.audio.volume <= 0.30) {
+                                                    return "volume_down";
+                                                } else {
+                                                    return "volume_up";
+                                                }
                                             }
+
+                                            iconSize: Appearance.font.pixelSize.larger
+                                            color: rightSidebarButton.colText
+
+                                            WheelHandler {
+                                                target: volumeIcon
+                                                onWheel: event => {
+                                                    const current = Audio.sink.audio.volume;
+                                                    const step = current < 0.1 ? 0.01 : 0.02;
+                                                    if (event.angleDelta.y < 0)
+                                                        Audio.sink.audio.volume = Math.max(0, current - step);
+                                                    else if (event.angleDelta.y > 0)
+                                                        Audio.sink.audio.volume = Math.min(1, current + step);
+                                                }
+                                                acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
+                                            }
+                                        }
+
+                                        MaterialSymbol {
+                                            text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
+                                            iconSize: Appearance.font.pixelSize.larger
+                                            color: rightSidebarButton.colText
+                                        }
+
+                                        BatteryIndicator {
+                                            visible: (barRoot.useShortenedForm < 2 && UPower.displayDevice.isLaptopBattery)
+                                            Layout.alignment: Qt.AlignVCenter
                                         }
                                     }
                                 }
+                                // }
 
-                                BarGroup {
-                                    Layout.fillHeight: false
-                                    Layout.fillWidth: false
+                                MaterialSymbol {
+                                    text: bar.trayVisible ? "chevron_right" : "chevron_left"
+                                    iconSize: Appearance.font.pixelSize.huge
+                                    color: Appearance.colors.colOnLayer0
+                                    Layout.fillHeight: true
+                                    Layout.alignment: Qt.AlignVCenter
+                                    // Layout.rightMargin: root.trayVisible ? 0 : Appearance.rounding.screenRounding
+                                    Layout.leftMargin: 5
 
-                                    MaterialSymbol {
-                                        text: bar.trayVisible ? "chevron_right" : "chevron_left"
-                                        iconSize: Appearance.font.pixelSize.larger
-                                        color: Appearance.colors.colOnLayer0
-                                        Layout.fillHeight: true
-                                        Layout.alignment: Qt.AlignVCenter
-                                        Layout.rightMargin: root.trayVisible ? 0 : Appearance.rounding.screenRounding
-
-                                        MouseArea {
-                                            anchors.fill: parent
-                                            acceptedButtons: Qt.LeftButton
-                                            hoverEnabled: true
-                                            onClicked: event => {
-                                                if (event.button === Qt.LeftButton) {
-                                                    bar.trayVisible = !bar.trayVisible;
-                                                }
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        acceptedButtons: Qt.LeftButton
+                                        hoverEnabled: true
+                                        onClicked: event => {
+                                            if (event.button === Qt.LeftButton) {
+                                                bar.trayVisible = !bar.trayVisible;
                                             }
                                         }
                                     }
@@ -622,16 +630,11 @@ Scope {
                                     Layout.fillWidth: false
                                     // Layout.alignment: Qt.AlignVCenter
 
-                                    BarGroup {
-                                        id: rightCenterGroup
+                                    SysTray {
+                                        bar: barRoot
+                                        visible: barRoot.useShortenedForm === 0
+                                        Layout.fillWidth: false
                                         Layout.fillHeight: true
-
-                                        SysTray {
-                                            bar: barRoot
-                                            visible: barRoot.useShortenedForm === 0
-                                            Layout.fillWidth: false
-                                            Layout.fillHeight: true
-                                        }
                                     }
                                 }
 

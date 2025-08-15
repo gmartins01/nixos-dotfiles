@@ -48,23 +48,65 @@ ShellRoot {
         //Cliphist.refresh()
         //FirstRunExperience.load()
         //Hyprsunset.load()
-        MaterialThemeLoader.reapplyTheme()
+        MaterialThemeLoader.reapplyTheme();
     }
 
-    LazyLoader { active: enableBar; component: Bar {} }
-    LazyLoader { active: enableBackground; component: Background {} }
-    LazyLoader { active: enableCheatsheet; component: Cheatsheet {} }
-    LazyLoader { active: enableDock && Config.options.dock.enable; component: Dock {} }
+    LazyLoader {
+        active: enableBar
+        component: Bar {}
+    }
+    LazyLoader {
+        active: enableBackground
+        component: Background {}
+    }
+    LazyLoader {
+        active: enableCheatsheet
+        component: Cheatsheet {}
+    }
+    LazyLoader {
+        active: enableDock && Config.options.dock.enable
+        component: Dock {}
+    }
     //LazyLoader { active: enableLock; component: Lock {} }
-    LazyLoader { active: enableMediaControls; component: MediaControls {} }
-    LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
-    LazyLoader { active: enableOnScreenDisplayBrightness; component: OnScreenDisplayBrightness {} }
-    LazyLoader { active: enableOnScreenDisplayVolume; component: OnScreenDisplayVolume {} }
-    LazyLoader { active: enableOverview; component: Overview {} }
-    LazyLoader { active: enableReloadPopup; component: ReloadPopup {} }
-    LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
-    LazyLoader { active: enableSession; component: Session {} }
-    //LazyLoader { active: enableSidebarLeft; component: SidebarLeft {} }
-    LazyLoader { active: enableSidebarRight; component: SidebarRight {} }
-}
+    LazyLoader {
+        active: enableMediaControls
+        component: MediaControls {}
+    }
+    LazyLoader {
+        active: enableNotificationPopup
+        component: NotificationPopup {}
+    }
+    LazyLoader {
+        active: enableOnScreenDisplayBrightness
+        component: OnScreenDisplayBrightness {}
+    }
+    LazyLoader {
+        active: enableOnScreenDisplayVolume
+        component: OnScreenDisplayVolume {}
+    }
+    LazyLoader {
+        active: enableOverview
+        component: Overview {}
+    }
+    LazyLoader {
+        active: enableReloadPopup
+        component: ReloadPopup {}
+    }
+    LazyLoader {
+        active: enableScreenCorners
+        component: ScreenCorners {}
+    }
+    LazyLoader {
+        active: enableSession
+        component: Session {}
+    }
 
+    LazyLoader {
+        id: sidebarRightLoader
+
+        active: enableSidebarRight
+        component: SidebarRight {
+            id: sidebarRight
+        }
+    }
+}

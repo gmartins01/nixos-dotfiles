@@ -41,7 +41,7 @@
     "bar": {
         "borderless": true,
         "bottom": false,
-        "cornerStyle": 0,
+        "cornerStyle": 1,
         "resources": {
             "alwaysShowCpu": false,
             "alwaysShowSwap": true
@@ -168,7 +168,7 @@
         }
     },
     "time": {
-        "dateFormat": "ddd, dd/MM",
+        "dateFormat": "dd/MM/yyyy",
         "format": "hh:mm"
     },
     "windows": {

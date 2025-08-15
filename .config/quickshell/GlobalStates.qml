@@ -17,6 +17,10 @@ Singleton {
     property bool superReleaseMightTrigger: true
     property bool screenLocked: false
     property bool screenLockContainsCharacters: false
+    property bool isHyprland: false
+    property bool isNiri: false
+
+    property var sidebarRightHandler
 
     property real screenZoom: 1
     onScreenZoomChanged: {
@@ -63,6 +67,36 @@ Singleton {
 
         function zoomOut() {
             screenZoom = Math.max(screenZoom - 0.4, 1);
+        }
+    }
+
+    Component.onCompleted: {
+        detectCompositor();
+    }
+
+    function detectCompositor() {
+        try {
+            try {
+                if (Hyprland.eventSocketPath) {
+                    console.log("Detected Hyprland compositor");
+                    root.isHyprland = true;
+                    root.isNiri = false;
+                    return;
+                }
+            } catch (e) {
+                console.log("Hyprland not available:", e);
+            }
+
+            if (typeof Niri !== "undefined") {
+                console.log("Detected Niri service");
+                root.isHyprland = false;
+                root.isNiri = true;
+                return;
+            }
+
+            console.log("No supported compositor detected");
+        } catch (e) {
+            console.error("Error detecting compositor:", e);
         }
     }
 }

@@ -20,18 +20,38 @@ Scope {
     property string settingsQmlPath: Quickshell.shellPath("settings.qml")
 
     PanelWindow {
+        id: sidebarShield
+        visible: GlobalStates.sidebarRightOpen
+        color: "transparent"
+        exclusiveZone: 0
+        WlrLayershell.namespace: "quickshell:sidebarRightShield"
+        WlrLayershell.layer: WlrLayershell.Overlay
+        WlrLayershell.exclusiveZone: -1
+
+        anchors {
+            top: true
+            right: false
+            bottom: true
+            left: true
+        }
+        width: Screen.width - sidebarWidth
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: root.hide()
+        }
+    }
+
+    PanelWindow {
         id: sidebarRoot
         visible: GlobalStates.sidebarRightOpen
-
-        function hide() {
-            GlobalStates.sidebarRightOpen = false
-        }
 
         exclusiveZone: 0
         implicitWidth: sidebarWidth
         WlrLayershell.namespace: "quickshell:sidebarRight"
         // Hyprland 0.49: Focus is always exclusive and setting this breaks mouse focus grab
         // WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+        WlrLayershell.keyboardFocus: GlobalStates.sidebarRightOpen ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
         color: "transparent"
 
         anchors {
@@ -40,14 +60,15 @@ Scope {
             bottom: true
         }
 
-        HyprlandFocusGrab {
-            id: grab
-            windows: [ sidebarRoot ]
-            active: GlobalStates.sidebarRightOpen
-            onCleared: () => {
-                if (!active) sidebarRoot.hide()
-            }
-        }
+        // HyprlandFocusGrab {
+        //     id: grab
+        //     windows: [sidebarRoot]
+        //     active: GlobalStates.sidebarRightOpen
+        //     onCleared: () => {
+        //         if (!active)
+        //             root.hide();
+        //     }
+        // }
 
         Loader {
             id: sidebarContentLoader
@@ -66,9 +87,10 @@ Scope {
             height: parent.height - Appearance.sizes.hyprlandGapsOut * 2
 
             focus: GlobalStates.sidebarRightOpen
-            Keys.onPressed: (event) => {
+
+            Keys.onPressed: event => {
                 if (event.key === Qt.Key_Escape) {
-                    sidebarRoot.hide();
+                    root.hide();
                 }
             }
 
@@ -134,8 +156,8 @@ Scope {
                                     toggled: false
                                     buttonIcon: "restart_alt"
                                     onClicked: {
-                                        Hyprland.dispatch("reload")
-                                        Quickshell.reload(true)
+                                        Hyprland.dispatch("reload");
+                                        Quickshell.reload(true);
                                     }
                                     StyledToolTip {
                                         content: "Reload Hyprland & Quickshell"
@@ -145,8 +167,8 @@ Scope {
                                     toggled: false
                                     buttonIcon: "settings"
                                     onClicked: {
-                                        Hyprland.dispatch("global quickshell:sidebarRightClose")
-                                        Quickshell.execDetached(["qs", "-p", root.settingsQmlPath])
+                                        Hyprland.dispatch("global quickshell:sidebarRightClose");
+                                        Quickshell.execDetached(["qs", "-p", root.settingsQmlPath]);
                                     }
                                     StyledToolTip {
                                         content: "Settings"
@@ -156,7 +178,7 @@ Scope {
                                     toggled: false
                                     buttonIcon: "power_settings_new"
                                     onClicked: {
-                                        Hyprland.dispatch("global quickshell:sessionOpen")
+                                        Hyprland.dispatch("global quickshell:sessionOpen");
                                     }
                                     StyledToolTip {
                                         content: "Session"
@@ -197,25 +219,39 @@ Scope {
                 }
             }
         }
+    }
 
+    function toggle() {
+        GlobalStates.sidebarRightOpen = !GlobalStates.sidebarRightOpen;
+        if (GlobalStates.sidebarRightOpen)
+            Notifications.timeoutAll();
+    }
 
+    function show() {
+        GlobalStates.sidebarRightOpen = true;
+    }
+
+    function hide() {
+        GlobalStates.sidebarRightOpen = false;
     }
 
     IpcHandler {
+        id: sidebarRightHandler
         target: "sidebarRight"
 
         function toggle(): void {
             GlobalStates.sidebarRightOpen = !GlobalStates.sidebarRightOpen;
-            if(GlobalStates.sidebarRightOpen) Notifications.timeoutAll();
-        }
-
-        function close(): void {
-            GlobalStates.sidebarRightOpen = false;
+            if (GlobalStates.sidebarRightOpen)
+                Notifications.timeoutAll();
         }
 
         function open(): void {
             GlobalStates.sidebarRightOpen = true;
             Notifications.timeoutAll();
+        }
+
+        function close(): void {
+            GlobalStates.sidebarRightOpen = false;
         }
     }
 
@@ -225,7 +261,8 @@ Scope {
 
         onPressed: {
             GlobalStates.sidebarRightOpen = !GlobalStates.sidebarRightOpen;
-            if(GlobalStates.sidebarRightOpen) Notifications.timeoutAll();
+            if (GlobalStates.sidebarRightOpen)
+                Notifications.timeoutAll();
         }
     }
     GlobalShortcut {
@@ -245,5 +282,4 @@ Scope {
             GlobalStates.sidebarRightOpen = false;
         }
     }
-
 }
