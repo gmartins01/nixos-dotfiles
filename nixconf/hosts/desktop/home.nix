@@ -127,7 +127,7 @@ in {
         name = "Neovim";
         icon = "utilities-terminal";
         genericName = "Text Editor";
-        exec = "wezterm -e nvim %F";
+        exec = "kitty -1 nvim %F";
         terminal = false;
         mimeType = ["text/plain" "text/markdown"];
         categories = ["Development" "TextEditor"];
@@ -166,7 +166,7 @@ in {
 
   home.sessionVariables = {
     #QT_QPA_PLATFORMTHEME="kde";
-    TERM = "wezterm";
+    TERM = "kitty";
     TERMINAL = "screen-256color";
     EDITOR = "nvim";
   };

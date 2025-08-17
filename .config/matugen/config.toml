@@ -19,3 +19,12 @@ output_path = '~/.config/qt6ct/colors/matugen.conf'
 [templates.quickshell]
 input_path = './templates/quickshell-colors.json'
 output_path = '~/.config/quickshell/settings/colors.json'
+
+[templates.kitty]
+input_path = './templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+post_hook = 'pkill -SIGUSR1 kitty'
+
+[templates.fuzzel]
+input_path = './templates/fuzzel.ini'
+output_path = '~/.config/fuzzel/colors.ini'

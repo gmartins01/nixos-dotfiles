@@ -5,15 +5,15 @@
 }: {
   home.packages = with pkgs; [
     inputs.zen-browser.packages.${pkgs.system}.default
-    pkgs.postman
-    pkgs.stable.gimp
+    postman
+    stable.gimp
 
-    pkgs.proton-pass
+    proton-pass
 
-    pkgs.wezterm
+    wezterm
 
-    pkgs.gparted
+    gparted
 
-    pkgs.spotify
+    spotify
   ];
 }

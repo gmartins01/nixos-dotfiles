@@ -14,7 +14,7 @@
     settings = {
       "$mainMod" = "SUPER";
       "$shiftMod" = "SUPER SHIFT";
-      "$terminal" = "${pkgs.wezterm}/bin/wezterm";
+      "$terminal" = "${pkgs.kitty}/bin/kitty";
       "$fileManager" = "${pkgs.nautilus}/bin/nautilus";
       "$menu" = "${pkgs.fuzzel}/bin/fuzzel";
 
