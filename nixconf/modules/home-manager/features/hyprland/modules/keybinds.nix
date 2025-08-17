@@ -15,7 +15,7 @@
       "$mainMod" = "SUPER";
       "$shiftMod" = "SUPER SHIFT";
       "$terminal" = "${pkgs.kitty}/bin/kitty";
-      "$fileManager" = "${pkgs.nautilus}/bin/nautilus";
+      "$fileManager" = "uwsm app -- ${pkgs.nautilus}/bin/nautilus";
       "$menu" = "${pkgs.fuzzel}/bin/fuzzel";
 
       binds = {
