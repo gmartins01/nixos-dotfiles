@@ -19,6 +19,8 @@
 
     # Mount, trash, and other functionalities
     gvfs.enable = true;
+
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
   };
 }
-
