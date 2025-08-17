@@ -6,6 +6,25 @@
 }: {
   wayland.windowManager.hyprland = {
     settings = {
+      layerrule = [
+        "blur, quickshell:bar"
+        "ignorealpha 0.2, quickshell:bar"
+        "ignorezero, quickshell:bar"
+        "blur, quickshell:sidebarRight"
+        "ignorezero, quickshell:sidebarRight"
+        "ignorealpha 0.2, quickshell:sidebarRight"
+        "blur, quickshell:notificationPopup"
+        "ignorezero, quickshell:notificationPopup"
+        "ignorealpha 0.2, quickshell:notificationPopup"
+        "blur, quickshell:session"
+        "blur, quickshell:dock"
+        "ignorezero, quickshell:dock"
+        "ignorealpha 0.2, quickshell:dock"
+        "blur, quickshell:overview"
+        "ignorezero, quickshell:overview"
+        "ignorealpha 0.2, quickshell:overview"
+      ];
+
       windowrule = [
         # "Smart gaps" / "No gaps when only"
         "bordersize 0, floating:0, onworkspace:f[1]"
