@@ -9,28 +9,27 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Pipewire
 
-
 Item {
     id: root
     property bool showDeviceSelector: false
     property bool deviceSelectorInput
     property int dialogMargins: 16
     property PwNode selectedDevice
-    readonly property list<PwNode> appPwNodes: Pipewire.nodes.values.filter((node) => {
+    readonly property list<PwNode> appPwNodes: Pipewire.nodes.values.filter(node => {
         // return node.type == "21" // Alternative, not as clean
-        return node.isSink && node.isStream
+        return node.isSink && node.isStream;
     })
 
     function showDeviceSelectorDialog(input: bool) {
-        root.selectedDevice = null
-        root.showDeviceSelector = true
-        root.deviceSelectorInput = input
+        root.selectedDevice = null;
+        root.showDeviceSelector = true;
+        root.deviceSelectorInput = input;
     }
 
-    Keys.onPressed: (event) => {
+    Keys.onPressed: event => {
         // Close dialog on pressing Esc if open
         if (event.key === Qt.Key_Escape && root.showDeviceSelector) {
-            root.showDeviceSelector = false
+            root.showDeviceSelector = false;
             event.accepted = true;
         }
     }
@@ -40,7 +39,7 @@ Item {
         Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            ListView {
+            StyledListView {
                 id: listView
                 model: root.appPwNodes
                 clip: true
@@ -99,19 +98,13 @@ Item {
             }
         }
 
-        // Separator
-        Rectangle {
-            color: Appearance.m3colors.m3outlineVariant
-            implicitHeight: 1
-            Layout.fillWidth: true
-        }
-
-
         // Device selector
-        ButtonGroup {
+        RowLayout {
             id: deviceSelectorRowLayout
             Layout.fillWidth: true
             Layout.fillHeight: false
+            uniformCellSizes: true
+
             AudioDeviceSelectorButton {
                 Layout.fillWidth: true
                 input: false
@@ -133,7 +126,7 @@ Item {
         visible: opacity > 0
         opacity: root.showDeviceSelector ? 1 : 0
         Behavior on opacity {
-            NumberAnimation { 
+            NumberAnimation {
                 duration: Appearance.animation.elementMoveFast.duration
                 easing.type: Appearance.animation.elementMoveFast.type
                 easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
@@ -162,7 +155,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.margins: 30
             implicitHeight: dialogColumnLayout.implicitHeight
-            
+
             ColumnLayout {
                 id: dialogColumnLayout
                 anchors.fill: parent
@@ -187,12 +180,12 @@ Item {
                     Layout.rightMargin: dialogMargins
                 }
 
-                Flickable {
+                StyledFlickable {
                     id: dialogFlickable
                     Layout.fillWidth: true
                     clip: true
                     implicitHeight: Math.min(scrimOverlay.height - dialogMargins * 8 - dialogTitle.height - dialogButtonsRowLayout.height, devicesColumnLayout.implicitHeight)
-                    
+
                     contentHeight: devicesColumnLayout.implicitHeight
 
                     ColumnLayout {
@@ -204,7 +197,7 @@ Item {
                         Repeater {
                             model: ScriptModel {
                                 values: Pipewire.nodes.values.filter(node => {
-                                    return !node.isStream && node.isSink !== root.deviceSelectorInput && node.audio
+                                    return !node.isStream && node.isSink !== root.deviceSelectorInput && node.audio;
                                 })
                             }
 
@@ -222,14 +215,15 @@ Item {
                                 Connections {
                                     target: root
                                     function onShowDeviceSelectorChanged() {
-                                        if(!root.showDeviceSelector) return;
-                                        radioButton.checked = (modelData.id === Pipewire.defaultAudioSink?.id)
+                                        if (!root.showDeviceSelector)
+                                            return;
+                                        radioButton.checked = (modelData.id === Pipewire.defaultAudioSink?.id);
                                     }
                                 }
 
                                 onCheckedChanged: {
                                     if (checked) {
-                                        root.selectedDevice = modelData
+                                        root.selectedDevice = modelData;
                                     }
                                 }
                             }
@@ -258,18 +252,18 @@ Item {
                     DialogButton {
                         buttonText: Translation.tr("Cancel")
                         onClicked: {
-                            root.showDeviceSelector = false
+                            root.showDeviceSelector = false;
                         }
                     }
                     DialogButton {
                         buttonText: Translation.tr("OK")
                         onClicked: {
-                            root.showDeviceSelector = false
+                            root.showDeviceSelector = false;
                             if (root.selectedDevice) {
                                 if (root.deviceSelectorInput) {
-                                    Pipewire.preferredDefaultAudioSource = root.selectedDevice
+                                    Pipewire.preferredDefaultAudioSource = root.selectedDevice;
                                 } else {
-                                    Pipewire.preferredDefaultAudioSink = root.selectedDevice
+                                    Pipewire.preferredDefaultAudioSink = root.selectedDevice;
                                 }
                             }
                         }
@@ -278,5 +272,4 @@ Item {
             }
         }
     }
-
 }

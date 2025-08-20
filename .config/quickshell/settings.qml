@@ -33,6 +33,11 @@ ApplicationWindow {
             component: "modules/settings/InterfaceConfig.qml"
         },
         {
+            name: "Brightness",
+            icon: "brightness_6",
+            component: "modules/settings/BrightnessTab.qml"
+        },
+        {
             name: "Services",
             icon: "settings",
             component: "modules/settings/ServicesConfig.qml"
@@ -52,10 +57,10 @@ ApplicationWindow {
 
     visible: true
     onClosing: Qt.quit()
-    title: "illogical-impulse Settings"
+    title: "Settings"
 
     Component.onCompleted: {
-        MaterialThemeLoader.reapplyTheme()
+        MaterialThemeLoader.reapplyTheme();
     }
 
     minimumWidth: 600
@@ -70,28 +75,26 @@ ApplicationWindow {
             margins: contentPadding
         }
 
-        Keys.onPressed: (event) => {
+        Keys.onPressed: event => {
             if (event.modifiers === Qt.ControlModifier) {
                 if (event.key === Qt.Key_PageDown) {
-                    root.currentPage = Math.min(root.currentPage + 1, root.pages.length - 1)
+                    root.currentPage = Math.min(root.currentPage + 1, root.pages.length - 1);
                     event.accepted = true;
-                } 
-                else if (event.key === Qt.Key_PageUp) {
-                    root.currentPage = Math.max(root.currentPage - 1, 0)
+                } else if (event.key === Qt.Key_PageUp) {
+                    root.currentPage = Math.max(root.currentPage - 1, 0);
                     event.accepted = true;
-                }
-                else if (event.key === Qt.Key_Tab) {
+                } else if (event.key === Qt.Key_Tab) {
                     root.currentPage = (root.currentPage + 1) % root.pages.length;
                     event.accepted = true;
-                }
-                else if (event.key === Qt.Key_Backtab) {
+                } else if (event.key === Qt.Key_Backtab) {
                     root.currentPage = (root.currentPage - 1 + root.pages.length) % root.pages.length;
                     event.accepted = true;
                 }
             }
         }
 
-        Item { // Titlebar
+        Item {
+            // Titlebar
             visible: Config.options?.windows.showTitlebar
             Layout.fillWidth: true
             Layout.fillHeight: false
@@ -128,7 +131,8 @@ ApplicationWindow {
             }
         }
 
-        RowLayout { // Window content with navigation rail and content pane
+        RowLayout {
+            // Window content with navigation rail and content pane
             Layout.fillWidth: true
             Layout.fillHeight: true
             spacing: contentPadding
@@ -149,7 +153,7 @@ ApplicationWindow {
                     }
                     spacing: 10
                     expanded: root.width > 900
-                    
+
                     NavigationRailExpandButton {
                         focus: root.visible
                     }
@@ -178,7 +182,7 @@ ApplicationWindow {
                                 required property var index
                                 required property var modelData
                                 toggled: root.currentPage === index
-                                onClicked: root.currentPage = index;
+                                onClicked: root.currentPage = index
                                 expanded: navRail.expanded
                                 buttonIcon: modelData.icon
                                 buttonText: modelData.name
@@ -192,7 +196,8 @@ ApplicationWindow {
                     }
                 }
             }
-            Rectangle { // Content container
+            Rectangle {
+                // Content container
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 color: Appearance.m3colors.m3surfaceContainerLow

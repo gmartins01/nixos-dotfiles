@@ -114,7 +114,7 @@ ContentPage {
 
         ContentSubsection {
             title: "Workspaces"
-            tooltip: "Tip: Hide icons and always show numbers for\nthe classic illogical-impulse experience"
+            tooltip: ""
 
             ConfigRow {
                 uniform: true

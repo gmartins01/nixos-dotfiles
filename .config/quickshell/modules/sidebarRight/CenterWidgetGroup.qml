@@ -3,6 +3,7 @@ import qs.modules.common.widgets
 import qs.services
 import "./notifications"
 import "./volumeMixer"
+import "./brightness/"
 import qs
 import Qt5Compat.GraphicalEffects
 import QtQuick
@@ -15,22 +16,35 @@ Rectangle {
     color: Appearance.colors.colLayer1
 
     property int selectedTab: 0
-    property var tabButtonList: [{"icon": "notifications", "name": Translation.tr("Notifications")}, {"icon": "volume_up", "name": Translation.tr("Volume mixer")}]
+    property var tabButtonList: [
+        {
+            "icon": "notifications",
+            "name": "Notifications"
+        },
+        {
+            "icon": "volume_up",
+            "name": "Volume mixer"
+        },
+        {
+            "icon": "brightness_6",
+            "name": "Brightness"
+        }
+    ]
 
-    Keys.onPressed: (event) => {
+    Keys.onPressed: event => {
         if (event.key === Qt.Key_PageDown || event.key === Qt.Key_PageUp) {
             if (event.key === Qt.Key_PageDown) {
-                root.selectedTab = Math.min(root.selectedTab + 1, root.tabButtonList.length - 1)
+                root.selectedTab = Math.min(root.selectedTab + 1, root.tabButtonList.length - 1);
             } else if (event.key === Qt.Key_PageUp) {
-                root.selectedTab = Math.max(root.selectedTab - 1, 0)
+                root.selectedTab = Math.max(root.selectedTab - 1, 0);
             }
             event.accepted = true;
         }
         if (event.modifiers === Qt.ControlModifier) {
             if (event.key === Qt.Key_Tab) {
-                root.selectedTab = (root.selectedTab + 1) % root.tabButtonList.length
+                root.selectedTab = (root.selectedTab + 1) % root.tabButtonList.length;
             } else if (event.key === Qt.Key_Backtab) {
-                root.selectedTab = (root.selectedTab - 1 + root.tabButtonList.length) % root.tabButtonList.length
+                root.selectedTab = (root.selectedTab - 1 + root.tabButtonList.length) % root.tabButtonList.length;
             }
             event.accepted = true;
         }
@@ -45,9 +59,9 @@ Rectangle {
             id: tabBar
             tabButtonList: root.tabButtonList
             externalTrackedTab: root.selectedTab
-            
+
             function onCurrentIndexChanged(currentIndex) {
-                root.selectedTab = currentIndex
+                root.selectedTab = currentIndex;
             }
         }
 
@@ -59,8 +73,8 @@ Rectangle {
             spacing: 10
             currentIndex: root.selectedTab
             onCurrentIndexChanged: {
-                tabBar.enableIndicatorAnimation = true
-                root.selectedTab = currentIndex
+                tabBar.enableIndicatorAnimation = true;
+                root.selectedTab = currentIndex;
             }
 
             clip: true
@@ -75,6 +89,7 @@ Rectangle {
 
             NotificationList {}
             VolumeMixer {}
+            Brightness {}
         }
     }
 }
