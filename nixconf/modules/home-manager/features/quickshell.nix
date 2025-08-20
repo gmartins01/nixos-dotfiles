@@ -6,7 +6,7 @@
 }: let
   quickshell = inputs.quickshell.packages.${pkgs.system}.default;
 in {
-  home.packages = [
+  home.packages = with pkgs; [
     quickshell
     pkgs.xdg-user-dirs
     pkgs.kdePackages.qt5compat
