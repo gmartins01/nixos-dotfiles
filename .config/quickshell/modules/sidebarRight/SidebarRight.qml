@@ -19,28 +19,28 @@ Scope {
     property int sidebarPadding: 12
     property string settingsQmlPath: Quickshell.shellPath("settings.qml")
 
-    PanelWindow {
-        id: sidebarShield
-        visible: GlobalStates.sidebarRightOpen
-        color: "transparent"
-        exclusiveZone: 0
-        WlrLayershell.namespace: "quickshell:sidebarRightShield"
-        WlrLayershell.layer: WlrLayershell.Overlay
-        WlrLayershell.exclusiveZone: -1
-
-        anchors {
-            top: true
-            right: false
-            bottom: true
-            left: true
-        }
-        width: Screen.width - sidebarWidth
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: root.hide()
-        }
-    }
+    // PanelWindow {
+    //     id: sidebarShield
+    //     visible: GlobalStates.sidebarRightOpen
+    //     color: "transparent"
+    //     exclusiveZone: 0
+    //     WlrLayershell.namespace: "quickshell:sidebarRightShield"
+    //     WlrLayershell.layer: WlrLayershell.Overlay
+    //     WlrLayershell.exclusiveZone: -1
+    //
+    //     anchors {
+    //         top: true
+    //         right: false
+    //         bottom: true
+    //         left: true
+    //     }
+    //     width: Screen.width - sidebarWidth
+    //
+    //     MouseArea {
+    //         anchors.fill: parent
+    //         onClicked: root.hide()
+    //     }
+    // }
 
     PanelWindow {
         id: sidebarRoot
@@ -49,8 +49,6 @@ Scope {
         exclusiveZone: 0
         implicitWidth: sidebarWidth
         WlrLayershell.namespace: "quickshell:sidebarRight"
-        // Hyprland 0.49: Focus is always exclusive and setting this breaks mouse focus grab
-        // WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
         WlrLayershell.keyboardFocus: GlobalStates.sidebarRightOpen ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
         color: "transparent"
 
@@ -60,15 +58,15 @@ Scope {
             bottom: true
         }
 
-        // HyprlandFocusGrab {
-        //     id: grab
-        //     windows: [sidebarRoot]
-        //     active: GlobalStates.sidebarRightOpen
-        //     onCleared: () => {
-        //         if (!active)
-        //             root.hide();
-        //     }
-        // }
+        HyprlandFocusGrab {
+            id: grab
+            windows: [sidebarRoot]
+            active: GlobalStates.sidebarRightOpen
+            onCleared: () => {
+                if (!active)
+                    root.hide();
+            }
+        }
 
         Loader {
             id: sidebarContentLoader
@@ -178,7 +176,8 @@ Scope {
                                     toggled: false
                                     buttonIcon: "power_settings_new"
                                     onClicked: {
-                                        Hyprland.dispatch("global quickshell:sessionOpen");
+                                        Quickshell.execDetached(["qs", "ipc", "call", "session", "open"]);
+                                        //Hyprland.dispatch("global quickshell:sessionOpen");
                                     }
                                     StyledToolTip {
                                         content: "Session"
