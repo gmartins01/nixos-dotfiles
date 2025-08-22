@@ -16,7 +16,6 @@ Singleton {
     }
 
     function getAvailableMethods(): list<string> {
-        console.log("aqui");
         var methods = [];
         if (monitors.some(m => m.isDdc))
             methods.push("ddcutil");
@@ -89,6 +88,8 @@ Singleton {
         property real brightness
         property real lastBrightness: 0
         property real queuedBrightness: NaN
+
+        property bool showOsd: false
 
         // Signal for brightness changes
         signal brightnessUpdated(real newBrightness)
@@ -172,6 +173,8 @@ Singleton {
 
             brightness = value;
             brightnessUpdated(brightness);
+
+            monitor.showOsd = true;
 
             if (isAppleDisplay) {
                 Quickshell.execDetached(["asdbctl", "set", rounded]);

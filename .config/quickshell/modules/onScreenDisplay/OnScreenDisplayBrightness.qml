@@ -7,112 +7,117 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
-import Quickshell.Hyprland
 import Quickshell.Wayland
 
 Scope {
     id: root
-    property bool showOsdValues: false
-    property var focusedScreen: Quickshell.screens.find(s => s.name === Hyprland.focusedMonitor?.name)
-    property var brightnessMonitor: Brightness.getMonitorForScreen(focusedScreen)
 
-    function triggerOsd() {
-        showOsdValues = true;
-        osdTimeout.restart();
+    function triggerAllOsd() {
+        for (var i = 0; i < Brightness.monitors.length; ++i) {
+            Brightness.monitors[i].showOsd = true;
+        }
+        osdTimeoutAll.restart();
     }
 
     Timer {
-        id: osdTimeout
+        id: osdTimeoutAll
         interval: Config.options.osd.timeout
         repeat: false
         running: false
         onTriggered: {
-            showOsdValues = false;
+            for (var i = 0; i < Brightness.monitors.length; ++i) {
+                Brightness.monitors[i].showOsd = false;
+            }
         }
     }
 
-    Connections {
-        target: Audio.sink?.audio ?? null
-        function onVolumeChanged() {
-            if (!Audio.ready)
-                return;
-            root.showOsdValues = false;
-        }
-    }
+    Column {
+        id: osdColumn
+        Repeater {
+            model: Brightness.monitors
 
-    Connections {
-        target: Brightness
-        function onBrightnessChanged() {
-            if (!root.brightnessMonitor.ready)
-                return;
-            root.triggerOsd();
-        }
-    }
+            Loader {
+                id: osdLoader
 
-    Loader {
-        id: osdLoader
-        active: showOsdValues
+                active: model.showOsd === true
 
-        sourceComponent: PanelWindow {
-            id: osdRoot
+                sourceComponent: PanelWindow {
+                    id: osdRoot
 
-            Connections {
-                target: root
-                function onFocusedScreenChanged() {
-                    osdRoot.screen = root.focusedScreen;
-                }
-            }
+                    screen: model.modelData
 
-            exclusionMode: ExclusionMode.Normal
-            WlrLayershell.namespace: "quickshell:onScreenDisplay"
-            WlrLayershell.layer: WlrLayer.Overlay
-            color: "transparent"
+                    exclusionMode: ExclusionMode.Normal
+                    WlrLayershell.namespace: "quickshell:onScreenDisplay"
+                    WlrLayershell.layer: WlrLayer.Overlay
+                    color: "transparent"
 
-            anchors {
-                top: !Config.options.bar.bottom
-                bottom: Config.options.bar.bottom
-            }
-
-            mask: Region {
-                item: osdValuesWrapper
-            }
-
-            implicitWidth: columnLayout.implicitWidth
-            implicitHeight: columnLayout.implicitHeight
-            visible: osdLoader.active
-
-            ColumnLayout {
-                id: columnLayout
-                anchors.horizontalCenter: parent.horizontalCenter
-                Item {
-                    id: osdValuesWrapper
-                    // Extra space for shadow
-                    implicitHeight: osdValues.implicitHeight + Appearance.sizes.elevationMargin * 2
-                    implicitWidth: osdValues.implicitWidth
-                    clip: true
-
-                    MouseArea {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onEntered: root.showOsdValues = false
+                    anchors {
+                        top: !Config.options.bar.bottom
+                        bottom: Config.options.bar.bottom
                     }
 
-                    Behavior on implicitHeight {
-                        NumberAnimation {
-                            duration: Appearance.animation.menuDecel.duration
-                            easing.type: Appearance.animation.menuDecel.type
+                    mask: Region {
+                        item: osdValuesWrapper
+                    }
+
+                    implicitWidth: columnLayout.implicitWidth
+                    implicitHeight: columnLayout.implicitHeight
+                    visible: osdLoader.active
+
+                    ColumnLayout {
+                        id: columnLayout
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        Item {
+                            id: osdValuesWrapper
+                            implicitHeight: osdValues.implicitHeight + Appearance.sizes.elevationMargin * 2
+                            implicitWidth: osdValues.implicitWidth
+                            clip: true
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onEntered: {
+                                    model.showOsd = false;
+                                }
+                            }
+
+                            Behavior on implicitHeight {
+                                NumberAnimation {
+                                    duration: Appearance.animation.menuDecel.duration
+                                    easing.type: Appearance.animation.menuDecel.type
+                                }
+                            }
+
+                            OsdValueIndicator {
+                                id: osdValues
+                                anchors.fill: parent
+                                anchors.margins: Appearance.sizes.elevationMargin
+                                value: model.brightness ? model.brightness : 0.5
+                                icon: "light_mode"
+                                rotateIcon: true
+                                scaleIcon: true
+                                name: modelData.name ? modelData.name : "Brightness"
+                            }
                         }
                     }
+                }
 
-                    OsdValueIndicator {
-                        id: osdValues
-                        anchors.fill: parent
-                        anchors.margins: Appearance.sizes.elevationMargin
-                        value: root.brightnessMonitor?.brightness ?? 50
-                        icon: "light_mode"
-                        rotateIcon: true
-                        scaleIcon: true
-                        name: "Brightness"
+                Timer {
+                    id: osdTimeout
+                    interval: Config.options.osd.timeout
+                    repeat: false
+                    running: false
+                    onTriggered: {
+                        model.showOsd = false;
+                    }
+                }
+
+                Connections {
+                    target: Brightness.monitors[index]
+                    function onBrightnessUpdated(newValue) {
+                        Brightness.monitors[index].showOsd = true;
+                        osdTimeout.restart();
                     }
                 }
             }
@@ -123,32 +128,18 @@ Scope {
         target: "osdBrightness"
 
         function trigger() {
-            root.triggerOsd();
+            root.triggerAllOsd();
         }
 
         function hide() {
-            showOsdValues = false;
+            for (var i = 0; i < Brightness.monitors.length; ++i) {
+                Brightness.monitors[i].showOsd = false;
+            }
         }
 
         function toggle() {
-            showOsdValues = !showOsdValues;
-        }
-    }
-
-    GlobalShortcut {
-        name: "osdBrightnessTrigger"
-        description: "Triggers brightness OSD on press"
-
-        onPressed: {
-            root.triggerOsd();
-        }
-    }
-    GlobalShortcut {
-        name: "osdBrightnessHide"
-        description: "Hides brightness OSD on press"
-
-        onPressed: {
-            root.showOsdValues = false;
+            if (Brightness.monitors.length > 0)
+                Brightness.monitors[0].showOsd = !Brightness.monitors[0].showOsd;
         }
     }
 }

@@ -33,11 +33,6 @@ ApplicationWindow {
             component: "modules/settings/InterfaceConfig.qml"
         },
         {
-            name: "Brightness",
-            icon: "brightness_6",
-            component: "modules/settings/BrightnessTab.qml"
-        },
-        {
             name: "Services",
             icon: "settings",
             component: "modules/settings/ServicesConfig.qml"
