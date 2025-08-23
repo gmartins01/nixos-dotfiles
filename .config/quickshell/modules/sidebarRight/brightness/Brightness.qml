@@ -15,7 +15,7 @@ Item {
         Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            ListView {
+            StyledListView {
                 id: listView
                 model: Brightness.monitors
                 clip: true

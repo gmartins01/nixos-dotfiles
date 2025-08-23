@@ -36,19 +36,150 @@ Item {
 
     ColumnLayout {
         anchors.fill: parent
+
+        ColumnLayout {
+            id: deviceHeaderColumn
+
+            Layout.fillWidth: true
+            spacing: 12
+            Layout.topMargin: 10
+            Layout.leftMargin: 8
+            Layout.rightMargin: 8
+
+            // --- Master sink row ---
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 10
+                Layout.alignment: Qt.AlignVCenter
+
+                MaterialSymbol {
+                    id: volumeIcon
+                    //Layout.rightMargin: indicatorsRowLayout.realSpacing
+                    text: "volume_up"
+                    iconSize: masterSinkSlider.height * 0.9
+                    color: Appearance.m3colors.m3onSecondaryContainer
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: -4
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter
+
+                        StyledText {
+                            font.pixelSize: Appearance.font.pixelSize.small
+                            color: Appearance.colors.colSubtext
+                            elide: Text.ElideRight
+                            text: Audio.sink?.nickname
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        StyledText {
+                            font.pixelSize: Appearance.font.pixelSize.small
+                            color: Appearance.colors.colSubtext
+                            elide: Text.ElideRight
+                            text: `${Math.round(Audio.sink.audio.volume * 100)}%`
+                        }
+                    }
+
+                    StyledSlider {
+                        id: masterSinkSlider
+                        Layout.fillWidth: true
+                        value: Audio.sink.audio.volume
+                        onPressedChanged: {
+                            if (!pressed) {
+                                Audio.sink.audio.volume = value;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // --- Master source row ---
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 10
+                Layout.alignment: Qt.AlignVCenter
+
+                MaterialSymbol {
+                    id: micIcon
+                    text: "mic"
+                    iconSize: masterSinkSlider.height * 0.9
+                    color: Appearance.m3colors.m3onSecondaryContainer
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: -4
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter
+
+                        StyledText {
+                            font.pixelSize: Appearance.font.pixelSize.small
+                            color: Appearance.colors.colSubtext
+                            elide: Text.ElideRight
+                            text: Audio.source?.nickname
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        StyledText {
+                            font.pixelSize: Appearance.font.pixelSize.small
+                            color: Appearance.colors.colSubtext
+                            elide: Text.ElideRight
+                            text: `${Math.round(Audio.source.audio.volume * 100)}%`
+                        }
+                    }
+
+                    StyledSlider {
+                        id: masterSourcelider
+                        Layout.fillWidth: true
+                        value: Audio.source.audio.volume
+                        onPressedChanged: {
+                            if (!pressed) {
+                                Audio.source.audio.volume = value;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            implicitHeight: 1
+            color: Appearance.m3colors.m3outlineVariant
+            Layout.leftMargin: 8
+            Layout.rightMargin: 8
+            Layout.topMargin: 6
+            Layout.bottomMargin: 6
+        }
+
+        // Apps list
         Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
+
             StyledListView {
                 id: listView
                 model: root.appPwNodes
-                clip: true
                 anchors {
                     fill: parent
                     topMargin: 10
                     bottomMargin: 10
                 }
+                clip: true
                 spacing: 6
+                visible: root.appPwNodes.length > 0
 
                 delegate: VolumeMixerEntry {
                     // Layout.fillWidth: true
@@ -92,7 +223,7 @@ Item {
                         font.pixelSize: Appearance.font.pixelSize.normal
                         color: Appearance.m3colors.m3outline
                         horizontalAlignment: Text.AlignHCenter
-                        text: Translation.tr("No audio source")
+                        text: "No audio source"
                     }
                 }
             }
