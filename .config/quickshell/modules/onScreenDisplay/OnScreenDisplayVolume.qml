@@ -8,13 +8,11 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
-import Quickshell.Hyprland
 
 Scope {
     id: root
     property bool showOsdValues: false
     property string protectionMessage: ""
-    property var focusedScreen: Quickshell.screens.find(s => s.name === Hyprland.focusedMonitor?.name)
 
     function triggerOsd() {
         showOsdValues = true;
@@ -29,13 +27,6 @@ Scope {
         onTriggered: {
             root.showOsdValues = false;
             root.protectionMessage = "";
-        }
-    }
-
-    Connections {
-        target: Brightness
-        function onBrightnessChanged() {
-            showOsdValues = false;
         }
     }
 
@@ -70,13 +61,6 @@ Scope {
         sourceComponent: PanelWindow {
             id: osdRoot
 
-            Connections {
-                target: root
-                function onFocusedScreenChanged() {
-                    osdRoot.screen = root.focusedScreen;
-                }
-            }
-
             exclusionMode: ExclusionMode.Normal
             WlrLayershell.namespace: "quickshell:onScreenDisplay"
             WlrLayershell.layer: WlrLayer.Overlay
@@ -86,7 +70,7 @@ Scope {
                 top: !Config.options.bar.bottom
                 bottom: Config.options.bar.bottom
             }
-            
+
             mask: Region {
                 item: osdValuesWrapper
             }
@@ -187,22 +171,6 @@ Scope {
 
         function toggle() {
             showOsdValues = !showOsdValues;
-        }
-    }
-    GlobalShortcut {
-        name: "osdVolumeTrigger"
-        description: "Triggers volume OSD on press"
-
-        onPressed: {
-            root.triggerOsd();
-        }
-    }
-    GlobalShortcut {
-        name: "osdVolumeHide"
-        description: "Hides volume OSD on press"
-
-        onPressed: {
-            root.showOsdValues = false;
         }
     }
 }
