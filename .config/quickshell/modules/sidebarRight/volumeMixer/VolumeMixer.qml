@@ -55,9 +55,30 @@ Item {
                 MaterialSymbol {
                     id: volumeIcon
                     //Layout.rightMargin: indicatorsRowLayout.realSpacing
-                    text: "volume_up"
+                    text: {
+                        if (Audio.sink?.audio.muted) {
+                            return "volume_off";
+                        } else if (Audio.sink?.audio.volume === 0) {
+                            return "volume_mute";
+                        } else if (Audio.sink?.audio.volume <= 0.30) {
+                            return "volume_down";
+                        } else {
+                            return "volume_up";
+                        }
+                    }
                     iconSize: masterSinkSlider.height * 0.9
                     color: Appearance.m3colors.m3onSecondaryContainer
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+                        hoverEnabled: true
+                        onClicked: event => {
+                            if (event.button === Qt.LeftButton) {
+                                Audio.sink.audio.muted = !Audio.sink.audio.muted;
+                            }
+                        }
+                    }
                 }
 
                 ColumnLayout {
@@ -108,9 +129,26 @@ Item {
 
                 MaterialSymbol {
                     id: micIcon
-                    text: "mic"
+                    text: {
+                        if (Audio.source?.audio.muted) {
+                            return "mic_off";
+                        } else {
+                            return "mic";
+                        }
+                    }
                     iconSize: masterSinkSlider.height * 0.9
                     color: Appearance.m3colors.m3onSecondaryContainer
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+                        hoverEnabled: true
+                        onClicked: event => {
+                            if (event.button === Qt.LeftButton) {
+                                Audio.source.audio.muted = !Audio.source.audio.muted;
+                            }
+                        }
+                    }
                 }
 
                 ColumnLayout {
@@ -341,14 +379,14 @@ Item {
                                 Layout.fillWidth: true
 
                                 description: modelData.description
-                                checked: modelData.id === Pipewire.defaultAudioSink?.id
+                                checked: modelData.id === Pipewire.defaultAudioSink?.id || modelData.id === Pipewire.defaultAudioSource?.id
 
                                 Connections {
                                     target: root
                                     function onShowDeviceSelectorChanged() {
                                         if (!root.showDeviceSelector)
                                             return;
-                                        radioButton.checked = (modelData.id === Pipewire.defaultAudioSink?.id);
+                                        radioButton.checked = (modelData.id === Pipewire.defaultAudioSink?.id || modelData.id === Pipewire.defaultAudioSource?.id);
                                     }
                                 }
 
@@ -381,13 +419,13 @@ Item {
                     Layout.alignment: Qt.AlignRight
 
                     DialogButton {
-                        buttonText: Translation.tr("Cancel")
+                        buttonText: "Cancel"
                         onClicked: {
                             root.showDeviceSelector = false;
                         }
                     }
                     DialogButton {
-                        buttonText: Translation.tr("OK")
+                        buttonText: "OK"
                         onClicked: {
                             root.showDeviceSelector = false;
                             if (root.selectedDevice) {
