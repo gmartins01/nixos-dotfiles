@@ -60,7 +60,7 @@ Item {
                 font.pixelSize: Appearance.font.pixelSize.normal
                 color: Appearance.m3colors.m3outline
                 horizontalAlignment: Text.AlignHCenter
-                text: Translation.tr("No notifications")
+                text: "No notifications"
             }
         }
     }
@@ -83,7 +83,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 10
             horizontalAlignment: Text.AlignHCenter
-            text: Translation.tr("%1 notifications").arg(Notifications.list.length)
+            text: "%1 notifications".arg(Notifications.list.length)
 
             opacity: Notifications.list.length > 0 ? 1 : 0
             visible: opacity > 0
@@ -100,7 +100,7 @@ Item {
 
             NotificationStatusButton {
                 buttonIcon: "notifications_paused"
-                buttonText: Translation.tr("Silent")
+                buttonText: "Silent"
                 toggled: Notifications.silent
                 onClicked: () => {
                     Notifications.silent = !Notifications.silent;
@@ -108,7 +108,7 @@ Item {
             }
             NotificationStatusButton {
                 buttonIcon: "clear_all"
-                buttonText: Translation.tr("Clear")
+                buttonText: "Clear"
                 onClicked: () => {
                     Notifications.discardAllNotifications()
                 }

@@ -521,6 +521,22 @@ Scope {
                                         spacing: 0
 
                                         Revealer {
+                                            reveal: Notifications.list.length > 0 || Notifications.silent
+                                            Layout.fillHeight: true
+                                            Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
+                                            Behavior on Layout.rightMargin {
+                                                NumberAnimation {
+                                                    duration: Appearance.animation.elementMoveFast.duration
+                                                    easing.type: Appearance.animation.elementMoveFast.type
+                                                    easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
+                                                }
+                                            }
+                                            NotifIndicator {
+                                                width: Notifications.list.length > 0 ? indicatorsRowLayout.realSpacing * 3 : indicatorsRowLayout.realSpacing * 2
+                                            }
+                                        }
+
+                                        Revealer {
                                             reveal: Audio.source?.audio?.muted ?? false
                                             Layout.fillHeight: true
                                             Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
@@ -537,6 +553,25 @@ Scope {
                                                 color: rightSidebarButton.colText
                                             }
                                         }
+
+                                        Revealer {
+                                            reveal: Bluetooth.bluetoothEnabled || Bluetooth.bluetoothConnected
+                                            Layout.fillHeight: true
+                                            Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
+                                            Behavior on Layout.rightMargin {
+                                                NumberAnimation {
+                                                    duration: Appearance.animation.elementMoveFast.duration
+                                                    easing.type: Appearance.animation.elementMoveFast.type
+                                                    easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
+                                                }
+                                            }
+                                            MaterialSymbol {
+                                                text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
+                                                iconSize: Appearance.font.pixelSize.larger
+                                                color: rightSidebarButton.colText
+                                            }
+                                        }
+
                                         // Loader {
                                         //     active: HyprlandXkb.layoutCodes.length > 1
                                         //     visible: active
@@ -548,9 +583,15 @@ Scope {
                                         //     }
                                         // }
                                         // Network icon
+                                        MaterialSymbol {
+                                            Layout.rightMargin: indicatorsRowLayout.realSpacing
+                                            text: Network.materialSymbol
+                                            iconSize: Appearance.font.pixelSize.larger
+                                            color: rightSidebarButton.colText
+                                        }
+
                                         // MaterialSymbol {
-                                        //     Layout.rightMargin: indicatorsRowLayout.realSpacing
-                                        //     text: Network.materialSymbol
+                                        //     text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
                                         //     iconSize: Appearance.font.pixelSize.larger
                                         //     color: rightSidebarButton.colText
                                         // }
@@ -558,7 +599,7 @@ Scope {
                                         MaterialSymbol {
                                             id: volumeIcon
 
-                                            Layout.rightMargin: indicatorsRowLayout.realSpacing
+                                            //Layout.rightMargin: indicatorsRowLayout.realSpacing
 
                                             text: {
                                                 if (Audio.sink?.audio.muted) {
@@ -589,11 +630,11 @@ Scope {
                                             }
                                         }
 
-                                        MaterialSymbol {
-                                            text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
-                                            iconSize: Appearance.font.pixelSize.larger
-                                            color: rightSidebarButton.colText
-                                        }
+                                        // MaterialSymbol {
+                                        //     text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
+                                        //     iconSize: Appearance.font.pixelSize.larger
+                                        //     color: rightSidebarButton.colText
+                                        // }
 
                                         BatteryIndicator {
                                             visible: (barRoot.useShortenedForm < 2 && UPower.displayDevice.isLaptopBattery)
@@ -639,10 +680,11 @@ Scope {
                                 }
 
                                 // SysTray {
-                                //     bar: barRoot
+                                //    // bar: barRoot
                                 //     visible: barRoot.useShortenedForm === 0
                                 //     Layout.fillWidth: false
                                 //     Layout.fillHeight: true
+                                //     invertSide: Config?.options.bar.bottom
                                 // }
                                 // }
 
