@@ -121,8 +121,9 @@ Singleton {
                     property bool showPerformanceProfileToggle: false
                 }
                 property JsonObject tray: JsonObject {
-                    property list<string> ignoredClasses: [] 
+                    property list<string> ignoredClasses: []
                     property bool monochromeIcons: true
+                    property list<string> pinnedItems: ["Fcitx"]
                 }
                 property JsonObject workspaces: JsonObject {
                     property bool monochromeIcons: true
@@ -157,6 +158,15 @@ Singleton {
                 property list<string> pinnedApps: [ // IDs of pinned entries
                     "org.kde.dolphin", "kitty",]
                 property list<string> ignoredAppRegexes: []
+            }
+
+            property JsonObject interactions: JsonObject {
+                property JsonObject scrolling: JsonObject {
+                    property bool fasterTouchpadScroll: false // Enable faster scrolling with touchpad
+                    property int mouseScrollDeltaThreshold: 120 // delta >= this then it gets detected as mouse scroll rather than touchpad
+                    property int mouseScrollFactor: 120
+                    property int touchpadScrollFactor: 450
+                }
             }
 
             property JsonObject language: JsonObject {
