@@ -521,7 +521,7 @@ Scope {
                                         spacing: 0
 
                                         Revealer {
-                                            reveal: Notifications.list.length > 0 || Notifications.silent
+                                            reveal: Notifications.list.length > 0
                                             Layout.fillHeight: true
                                             Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
                                             Behavior on Layout.rightMargin {
@@ -531,8 +531,12 @@ Scope {
                                                     easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
                                                 }
                                             }
-                                            NotifIndicator {
-                                                width: Notifications.list.length > 0 ? indicatorsRowLayout.realSpacing * 3 : indicatorsRowLayout.realSpacing * 2
+
+                                            MaterialSymbol {
+                                                id: icon
+                                                iconSize: Appearance.font.pixelSize.larger
+                                                text: "notifications_unread"
+                                                color: rightSidebarButton.colText
                                             }
                                         }
 
