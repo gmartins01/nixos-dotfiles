@@ -6,8 +6,8 @@
   ...
 }: {
   imports = [
-    ../../modules/home-manager/shell/starship.nix
-    ../../modules/home-manager/shell/zsh.nix
+    ../../modules/home-manager/programs/shell/starship.nix
+    ../../modules/home-manager/programs/shell/zsh.nix
   ];
 
   home.username = "gmartins";
