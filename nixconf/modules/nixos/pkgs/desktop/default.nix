@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    ./vscode.nix
+    #./vscode.nix
     ./nautilus.nix
     ./dconf.nix
     ./docker.nix
@@ -28,8 +28,8 @@
     gnome-calculator
     #handbrake
     easyeffects
-    #vscode
-    stremio
+    vscode
+    stable.stremio
     obs-studio
 
     xsettingsd

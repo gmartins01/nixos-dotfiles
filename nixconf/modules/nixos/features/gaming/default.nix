@@ -10,7 +10,7 @@
   environment.systemPackages = with pkgs; [
     mangohud # For fps monitoring
 
-    prismlauncher # Minecraft Launcher
+    stable.prismlauncher # Minecraft Launcher
 
     libva-utils # For checking if hardware acceleration is working
   ];
