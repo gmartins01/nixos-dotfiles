@@ -23,7 +23,7 @@
       libva
       rocmPackages.clr.icd
       # amf
-      # amdvlk
+       amdvlk
     ];
   };
 
@@ -43,6 +43,7 @@
           xorg.libXi
           xorg.libXinerama
           xorg.libXScrnSaver
+          xorg.libxcb
           libpng
           libpulseaudio
           libvorbis

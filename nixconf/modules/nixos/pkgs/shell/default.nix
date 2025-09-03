@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
   ];
 
@@ -15,18 +17,17 @@
     unrar
     nfs-utils
     nixpkgs-fmt
-    (python3.withPackages (ps: with ps; [
-      pip
-      requests
-    ]))
+    (python3.withPackages (ps:
+      with ps; [
+        pip
+        requests
+      ]))
 
     gcc
     gnumake
-    
+
     fastfetch
 
     ripgrep
   ];
-
-
 }

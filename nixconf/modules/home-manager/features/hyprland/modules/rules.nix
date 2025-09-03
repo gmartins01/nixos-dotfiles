@@ -44,6 +44,7 @@
         "float,class:^(nemo)$,title:^(.*Properties.*)$"
         "float,class:^(fr.handbrake.ghb)$"
         "size 400 600,class:^(protonvpn-app)$,title:^(Proton VPN)$"
+        "float,class:^(Waydroid)$"
 
         # Clipboard
         "float, class:(clipse)"

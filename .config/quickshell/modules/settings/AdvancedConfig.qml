@@ -9,6 +9,7 @@ ContentPage {
 
     ContentSection {
         title: "Color generation"
+        icon: "colors"
 
         ConfigRow {
             uniform: true

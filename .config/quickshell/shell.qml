@@ -27,6 +27,7 @@ import Quickshell
 import "./services/"
 
 ShellRoot {
+    id: root
     // Enable/disable modules here. False = not loaded at all, so rest assured
     // no unnecessary stuff will take up memory if you decide to only use, say, the overview.
     property bool enableBar: true
@@ -52,11 +53,11 @@ ShellRoot {
     }
 
     LazyLoader {
-        active: enableBar
+        active: root.enableBar
         component: Bar {}
     }
     LazyLoader {
-        active: enableBackground
+        active: root.enableBackground
         component: Background {}
     }
     LazyLoader {
@@ -81,30 +82,34 @@ ShellRoot {
         component: OnScreenDisplayBrightness {}
     }
     LazyLoader {
-        active: enableOnScreenDisplayVolume
+        active: root.enableOnScreenDisplayVolume
         component: OnScreenDisplayVolume {}
     }
     LazyLoader {
-        active: enableOverview
+        active: root.enableOverview
         component: Overview {}
     }
     LazyLoader {
-        active: enableReloadPopup
+        active: root.enableReloadPopup
         component: ReloadPopup {}
     }
     LazyLoader {
-        active: enableScreenCorners
+        active: root.enableScreenCorners
         component: ScreenCorners {}
     }
     LazyLoader {
-        active: enableSession
+        active: root.enableSession
         component: Session {}
     }
 
+    // SidebarRight {
+    //     id: sidePanel
+    //     objectName: "sidePanel"
+    // }
     LazyLoader {
         id: sidebarRightLoader
 
-        active: enableSidebarRight
+        active: root.enableSidebarRight
         component: SidebarRight {
             id: sidebarRight
         }

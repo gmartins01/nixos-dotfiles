@@ -10,6 +10,7 @@ TabButton {
 
     property bool toggled: TabBar.tabBar.currentIndex === TabBar.index
     property string buttonIcon
+    property real buttonIconRotation: 0
     property string buttonText
     property bool expanded: false
     property bool showToggledHighlight: true
@@ -38,9 +39,9 @@ TabButton {
             left: parent.left
             right: undefined
         }
-        
+
         implicitWidth: root.visualWidth
-        implicitHeight: root.expanded ? itemIconBackground.implicitHeight : itemIconBackground.implicitHeight + itemText.implicitHeight 
+        implicitHeight: root.expanded ? itemIconBackground.implicitHeight : itemIconBackground.implicitHeight + itemText.implicitHeight
 
         Rectangle {
             id: itemBackground
@@ -49,11 +50,7 @@ TabButton {
             anchors.bottom: itemIconBackground.bottom
             implicitWidth: root.visualWidth
             radius: Appearance.rounding.full
-            color: toggled ? 
-                root.showToggledHighlight ?
-                    (root.down ? Appearance.colors.colSecondaryContainerActive : root.hovered ? Appearance.colors.colSecondaryContainerHover : Appearance.colors.colSecondaryContainer)
-                    : ColorUtils.transparentize(Appearance.colors.colSecondaryContainer) :
-                (root.down ? Appearance.colors.colLayer1Active : root.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1))
+            color: toggled ? root.showToggledHighlight ? (root.down ? Appearance.colors.colSecondaryContainerActive : root.hovered ? Appearance.colors.colSecondaryContainerHover : Appearance.colors.colSecondaryContainer) : ColorUtils.transparentize(Appearance.colors.colSecondaryContainer) : (root.down ? Appearance.colors.colLayer1Active : root.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1))
 
             states: State {
                 name: "expanded"
@@ -99,6 +96,7 @@ TabButton {
             }
             MaterialSymbol {
                 id: navRailButtonIcon
+                rotation: root.buttonIconRotation
                 anchors.centerIn: parent
                 iconSize: 24
                 fill: toggled ? 1 : 0
@@ -144,5 +142,4 @@ TabButton {
             color: Appearance.colors.colOnLayer1
         }
     }
-
 }

@@ -102,6 +102,7 @@ Singleton {
 
             property JsonObject bar: JsonObject {
                 property bool bottom: false // Instead of top
+                property bool vertical: false
                 property int cornerStyle: 0 // 0: Hug | 1: Float | 2: Plain rectangle
                 property bool borderless: false // true for no grouping of items
                 property string topLeftIcon: "spark" // Options: distro, spark

@@ -29,18 +29,18 @@
     clipse
     copyq
 
-    libsForQt5.qt5ct
-    kdePackages.qt6ct
-    kdePackages.qtwayland
-    qt5.qtwayland
+    stable.libsForQt5.qt5ct
+    stable.kdePackages.qt6ct
+    stable.kdePackages.qtwayland
+    stable.qt5.qtwayland
 
     fuzzel # app launcher
 
     bemoji # emoji selector
 
     # To theme kde apps
-    kdePackages.plasma-integration
-    kdePackages.breeze
+    # kdePackages.plasma-integration
+    # kdePackages.breeze
 
     # To fix some gtk apps
     adwaita-icon-theme

@@ -504,15 +504,16 @@ Scope {
                                         animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
                                     }
 
-                                    // onPressed: {
-                                    //     Hyprland.dispatch('global quickshell:sidebarRightToggle');
-                                    // }
-
                                     onPressed: {
-                                        if (sidebarRightLoader.item) {
-                                            sidebarRightLoader.item.toggle();
-                                        }
+                                        Hyprland.dispatch('global quickshell:sidebarRightToggle');
                                     }
+
+                                    // onPressed: {
+                                    //     // PanelService.getPanel("sidePanel")?.toggle(screen);
+                                    //     if (sidebarRightLoader.item) {
+                                    //         sidebarRightLoader.item.toggle(screen);
+                                    //     }
+                                    // }
 
                                     RowLayout {
                                         id: indicatorsRowLayout

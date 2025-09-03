@@ -13,7 +13,7 @@ ContentPage {
 
         ConfigSelectionArray {
             currentValue: Config.options.bar.cornerStyle
-            configOptionName: "bar.cornerStyle"
+            // configOptionName: "bar.cornerStyle"
             onSelected: newValue => {
                 Config.options.bar.cornerStyle = newValue;
             }

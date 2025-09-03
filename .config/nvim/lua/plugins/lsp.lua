@@ -226,7 +226,7 @@ return {
 				"jdtls",
 				"java-debug-adapter",
 				"java-test",
-				"qmlls",
+				-- "qmlls",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -248,7 +248,9 @@ return {
 			})
 
 			require("lspconfig").qmlls.setup({
-				filetypes = { "qml" },
+				cmd = { "qmlls" },
+				filetypes = { "qml", "qmljs" },
+				root_markers = { ".gmlformat.ini" },
 			})
 		end,
 	},

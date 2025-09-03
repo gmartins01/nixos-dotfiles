@@ -109,7 +109,7 @@ ContentPage {
             }
         }
     }
-    
+
     // TODO: Remover?
     ContentSection {
         title: Translation.tr("Resources")
@@ -196,7 +196,6 @@ ContentPage {
 
             ConfigSelectionArray {
                 currentValue: Config.options.time.format
-                configOptionName: "time.format"
                 onSelected: newValue => {
                     Config.options.time.format = newValue;
                 }
