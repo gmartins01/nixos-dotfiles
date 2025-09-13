@@ -54,7 +54,11 @@
     obsidian # Notes
 
     onlyoffice-desktopeditors
+
+    gpu-screen-recorder-gtk # GUI app
   ];
 
   programs.firefox.enable = true;
+
+  programs.gpu-screen-recorder.enable = true;
 }
