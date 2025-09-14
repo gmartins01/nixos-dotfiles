@@ -20,9 +20,9 @@
         float_switch_override_focus = 0;
       };
 
-      gestures = {
-        workspace_swipe = false;
-      };
+      # gestures = {
+      #   workspace_swipe = false;
+      # };
 
       device = [
         {
