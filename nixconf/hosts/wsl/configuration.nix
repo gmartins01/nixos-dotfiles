@@ -18,8 +18,6 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless.enable = true;
 
-  qt.enable = true;
-
   environment.systemPackages = with pkgs; [
     git
     wget
