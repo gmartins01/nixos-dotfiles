@@ -23,7 +23,6 @@
       libva
       rocmPackages.clr.icd
       # amf
-       amdvlk
     ];
   };
 
