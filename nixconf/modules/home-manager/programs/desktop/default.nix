@@ -15,6 +15,7 @@
     gparted
 
     spotify
-  ];
 
+    xdg-desktop-portal-gnome
+  ];
 }

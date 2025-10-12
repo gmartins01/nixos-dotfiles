@@ -38,14 +38,14 @@ in
     imagemagick
     inotify-tools
     colord
-    pamixer
+    stable.pamixer
     xclip
     #maim
     jq
   ];
 
   services.xserver.windowManager.awesome = {
-    enable = true;
+    enable = false;
     package = awesome-git;
   };
   services.dbus.enable = true;

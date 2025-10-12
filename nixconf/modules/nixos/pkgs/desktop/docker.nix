@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   virtualisation.docker = {
     enable = true;
     storageDriver = "btrfs";
@@ -12,7 +16,9 @@
     enable = true;
   };
 
-  virtualisation.waydroid.enable = true;
+  virtualisation.waydroid = {
+    enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     docker-compose
