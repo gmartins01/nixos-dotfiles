@@ -5,8 +5,10 @@
 }: {
   programs.git = {
     enable = true;
-    userName = "Gonçalo Martins";
-    userEmail = "goncallo.c.martins@gmail.com";
+    settings.user = {
+      name = "Gonçalo Martins";
+      email = "goncallo.c.martins@gmail.com";
+    };
     includes = [
       {path = "~/.gitconfig.local";}
     ];

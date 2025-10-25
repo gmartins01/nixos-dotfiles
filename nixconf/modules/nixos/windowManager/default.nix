@@ -22,7 +22,7 @@
     #clipboard
     wl-clipboard
     clipse
-    copyq
+    stable.copyq
 
     stable.libsForQt5.qt5ct
     stable.kdePackages.qt6ct
