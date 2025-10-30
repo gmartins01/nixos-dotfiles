@@ -14,8 +14,8 @@ in {
     ./modules/input.nix
     ./modules/keybinds.nix
     ./modules/rules.nix
-    ./hypridle.nix
-    ./hyprlock.nix
+    # ./hypridle.nix
+    # ./hyprlock.nix
     #./hyprpaper.nix
     ./plugins
   ];
