@@ -10,6 +10,7 @@
   ];
 
   programs.niri.enable = true;
+  programs.niri.package = pkgs.niri-unstable;
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite
@@ -24,10 +25,10 @@
     clipse
     stable.copyq
 
-    stable.libsForQt5.qt5ct
-    stable.kdePackages.qt6ct
-    stable.kdePackages.qtwayland
-    stable.qt5.qtwayland
+    libsForQt5.qt5ct
+    kdePackages.qt6ct
+    kdePackages.qtwayland
+    qt5.qtwayland
 
     fuzzel # app launcher
 

@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  cursor = config.home.pointerCursor.name;
+  cursor = "Bibata Modern Ice";#config.home.pointerCursor.name;
   cursorPackage = pkgs.bibata-hyprcursor;
 in {
   imports = [
@@ -67,10 +67,10 @@ in {
       ];
 
       env = [
-        "XCURSOR_SIZE,${toString config.home.pointerCursor.size}"
+        "XCURSOR_SIZE, 24" #${toString config.home.pointerCursor.size}"
         "XCURSOR_THEME,${cursor}"
         "HYPRCURSOR_THEME,${cursor}-Hyprcursor"
-        "HYPRCURSOR_SIZE,${toString config.home.pointerCursor.size}"
+        "HYPRCURSOR_SIZE, 24"#${toString config.home.pointerCursor.size}"
         "CLUTTER_BACKEND,wayland"
         "GDK_BACKEND,wayland,x11"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"

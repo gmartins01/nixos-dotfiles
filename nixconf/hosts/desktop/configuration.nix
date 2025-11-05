@@ -89,7 +89,7 @@ in {
     packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       unifont
       material-icons
       material-symbols
@@ -124,12 +124,13 @@ in {
   nixpkgs.overlays = [
     outputs.overlays.stable-packages
     outputs.overlays.additions
-    (final: prev: {
-      jdk8 = prev.jdk8.overrideAttrs {
-        separateDebugInfo = false;
-        __structuredAttrs = false;
-      };
-    })
+    inputs.niri.overlays.niri
+    # (final: prev: {
+    #   jdk8 = prev.jdk8.overrideAttrs {
+    #     separateDebugInfo = false;
+    #     __structuredAttrs = false;
+    #   };
+    # })
   ];
 
   # Automatic updates
@@ -146,8 +147,14 @@ in {
   nix.settings.auto-optimise-store = true;
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    substituters = [
+      "https://hyprland.cachix.org"
+      "https://niri.cachix.org"
+    ];
+    trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+    ];
   };
 
   system.stateVersion = "24.05";

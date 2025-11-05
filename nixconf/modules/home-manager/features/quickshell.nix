@@ -6,8 +6,25 @@
 }: let
   quickshell = inputs.quickshell.packages.${pkgs.system}.default;
 in {
+  imports = [
+    inputs.niri.homeModules.niri
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+  ];
+
+  programs.dankMaterialShell = {
+    enable = true;
+    quickshell.package = quickshell;
+    # niri = {
+    #   enableKeybinds = true; # Automatic keybinding configuration
+    #   enableSpawn = true; # Auto-start DMS with niri
+    # };
+  };
+
   home.packages = with pkgs; [
-    quickshell
+    # quickshell
+    adw-gtk3
+    bibata-cursors
     pkgs.xdg-user-dirs
     pkgs.kdePackages.qt5compat
     pkgs.kdePackages.qtdeclarative
