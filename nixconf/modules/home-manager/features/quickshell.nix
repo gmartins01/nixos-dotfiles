@@ -10,6 +10,7 @@ in {
     inputs.niri.homeModules.niri
     inputs.dankMaterialShell.homeModules.dankMaterialShell.default
     inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+    inputs.dsearch.homeModules.default
   ];
 
   programs.dankMaterialShell = {
@@ -20,6 +21,8 @@ in {
     #   enableSpawn = true; # Auto-start DMS with niri
     # };
   };
+
+  programs.dsearch.enable = true;
 
   home.packages = with pkgs; [
     # quickshell

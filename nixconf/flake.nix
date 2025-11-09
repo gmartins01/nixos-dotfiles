@@ -36,8 +36,6 @@
 
     stylix.url = "github:danth/stylix";
 
-    ags.url = "github:Aylur/ags";
-
     clipboard-sync.url = "github:dnut/clipboard-sync";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -75,6 +73,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.dgop.follows = "dgop";
       inputs.dms-cli.follows = "dms-cli";
+    };
+
+    dsearch = {
+      url = "github:AvengeMedia/danksearch";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -139,7 +142,6 @@
       extraSpecialArgs = {inherit inputs outputs;};
       modules = [
         ./hosts/desktop/home.nix
-        inputs.ags.homeManagerModules.default
         hyprland.homeManagerModules.default
         inputs.stylix.homeModules.stylix
       ];
