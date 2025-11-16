@@ -1,5 +1,5 @@
 layout {
-    gaps 7
+    gaps 4
 
     border {
         width 2

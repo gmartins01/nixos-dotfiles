@@ -9,7 +9,7 @@
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors;
+      default = inputs.hypr-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors;
       description = "Package for the Hypr Dynamic Cursors plugin";
     };
 

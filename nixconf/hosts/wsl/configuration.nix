@@ -47,7 +47,7 @@
       ]))
     nodejs_22
 
-    inputs.home-manager.packages.${pkgs.system}.default
+    inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

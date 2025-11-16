@@ -15,7 +15,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    inputs.hyprpanel.packages.${pkgs.system}.default
+    inputs.hyprpanel.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     hyprpaper
   ];
