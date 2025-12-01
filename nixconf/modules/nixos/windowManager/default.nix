@@ -10,7 +10,7 @@
   ];
 
   programs.niri.enable = true;
-  programs.niri.package = pkgs.niri-unstable;
+  programs.niri.package = pkgs.niri;
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite
