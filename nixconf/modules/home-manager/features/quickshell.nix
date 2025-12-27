@@ -8,12 +8,12 @@
 in {
   imports = [
     inputs.niri.homeModules.niri
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    inputs.dankMaterialShell.homeModules.dank-material-shell
     inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
     inputs.dsearch.homeModules.default
   ];
 
-  programs.dankMaterialShell = {
+  programs.dank-material-shell = {
     enable = true;
     quickshell.package = quickshell;
     # niri = {

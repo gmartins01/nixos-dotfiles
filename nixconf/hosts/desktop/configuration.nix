@@ -55,18 +55,37 @@ in {
     )
   ];
 
-  services.displayManager.sddm = {
+  services.displayManager.dms-greeter = {
     enable = true;
-    theme = "catppuccin-mocha";
-    package = pkgs.kdePackages.sddm;
-    wayland.enable = true;
-    autoNumlock = true;
-    settings = {
-      Theme = {
-        CursorTheme = "Bibata-Modern-Ice";
-      };
+    compositor.name = "niri"; # Or "hyprland" or "sway"
+
+    # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
+    configHome = "/home/gmartins";
+
+    # Custom config files for non-standard config locations
+    configFiles = [
+      "/home/gmartins/.config/DankMaterialShell/settings.json"
+    ];
+
+    # Save the logs to a file
+    logs = {
+      save = true;
+      path = "/tmp/dms-greeter.log";
     };
   };
+
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   theme = "catppuccin-mocha";
+  #   package = pkgs.kdePackages.sddm;
+  #   wayland.enable = true;
+  #   autoNumlock = true;
+  #   settings = {
+  #     Theme = {
+  #       CursorTheme = "Bibata-Modern-Ice";
+  #     };
+  #   };
+  # };
 
   # services.displayManager.sddm.enable = true;
   # services.desktopManager.plasma6.enable = true;
