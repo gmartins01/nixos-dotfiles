@@ -17,5 +17,6 @@
     spotify
 
     xdg-desktop-portal-gnome
+
   ];
 }

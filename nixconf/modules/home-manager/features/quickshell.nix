@@ -7,19 +7,15 @@
   quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   imports = [
-    inputs.niri.homeModules.niri
+    # inputs.niri.homeModules.niri
     inputs.dankMaterialShell.homeModules.dank-material-shell
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+    # inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
     inputs.dsearch.homeModules.default
   ];
 
   programs.dank-material-shell = {
     enable = true;
-    quickshell.package = quickshell;
-    # niri = {
-    #   enableKeybinds = true; # Automatic keybinding configuration
-    #   enableSpawn = true; # Auto-start DMS with niri
-    # };
+    # quickshell.package = quickshell;
   };
 
   programs.dsearch.enable = true;

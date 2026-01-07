@@ -36,10 +36,10 @@
   stylix.targets.qt.enable = false;
   stylix.targets.qt.platform = "qtct";
   stylix.targets.kde.enable = false;
-  stylix.iconTheme.enable = true;
-  stylix.iconTheme.dark = "Papirus-Dark";
-  stylix.iconTheme.light = "Papirus";
-  stylix.iconTheme.package = pkgs.papirus-icon-theme;
+  stylix.icons.enable = true;
+  stylix.icons.dark = "Papirus-Dark";
+  stylix.icons.light = "Papirus";
+  stylix.icons.package = pkgs.papirus-icon-theme;
   stylix.targets.gtk.flatpakSupport.enable = false;
   stylix.targets.hyprlock.enable = false;
   stylix.targets.hyprpaper.enable = false;
