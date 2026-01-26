@@ -241,17 +241,21 @@ return {
 						-- certain features of an LSP (for example, turning off formatting for ts_ls)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						--	if server_name ~= "jdtls" then
-						require("lspconfig")[server_name].setup(server)
+
+						vim.lsp.config[server_name] = server
+						vim.lsp.enable(server_name)
 						--	end
 					end,
 				},
 			})
 
-			require("lspconfig").qmlls.setup({
+			vim.lsp.config.qmlls = {
 				cmd = { "qmlls" },
 				filetypes = { "qml", "qmljs" },
-				root_markers = { ".gmlformat.ini" },
-			})
+				root_dir = vim.fs.root(0, { ".gmlformat.ini" }),
+			}
+
+			vim.lsp.enable("qmlls")
 		end,
 	},
 }

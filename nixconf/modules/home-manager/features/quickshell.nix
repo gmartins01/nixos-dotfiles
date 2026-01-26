@@ -7,7 +7,7 @@
   quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   imports = [
-    # inputs.niri.homeModules.niri
+    inputs.niri.homeModules.niri
     inputs.dankMaterialShell.homeModules.dank-material-shell
     # inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
     inputs.dsearch.homeModules.default
@@ -15,6 +15,7 @@ in {
 
   programs.dank-material-shell = {
     enable = true;
+    systemd.enable = true;
     # quickshell.package = quickshell;
   };
 

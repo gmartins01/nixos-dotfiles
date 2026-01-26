@@ -117,7 +117,7 @@ output "DP-3" {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-// spawn-at-startup "dms" "run"
+spawn-at-startup "dms" "run"
 // spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 environment {
@@ -624,5 +624,3 @@ layout {
 include "dms/binds.kdl"
 
 include "dms/outputs.kdl"
-
-include "dms/cursor.kdl"
