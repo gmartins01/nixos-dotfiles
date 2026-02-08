@@ -6,8 +6,8 @@
   imports = [
     ./git
     # ./features/ags
-    ./features/hyprland
-    ./features/stylix
+    # ./features/hyprland
+    # ./features/stylix
     ./programs
     # ./features/gtk.nix
     # ./features/qt.nix

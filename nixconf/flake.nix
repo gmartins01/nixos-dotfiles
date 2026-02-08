@@ -34,7 +34,7 @@
 
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
-    stylix.url = "github:danth/stylix";
+    # stylix.url = "github:danth/stylix";
 
     clipboard-sync.url = "github:dnut/clipboard-sync";
 
@@ -137,7 +137,7 @@
       modules = [
         ./hosts/desktop/home.nix
         hyprland.homeManagerModules.default
-        inputs.stylix.homeModules.stylix
+        # inputs.stylix.homeModules.stylix
       ];
     };
 
