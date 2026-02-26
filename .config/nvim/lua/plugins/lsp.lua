@@ -209,6 +209,11 @@ return {
 					filetypes = { "css", "scss" },
 				},
 
+				angularls = {
+					filetypes = { "typescript", "html", "typescriptreact", "htmlangular" },
+					root_markers = { "angular.json", "nx.json" },
+				},
+
 				-- qmlls = {
 				-- 	cmd = { "qmlls", "-E" },
 				-- 	filetypes = { "qml" },

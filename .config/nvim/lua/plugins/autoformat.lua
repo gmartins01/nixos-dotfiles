@@ -37,6 +37,8 @@ return { -- Autoformat
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			go = { "gofmt" },
 			nix = { "alejandra" },
+			html = { "prettierd", "prettier", stop_after_first = true },
+
 		},
 	},
 }
