@@ -14,6 +14,7 @@
       enable = true;
       wifi.powersave = false;
     };
+    nftables.enable = true;
   };
 
   networking.wireguard.enable = true;
