@@ -18,5 +18,6 @@
 
     xdg-desktop-portal-gnome
 
+    # inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell-git
   ];
 }

@@ -73,6 +73,11 @@
       url = "github:AvengeMedia/danksearch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    azzipkgs = {
+      url = "gitlab:fazzi/azzipkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
