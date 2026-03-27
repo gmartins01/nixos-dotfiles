@@ -35,14 +35,14 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     package = pkgs.steam.override {
-      extraLibraries = pkgs: [pkgs.xorg.libxcb];
+      extraLibraries = pkgs: [pkgs.libxcb];
       extraPkgs = pkgs:
         with pkgs; [
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          xorg.libxcb
+          libxcursor
+          libxi
+          libxinerama
+          libxscrnsaver
+          libxcb
           libpng
           libpulseaudio
           libvorbis
