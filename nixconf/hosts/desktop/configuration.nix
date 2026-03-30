@@ -142,6 +142,7 @@ in {
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     outputs.overlays.stable-packages
+    outputs.overlays.unstable-small-packages
     outputs.overlays.additions
     inputs.niri.overlays.niri
     # (final: prev: {

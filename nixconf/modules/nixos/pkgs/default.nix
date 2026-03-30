@@ -15,7 +15,7 @@
 
     home-manager
 
-    neovim
+    unsmall.neovim
     lua54Packages.luarocks-nix
     lua
 
@@ -25,8 +25,9 @@
 
   #programs.java.enable = true;
 
-  programs.neovim.enable = true;
-  programs.neovim.defaultEditor = true;
+  # programs.neovim.enable = true;
+  # programs.neovim.defaultEditor = true;
+  # programs.neovim.package = pkgs.unsmall.neovim;
 
   programs.nix-ld = {
     enable = true;
