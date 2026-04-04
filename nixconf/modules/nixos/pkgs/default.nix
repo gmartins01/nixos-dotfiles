@@ -18,6 +18,7 @@
     unsmall.neovim
     lua54Packages.luarocks-nix
     lua
+    tree-sitter
 
     x265
     intel-vaapi-driver
@@ -35,6 +36,7 @@
       stdenv.cc.cc
       brotli
       glib
+      unixODBC
       /*
         libGL
       libva

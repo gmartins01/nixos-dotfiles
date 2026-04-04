@@ -1,112 +1,63 @@
--- Set <space> as the leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = true
 
--- Make line numbers default
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.pack.add({ "https://github.com/nvim-mini/mini.misc" })
+require("mini.misc").setup()
 
-vim.opt.relativenumber = true
+_G.safely = require("mini.misc").safely
 
--- Create an autocmd group for toggling relative number
-vim.api.nvim_create_augroup("RelativeNumberToggle", { clear = true })
-
--- Disable relative numbering when entering Insert mode
-vim.api.nvim_create_autocmd("InsertEnter", {
-	group = "RelativeNumberToggle",
-	pattern = "*",
-	callback = function()
-		vim.opt.relativenumber = false
-	end,
+vim.diagnostic.config({
+  severity_sort = true,
+  virtual_lines = { current_line = true },
+  underline = true,
+  float = { border = vim.g.border },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "󰅚 ",
+      [vim.diagnostic.severity.WARN] = "󰀪 ",
+      [vim.diagnostic.severity.INFO] = "󰋽 ",
+      [vim.diagnostic.severity.HINT] = "󰌶 ",
+    },
+  },
 })
 
--- Re-enable relative numbering when leaving Insert mode
-vim.api.nvim_create_autocmd("InsertLeave", {
-	group = "RelativeNumberToggle",
-	pattern = "*",
-	callback = function()
-		vim.opt.relativenumber = true
-	end,
-})
+-- INFO: plugins
+-- we install plugins with neovim's builtin package manager: vim.pack
+-- and then enable/configure them by calling their setup functions.
+--
+-- (see `:h vim.pack` for more details on how it works)
+-- you can press `gx` on any of the plugin urls below to open them in your
+-- browser and check out their documentation and functionality.
+-- alternatively, you can run `:h {plugin-name}` to read their documentation.
+--
+-- plugins are then loaded and configured with a call to `setup` functions
+-- provided by each plugin. this is not a rule of neovim but rather a convention
+-- followed by the community.
+-- these setup calls take a table as an agument and their expected contents can
+-- vary wildly. refer to each plugin's documentation for details.
 
--- Enable mouse mode
-vim.opt.mouse = "a"
+-- NOTE: if all you want is lsp + completion + highlighting, you're done.
+-- the rest of the lines are just quality-of-life/appearance plugins and
+-- can be removed.
 
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+-- NOTE: there are many more quality-of-life plugins available and others that
+-- achieve what these do. these are just our recommendations to start.
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---vim.schedule(function()
---	vim.opt.clipboard = "unnamedplus"
---end)
+-- INFO: utility plugins
+vim.pack.add({
+  "https://github.com/windwp/nvim-autopairs", -- auto pairs
+  "https://github.com/folke/todo-comments.nvim", -- highlight TODO/INFO/WARN comments
+}, { confirm = false })
 
--- Tab size
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+require("nvim-autopairs").setup()
+require("todo-comments").setup()
 
-vim.opt.smartindent = true
+-- uncomment to enable automatic plugin updates
+-- vim.pack.update()
 
--- Enable break indent
-vim.opt.breakindent = true
-
-vim.opt.swapfile = false
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
-
-vim.opt.updatetime = 50
-
--- Decrease mapped sequence wait time
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---vim.opt.list = true
---vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
-vim.opt.confirm = true
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-	callback = function()
-		vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#a6d189", fg = "#2e3440" })
-	end,
-})
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("highlight_yank", {}),
-	desc = "Highlight selection on yank",
-	callback = function()
-		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 200 })
-	end,
-})
-
-require("config.keymaps")
-
-require("config.lazy")
-
-vim.cmd("colorscheme vague")
---vim.cmd.colorscheme("catppuccin-mocha")
+require("options")
+require("autocmds")
+require("ui")
+require("keymaps")
