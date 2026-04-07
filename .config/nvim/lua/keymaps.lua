@@ -33,3 +33,6 @@ vim.keymap.set("v", "<leader>d", '"+d', { noremap = true, silent = true, desc = 
 -- For indentation
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")

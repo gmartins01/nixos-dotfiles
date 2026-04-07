@@ -97,9 +97,21 @@
       "rev": "a995fe9cd4193fb492b5df69175a351a74b3d36b",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
+    "mini.cursorword": {
+      "rev": "a7e606208197ca5d1c5288750d5163429b4c74da",
+      "src": "https://github.com/nvim-mini/mini.cursorword"
+    },
+    "mini.hipatterns": {
+      "rev": "a3ffba45e4119917b254c372df82e79f7d8c4aad",
+      "src": "https://github.com/nvim-mini/mini.hipatterns"
+    },
     "mini.misc": {
       "rev": "de8947231c29012271722651aa07f6749c41d1ed",
       "src": "https://github.com/nvim-mini/mini.misc"
+    },
+    "mini.surround": {
+      "rev": "2715e04bea3ec9244f15b421dc5b18c0fe326210",
+      "src": "https://github.com/nvim-mini/mini.surround"
     },
     "nvim-autopairs": {
       "rev": "59bce2eef357189c3305e25bc6dd2d138c1683f5",

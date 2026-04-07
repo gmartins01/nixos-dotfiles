@@ -14,6 +14,8 @@ vim.opt.showmode = false
 -- enable break indent
 vim.opt.breakindent = true
 
+vim.opt.swapfile = false
+
 -- save undo history
 vim.opt.undofile = true
 
