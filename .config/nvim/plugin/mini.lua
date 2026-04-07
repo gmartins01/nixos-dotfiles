@@ -2,6 +2,7 @@ vim.pack.add({
   "https://github.com/nvim-mini/mini.surround",
   "https://github.com/nvim-mini/mini.hipatterns",
   "https://github.com/nvim-mini/mini.cursorword",
+  "https://github.com/nvim-mini/mini.indentscope",
 }, { confirm = false })
 
 safely("later", function()
@@ -23,4 +24,16 @@ safely("event:BufReadPost", function()
 end)
 
 -- Automatic highlighting of word under cursor
-require("mini.cursorword").setup()
+safely("later", function()
+  require("mini.cursorword").setup()
+end)
+
+safely("later", function()
+  require("mini.indentscope").setup({
+    draw = {
+      delay = 0,
+    },
+
+    symbol = "▏",
+  })
+end)
