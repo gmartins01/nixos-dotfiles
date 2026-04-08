@@ -7,6 +7,11 @@ local lsp_servers = {
   },
 
   qmlls = {},
+
+  angularls = {
+    filetypes = { "typescript", "html", "typescriptreact", "htmlangular" },
+    root_markers = { "angular.json", "nx.json" },
+  },
 }
 
 local ensure_installed = vim.tbl_keys(lsp_servers or {})
