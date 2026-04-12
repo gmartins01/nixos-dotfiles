@@ -29,7 +29,7 @@
     #handbrake
     easyeffects
     vscode
-    # stable.stremio
+
     obs-studio
 
     xsettingsd
