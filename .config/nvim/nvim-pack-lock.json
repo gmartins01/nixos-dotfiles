@@ -171,11 +171,19 @@
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
     },
+    "tree-sitter-manager.nvim": {
+      "rev": "fa63bc63ae08b661843d9976a43becfbd3daf76c",
+      "src": "https://github.com/romus204/tree-sitter-manager.nvim"
+    },
     "treesitter": {
       "rev": "7caec274fd19c12b55902a5b795100d21531391f",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "trouble": {
+      "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",
+      "src": "https://github.com/folke/trouble.nvim"
+    },
+    "trouble.nvim": {
       "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",
       "src": "https://github.com/folke/trouble.nvim"
     },

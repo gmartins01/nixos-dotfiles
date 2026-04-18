@@ -95,18 +95,37 @@ safely("event:BufReadPost,BufNewFile", function()
   })
 
   local on_attach = function(_, bufnr)
-    local opts = { noremap = true, silent = true, buf = bufnr }
+    local opts = { noremap = true, silent = false, buffer = bufnr }
+    local map = function(keys, func, desc, mode)
+      vim.keymap.set(mode or "n", keys, func, {
+        buffer = bufnr,
+        desc = "LSP: " .. desc,
+      })
+    end
+
+    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+
+    vim.keymap.set("n", "gr", function()
+      require("telescope.builtin").lsp_references()
+    end, opts)
+
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
+      desc = "Code Action",
+    })
+
+    vim.keymap.set("n", "gd", function()
+      require("telescope.builtin").lsp_definitions()
+    end, opts)
+
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
     vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
     vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "grd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "grf", vim.lsp.buf.format, opts)
+    -- vim.keymap.set("n", "grf", vim.lsp.buf.format, opts)
 
     -- Diagnostic
     vim.keymap.set("n", "[d", function()
@@ -127,6 +146,8 @@ safely("event:BufReadPost,BufNewFile", function()
     vim.lsp.config(server, config)
     vim.lsp.enable(server)
   end
+
+  vim.lsp.codelens.enable(true)
 end)
 
 -- Lazydev
