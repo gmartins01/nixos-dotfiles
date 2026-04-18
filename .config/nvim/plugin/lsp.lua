@@ -1,9 +1,18 @@
--- lsp servers we want to use and their configuration
--- see `:h lspconfig-all` for available servers and their settings
+--------------------------------------------------
+-- Servers
+--------------------------------------------------
 local lsp_servers = {
   lua_ls = {
-    -- https://luals.github.io/wiki/settings/ | `:h nvim_get_runtime_file`
-    Lua = { workspace = { library = vim.api.nvim_get_runtime_file("lua", true) } },
+    settings = {
+      Lua = {
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("lua", true),
+        },
+        diagnostics = {
+          globals = { "vim" },
+        },
+      },
+    },
   },
 
   qmlls = {},
@@ -14,88 +23,96 @@ local lsp_servers = {
   },
 }
 
-local ensure_installed = vim.tbl_keys(lsp_servers or {})
+--------------------------------------------------
+-- Mason tools
+--------------------------------------------------
+local ensure_installed = vim.tbl_keys(lsp_servers)
 vim.list_extend(ensure_installed, {
   "stylua",
-  "alejandra", -- format nix files
+  "alejandra",
 })
 
+--------------------------------------------------
+-- Plugins
+--------------------------------------------------
 vim.pack.add({
-  "https://github.com/neovim/nvim-lspconfig", -- default configs for lsps
+  "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/folke/lazydev.nvim",
 
-  "https://github.com/mason-org/mason.nvim", -- package manager
-  "https://github.com/mason-org/mason-lspconfig.nvim", -- lspconfig bridge
-  "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim", -- auto installer
+  "https://github.com/mason-org/mason.nvim",
+  "https://github.com/mason-org/mason-lspconfig.nvim",
+  "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 
-  "https://github.com/saghen/blink.cmp", -- completion
-  "https://github.com/rafamadriz/friendly-snippets", -- snippets
+  "https://github.com/saghen/blink.cmp",
+  "https://github.com/rafamadriz/friendly-snippets",
 }, { confirm = false })
 
+--------------------------------------------------
+-- Mason
+--------------------------------------------------
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
   ensure_installed = ensure_installed,
 })
 
-safely("event:BufReadPost,BufNewFile", function()
-  local blink = require("blink.cmp")
-  blink.setup({
-    signature = { enabled = true },
+--------------------------------------------------
+-- Completion
+--------------------------------------------------
+local blink = require("blink.cmp")
 
-    completion = {
-      documentation = {
-        auto_show = true,
+blink.setup({
+  signature = { enabled = true },
+
+  completion = {
+    documentation = {
+      auto_show = true,
+    },
+  },
+
+  keymap = {
+    ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+    ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+    ["<C-y>"] = { "select_and_accept", "fallback" },
+    ["<C-e>"] = { "cancel", "fallback" },
+
+    ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
+    ["<S-Tab>"] = { "snippet_backward", "snippet_backward", "fallback" },
+
+    ["<CR>"] = { "select_and_accept", "fallback" },
+
+    ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+
+    ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+    ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+  },
+
+  sources = {
+    default = { "lazydev", "lsp", "snippets", "buffer", "path" },
+
+    providers = {
+      lazydev = {
+        name = "LazyDev",
+        module = "lazydev.integrations.blink",
+        score_offset = 100,
       },
     },
+  },
 
-    keymap = {
-      -- these are the default blink keymaps
-      ["<C-n>"] = { "select_next", "fallback_to_mappings" },
-      ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
-      ["<C-y>"] = { "select_and_accept", "fallback" },
-      ["<C-e>"] = { "cancel", "fallback" },
+  fuzzy = {
+    implementation = "lua",
+  },
+})
 
-      ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
-      ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
-      ["<CR>"] = { "select_and_accept", "fallback" },
-      ["<Esc>"] = { "cancel", "hide_documentation", "fallback" },
+--------------------------------------------------
+-- LSP Keymaps
+--------------------------------------------------
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("user-lsp-attach", { clear = true }),
 
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+  callback = function(event)
+    local bufnr = event.buf
 
-      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-
-      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
-    },
-
-    fuzzy = {
-      implementation = "lua",
-    },
-
-    sources = {
-      default = { "lazydev", "lsp", "snippets", "buffer", "path" },
-      providers = {
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
-          -- make lazydev completions top priority (see `:h blink.cmp`)
-          score_offset = 100,
-        },
-        snippets = {
-          opts = {
-            extended_filetypes = {
-              javascript = { "jsdoc" },
-              dart = { "flutter" },
-            },
-          },
-        },
-      },
-    },
-  })
-
-  local on_attach = function(_, bufnr)
-    local opts = { noremap = true, silent = false, buffer = bufnr }
     local map = function(keys, func, desc, mode)
       vim.keymap.set(mode or "n", keys, func, {
         buffer = bufnr,
@@ -103,61 +120,65 @@ safely("event:BufReadPost,BufNewFile", function()
       })
     end
 
-    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-
-    vim.keymap.set("n", "gr", function()
-      require("telescope.builtin").lsp_references()
-    end, opts)
-
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
-      desc = "Code Action",
-    })
-
-    vim.keymap.set("n", "gd", function()
+    map("gd", function()
       require("telescope.builtin").lsp_definitions()
-    end, opts)
+    end, "[G]oto [D]efinition")
 
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
-    vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
-    vim.keymap.set("n", "grd", vim.lsp.buf.definition, opts)
-    -- vim.keymap.set("n", "grf", vim.lsp.buf.format, opts)
+    map("gr", function()
+      require("telescope.builtin").lsp_references()
+    end, "[G]oto [R]eferences")
 
-    -- Diagnostic
-    vim.keymap.set("n", "[d", function()
-      vim.diagnostic.jump({ count = -1 })
-    end, opts)
-    vim.keymap.set("n", "[d", function()
-      vim.diagnostic.jump({ count = 1 })
-    end, opts)
-  end
+    map("gi", function()
+      require("telescope.builtin").lsp_implementations()
+    end, "[G]oto [I]mplementation")
 
-  -- configure each lsp server on the table
-  -- to check what clients are attached to the current buffer, use
-  -- `:checkhealth vim.lsp`. to view default lsp keybindings, use `:h lsp-defaults`.
-  for server, config in pairs(lsp_servers) do
-    config.capabilities = blink.get_lsp_capabilities(config.capabilities)
-    config.on_attach = on_attach
+    map("gy", function()
+      require("telescope.builtin").lsp_type_definitions()
+    end, "[G]oto T[y]pe Definition")
 
-    vim.lsp.config(server, config)
-    vim.lsp.enable(server)
-  end
+    map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-  vim.lsp.codelens.enable(true)
-end)
+    map("K", vim.lsp.buf.hover, "Hover")
 
--- Lazydev
-safely("filetype:lua", function()
-  local status, lazydev = pcall(require, "lazydev")
-  if status then
-    lazydev.setup({
-      library = {
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    })
-  end
-end)
+    map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+
+    map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "v" })
+
+    -- map("<leader>f", function()
+    --   vim.lsp.buf.format({ async = true })
+    -- end, "[F]ormat")
+
+    map("<leader>cc", vim.lsp.codelens.run, "[C]odeLens")
+  end,
+})
+
+--------------------------------------------------
+-- Configure Servers
+--------------------------------------------------
+local capabilities = blink.get_lsp_capabilities()
+
+for server, config in pairs(lsp_servers) do
+  config.capabilities = capabilities
+  vim.lsp.config(server, config)
+  vim.lsp.enable(server)
+end
+
+--------------------------------------------------
+-- Lazydev 
+--------------------------------------------------
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    local ok, lazydev = pcall(require, "lazydev")
+    if ok then
+      lazydev.setup({
+        library = {
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      })
+    end
+  end,
+})
+
+-- vim.lsp.codelens.enable(true)

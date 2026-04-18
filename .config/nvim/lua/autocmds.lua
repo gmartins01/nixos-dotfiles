@@ -1,14 +1,9 @@
 -- Highlight when copy
-vim.api.nvim_create_autocmd("ColorScheme", {
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function()
-    vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#a6d189", fg = "#2e3440" })
-  end,
-})
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("highlight_yank", {}),
-  desc = "Highlight selection on yank",
-  callback = function()
-    vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 200 })
+    vim.highlight.on_yank()
   end,
 })
 

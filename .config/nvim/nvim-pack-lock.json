@@ -117,6 +117,10 @@
       "rev": "2715e04bea3ec9244f15b421dc5b18c0fe326210",
       "src": "https://github.com/nvim-mini/mini.surround"
     },
+    "nvim": {
+      "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
+      "src": "https://github.com/catppuccin/nvim"
+    },
     "nvim-autopairs": {
       "rev": "59bce2eef357189c3305e25bc6dd2d138c1683f5",
       "src": "https://github.com/windwp/nvim-autopairs"
@@ -162,6 +166,10 @@
     "sora": {
       "rev": "cdb2cc74adc82577a77bbf0579c7b6e47379c5f9",
       "src": "https://github.com/Aejkatappaja/sora"
+    },
+    "telescope-ui-select.nvim": {
+      "rev": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2",
+      "src": "https://github.com/nvim-telescope/telescope-ui-select.nvim"
     },
     "telescope.nvim": {
       "rev": "e6cdb4dc528c5dc4ca8da86e83ef4e3c84b0729c",

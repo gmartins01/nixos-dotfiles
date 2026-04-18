@@ -69,5 +69,5 @@ safely("later", function()
 end)
 
 vim.pack.add({ "https://github.com/vague2k/vague.nvim" }, { confirm = false })
-vim.pack.add({ "https://github.com/Aejkatappaja/sora" }, { confirm = false })
-vim.cmd("colorscheme sora")
+vim.pack.add({ "https://github.com/Aejkatappaja/sora", "https://github.com/catppuccin/nvim" }, { confirm = false })
+vim.cmd("colorscheme catppuccin-mocha")
