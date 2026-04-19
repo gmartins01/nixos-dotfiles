@@ -77,7 +77,7 @@ blink.setup({
     ["<C-e>"] = { "cancel", "fallback" },
 
     ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
-    ["<S-Tab>"] = { "snippet_backward", "snippet_backward", "fallback" },
+    ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
 
     ["<CR>"] = { "select_and_accept", "fallback" },
 
