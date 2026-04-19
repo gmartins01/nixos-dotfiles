@@ -1,6 +1,3 @@
---------------------------------------------------
--- Servers
---------------------------------------------------
 local lsp_servers = {
   lua_ls = {
     settings = {
@@ -23,18 +20,12 @@ local lsp_servers = {
   },
 }
 
---------------------------------------------------
--- Mason tools
---------------------------------------------------
 local ensure_installed = vim.tbl_keys(lsp_servers)
 vim.list_extend(ensure_installed, {
   "stylua",
   "alejandra",
 })
 
---------------------------------------------------
--- Plugins
---------------------------------------------------
 vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/folke/lazydev.nvim",
@@ -47,18 +38,13 @@ vim.pack.add({
   "https://github.com/rafamadriz/friendly-snippets",
 }, { confirm = false })
 
---------------------------------------------------
--- Mason
---------------------------------------------------
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
   ensure_installed = ensure_installed,
 })
 
---------------------------------------------------
 -- Completion
---------------------------------------------------
 local blink = require("blink.cmp")
 
 blink.setup({
@@ -104,14 +90,53 @@ blink.setup({
   },
 })
 
---------------------------------------------------
--- LSP Keymaps
---------------------------------------------------
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("user-lsp-attach", { clear = true }),
 
-  callback = function(event)
-    local bufnr = event.buf
+  callback = function(args)
+    local bufnr = args.buf
+
+    -- local client = vim.lsp.get_client_by_id(args.data.client_id)
+    -- if not client then
+    --   return
+    -- end
+
+    -- if client:supports_method("textDocument/documentHighlight") then
+    --   local highlight_group = vim.api.nvim_create_augroup("user-lsp-highlight", { clear = false })
+    --
+    --   vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    --     buffer = args.buf,
+    --     group = highlight_group,
+    --     callback = function()
+    --       vim.b[args.buf].lsp_highlight_word = vim.fn.expand("<cword>")
+    --       vim.lsp.buf.document_highlight()
+    --     end,
+    --   })
+    --
+    --   vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    --     buffer = args.buf,
+    --     group = highlight_group,
+    --     callback = function()
+    --       if vim.b[args.buf].lsp_highlight_word ~= vim.fn.expand("<cword>") then
+    --         vim.lsp.buf.clear_references()
+    --         vim.b[args.buf].lsp_highlight_word = nil
+    --       end
+    --     end,
+    --   })
+    --
+    --   vim.api.nvim_create_autocmd("LspDetach", {
+    --     group = vim.api.nvim_create_augroup("user-lsp-detach", { clear = true }),
+    --
+    --     callback = function(detach_event)
+    --       vim.lsp.buf.clear_references()
+    --
+    --       vim.api.nvim_clear_autocmds({
+    --         group = "user-lsp-highlight",
+    --         buffer = detach_event.buf,
+    --       })
+    --     end,
+    --   })
+    -- end
 
     local map = function(keys, func, desc, mode)
       vim.keymap.set(mode or "n", keys, func, {
@@ -119,7 +144,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP: " .. desc,
       })
     end
-
 
     map("gd", function()
       require("telescope.builtin").lsp_definitions()
@@ -150,12 +174,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- end, "[F]ormat")
 
     map("<leader>cc", vim.lsp.codelens.run, "[C]odeLens")
+
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
+      map("<leader>th", function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }))
+      end, "[T]oggle Inlay [H]ints")
+    end
   end,
 })
 
---------------------------------------------------
--- Configure Servers
---------------------------------------------------
 local capabilities = blink.get_lsp_capabilities()
 
 for server, config in pairs(lsp_servers) do
@@ -164,9 +191,7 @@ for server, config in pairs(lsp_servers) do
   vim.lsp.enable(server)
 end
 
---------------------------------------------------
--- Lazydev 
---------------------------------------------------
+-- Lazydev
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "lua",
   callback = function()

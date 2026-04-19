@@ -28,6 +28,10 @@
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "doc-highlight": {
+      "rev": "bf04338c343227cdd95a3cd17bb8f98f9db6c41e",
+      "src": "https://github.com/allworldg/doc-highlight"
+    },
     "fidget": {
       "rev": "b61e8af9b8b68ee0ec7da5fb7a8c203aae854f2e",
       "src": "https://github.com/j-hui/fidget.nvim"
