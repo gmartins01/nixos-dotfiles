@@ -4,8 +4,8 @@ vim.pack.add({
 
 safely("later", function()
   require("conform").setup({
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
+    -- event = { "BufWritePre" },
+    -- cmd = { "ConformInfo" },
     notify_on_error = false,
 
     formatters_by_ft = {
