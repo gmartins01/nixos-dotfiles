@@ -29,6 +29,7 @@
     neovim
     lua54Packages.luarocks-nix
     lua
+    tree-sitter
 
     ripgrep
     gcc
