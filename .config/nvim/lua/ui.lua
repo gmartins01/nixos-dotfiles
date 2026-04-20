@@ -68,6 +68,38 @@ safely("later", function()
   require("gitsigns").setup({})
 end)
 
+
+
 vim.pack.add({ "https://github.com/vague2k/vague.nvim" }, { confirm = false })
 vim.pack.add({ "https://github.com/Aejkatappaja/sora", "https://github.com/catppuccin/nvim" }, { confirm = false })
-vim.cmd("colorscheme catppuccin-mocha")
+
+require("catppuccin").setup({
+  flavour = "mocha",
+
+  custom_highlights = function(colors)
+    return {
+      DiagnosticUnderlineError = {
+        undercurl = true,
+        sp = colors.red,
+      },
+
+      DiagnosticUnderlineWarn = {
+        undercurl = true,
+        sp = colors.yellow,
+      },
+
+      DiagnosticUnderlineInfo = {
+        undercurl = true,
+        sp = colors.sky,
+      },
+
+      DiagnosticUnderlineHint = {
+        undercurl = true,
+        sp = colors.teal,
+      },
+    }
+  end,
+})
+
+vim.cmd.colorscheme("catppuccin")
+-- vim.cmd("colorscheme catppuccin-mocha")
