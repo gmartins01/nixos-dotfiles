@@ -16,6 +16,7 @@ safely("later", function()
       go = { "gofmt" },
       nix = { "alejandra" },
       html = { "prettierd", "prettier", stop_after_first = true },
+      htmlangular = { "prettierd", "prettier", stop_after_first = true },
       typescript = { "prettierd", "prettier", stop_after_first = true },
     },
   })
