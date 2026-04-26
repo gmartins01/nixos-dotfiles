@@ -24,12 +24,12 @@ safely("later", function()
   require("mini.cursorword").setup()
 end)
 
-safely("later", function()
-  require("mini.indentscope").setup({
-    draw = {
-      delay = 0,
-    },
-
-    symbol = "▏",
-  })
-end)
+-- safely("later", function()
+--   require("mini.indentscope").setup({
+--     draw = {
+--       delay = 0,
+--     },
+--
+--     symbol = "▏",
+--   })
+-- end)
