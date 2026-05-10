@@ -19,5 +19,7 @@
     xdg-desktop-portal-gnome
 
     stremio-linux-shell
+
+    brave
   ];
 }
