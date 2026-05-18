@@ -20,6 +20,10 @@ output_path = '~/.config/qt6ct/colors/matugen.conf'
 input_path = './templates/quickshell-colors.json'
 output_path = '~/.config/quickshell/settings/colors.json'
 
+[templates.quickshell2]
+input_path = './templates/quickshell-colors2.json'
+output_path = '~/.config/quickshell-dots/settings/colors.json'
+
 [templates.kitty]
 input_path = './templates/kitty-colors.conf'
 output_path = '~/.config/kitty/colors.conf'
