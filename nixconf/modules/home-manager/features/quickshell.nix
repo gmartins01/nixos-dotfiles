@@ -43,6 +43,6 @@ in {
     #   "${pkgs.kdePackages.qtstyleplugin-kvantum}/lib/qt-6/qml"
     #   "${pkgs.libsForQt5.qtstyleplugin-kvantum}/lib/qt-6/qml"
     "${pkgs.kdePackages.qtpositioning}/lib/qt-6/qml"
-    "${pkgs.libsForQt5.qt5.qtpositioning}/lib/qt-6/qml"
+    "${pkgs.qt5.qtpositioning}/lib/qt-6/qml"
   ];
 }

@@ -67,7 +67,3 @@ hl.env("HYPRCURSOR_SIZE", "24")
 --     border_size = 0,
 --     rounding    = 0,
 -- })
-
-require("dms.binds")
-
-require("dms.binds-user")
