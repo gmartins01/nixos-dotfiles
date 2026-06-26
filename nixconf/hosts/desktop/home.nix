@@ -115,13 +115,13 @@ in {
   xdg.mime.enable = true;
   xdg = {
     mimeApps.enable = false;
-    mimeApps.defaultApplications = {
-      "inode/directory" = ["org.gnome.Nautilus.desktop"];
-      "text/plain" = ["code.desktop"];
-      "application/xml" = ["code.desktop"];
-      "image/jpeg" = ["org.kde.gwenview.desktop"];
-      "image/png" = ["org.kde.gwenview.desktop"];
-    };
+    # mimeApps.defaultApplications = {
+      # "inode/directory" = ["org.gnome.Nautilus.desktop"];
+      # "text/plain" = ["code.desktop"];
+      # "application/xml" = ["code.desktop"];
+      # "image/jpeg" = ["org.kde.gwenview.desktop"];
+      # "image/png" = ["org.kde.gwenview.desktop"];
+    # };
     desktopEntries = {
       nvim = {
         name = "Neovim";
@@ -165,7 +165,7 @@ in {
   };
 
   home.sessionVariables = {
-    #QT_QPA_PLATFORMTHEME="kde";
+    QT_QPA_PLATFORMTHEME="kde";
     TERM = "kitty";
     TERMINAL = "screen-256color";
     EDITOR = "nvim";

@@ -55,24 +55,24 @@ in {
     )
   ];
 
-  services.displayManager.dms-greeter = {
-    enable = true;
-    compositor.name = "niri"; # Or "hyprland" or "sway"
-
-    # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
-    configHome = "/home/gmartins";
-
-    # Custom config files for non-standard config locations
-    configFiles = [
-      "/home/gmartins/.config/DankMaterialShell/settings.json"
-    ];
-
-    # Save the logs to a file
-    logs = {
-      save = true;
-      path = "/tmp/dms-greeter.log";
-    };
-  };
+  # services.displayManager.dms-greeter = {
+  #   enable = false;
+  #   compositor.name = "niri"; # Or "hyprland" or "sway"
+  #
+  #   # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
+  #   configHome = "/home/gmartins";
+  #
+  #   # Custom config files for non-standard config locations
+  #   configFiles = [
+  #     "/home/gmartins/.config/DankMaterialShell/settings.json"
+  #   ];
+  #
+  #   # Save the logs to a file
+  #   logs = {
+  #     save = true;
+  #     path = "/tmp/dms-greeter.log";
+  #   };
+  # };
 
   # services.displayManager.sddm = {
   #   enable = true;
@@ -87,9 +87,9 @@ in {
   #   };
   # };
 
-  # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-  #
+  services.displayManager.plasma-login-manager.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
   # environment.plasma6.excludePackages = with pkgs.kdePackages; [
   #   plasma-browser-integration
   #   konsole

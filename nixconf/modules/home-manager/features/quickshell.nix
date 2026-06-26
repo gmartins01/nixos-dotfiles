@@ -14,8 +14,8 @@ in {
   ];
 
   programs.dank-material-shell = {
-    enable = true;
-    systemd.enable = true;
+    enable = false;
+    systemd.enable = false;
     # quickshell.package = quickshell;
   };
 

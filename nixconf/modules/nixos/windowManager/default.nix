@@ -25,8 +25,8 @@
     clipse
     stable.copyq
 
-    libsForQt5.qt5ct
-    kdePackages.qt6ct
+    # libsForQt5.qt5ct
+    # kdePackages.qt6ct
     kdePackages.qtwayland
     qt5.qtwayland
 
@@ -71,7 +71,7 @@
       enable = true;
       xdgOpenUsePortal = true;
       config = {
-        common.default = ["gtk" "gnome"];
+        # common.default = ["gtk" "gnome"];
         hyprland.default = ["gtk" "hyprland"];
         niri = {
           default = ["gnome" "gtk"];

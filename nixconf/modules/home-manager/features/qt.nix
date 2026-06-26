@@ -23,17 +23,17 @@
 
   defaultFont = "${config.gtk.font.name},${builtins.toString config.gtk.font.size}";
 in {
-  qt = {
-    enable = true;
-    platformTheme.name = "qtct";
-  };
-
-  home.packages = [
-    pkgs.qt6Packages.qtstyleplugin-kvantum
-    pkgs.qt6Packages.qt6ct
-    pkgs.libsForQt5.qtstyleplugin-kvantum
-    pkgs.libsForQt5.qt5ct
-  ];
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "qtct";
+  # };
+  #
+  # home.packages = [
+  #   pkgs.qt6Packages.qtstyleplugin-kvantum
+  #   pkgs.qt6Packages.qt6ct
+  #   pkgs.libsForQt5.qtstyleplugin-kvantum
+  #   pkgs.libsForQt5.qt5ct
+  # ];
 
   xdg.configFile = {
     # Kvantum config
