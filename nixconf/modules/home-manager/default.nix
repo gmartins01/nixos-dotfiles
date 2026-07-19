@@ -17,5 +17,4 @@
 
   #plasma.enable = lib.mkDefault true;
 
-  fonts.fontDir.enable = true;
 }

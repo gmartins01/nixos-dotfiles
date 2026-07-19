@@ -8,6 +8,7 @@
     postman
     stable.gimp
 
+    proton-vpn
     proton-pass
 
     wezterm
@@ -21,5 +22,9 @@
     stremio-linux-shell
 
     brave
+
+    portfolio
+
+    komikku
   ];
 }

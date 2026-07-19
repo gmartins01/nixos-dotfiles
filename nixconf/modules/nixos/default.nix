@@ -1,6 +1,9 @@
-{ config, inputs, pkgs, ... }:
-
 {
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./system
     ./services
@@ -9,4 +12,5 @@
     ./features/gaming
   ];
 
+  fonts.fontDir.enable = true;
 }
