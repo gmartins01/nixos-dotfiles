@@ -9,6 +9,9 @@
     btop
 
     matugen
+
+    smartmontools
+    ddrescue
   ];
 
   programs.direnv = {

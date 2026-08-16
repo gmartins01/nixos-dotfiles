@@ -35,6 +35,12 @@
     fsType = "ntfs-3g";
     options = ["rw" "uid=1000" "gid=1000" "nofail"];
   };
+  fileSystems."/run/media/gmartins/SecondMedia" = {
+    device = "/dev/disk/by-uuid/28B45C02B45BD144";
+    fsType = "ntfs-3g";
+    # options = ["defaults" "noatime"];
+    options = ["rw" "uid=1000" "gid=1000" "nofail"];
+  };
   fileSystems."/run/media/gmartins/Files" = {
     device = "/dev/disk/by-uuid/1EDA5A58DA5A2BF1";
     fsType = "ntfs-3g";
